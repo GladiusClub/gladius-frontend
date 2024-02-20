@@ -1,0 +1,38 @@
+[
+  {
+    "id": "4d06bu8godice3gdt7qs8k3cg4",
+    "is_recurring": true,
+    "recurrence_rules": ["RRULE:FREQ=MONTHLY;BYDAY=3SA"],
+    "summary": "Competition ",
+    "location": "",
+    "start": "2023-05-20T13:00:00+02:00",
+    "next_occurrence": "2023-07-15T13:00:00+02:00"
+  },
+  {
+    "id": "_8d136ea184o42ba36l1jeb9k8kqjaba264qjgba36t2jgdhp8gq44ha66s",
+    "is_recurring": false,
+    "recurrence_rules": [],
+    "summary": "Fathers day",
+    "location": "",
+    "start": "2023-11-12",
+    "next_occurrence": "2023-11-12"
+  },
+  {
+    "id": "2ai848el5g91a93m61cvc9uesm",
+    "is_recurring": true,
+    "recurrence_rules": ["RRULE:FREQ=WEEKLY;WKST=SU;BYDAY=FR,TU"],
+    "summary": "Training",
+    "location": "",
+    "start": "2023-05-16T19:00:00+02:00",
+    "next_occurrence": "2023-07-04T19:00:00+02:00"
+  },
+  {
+    "id": "6cm8ofu930v8ijkkomtf6ktjdf",
+    "is_recurring": true,
+    "recurrence_rules": ["RRULE:FREQ=WEEKLY;BYDAY=FR"],
+    "summary": "Adult Training",
+    "location": "",
+    "start": "2023-05-19T20:00:00+02:00",
+    "next_occurrence": "2023-07-07T20:00:00+02:00"
+  }
+]
