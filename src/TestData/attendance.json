@@ -1,0 +1,912 @@
+{
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230516T170000Z": {
+        "date": "2023-05-16",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230516T170000Z",
+        "score": 19,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230519T170000Z": {
+        "date": "2023-05-19",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230519T170000Z",
+        "score": 39,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230523T170000Z": {
+        "date": "2023-05-23",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230523T170000Z",
+        "score": 53,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230526T170000Z": {
+        "date": "2023-05-26",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230526T170000Z",
+        "score": 60,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230602T170000Z": {
+        "date": "2023-06-02",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230602T170000Z",
+        "score": 8,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230606T170000Z": {
+        "date": "2023-06-06",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230606T170000Z",
+        "score": 10,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230613T170000Z": {
+        "date": "2023-06-13",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230613T170000Z",
+        "score": 10,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230620T170000Z": {
+        "date": "2023-06-20",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230620T170000Z",
+        "score": 27,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230623T170000Z": {
+        "date": "2023-06-23",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230623T170000Z",
+        "score": 60,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230627T170000Z": {
+        "date": "2023-06-27",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230627T170000Z",
+        "score": 74,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230630T170000Z": {
+        "date": "2023-06-30",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230630T170000Z",
+        "score": 98,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230704T170000Z": {
+        "date": "2023-07-04",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230704T170000Z",
+        "score": 49,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230707T170000Z": {
+        "date": "2023-07-07",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230707T170000Z",
+        "score": 92,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230711T170000Z": {
+        "date": "2023-07-11",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230711T170000Z",
+        "score": 3,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230718T170000Z": {
+        "date": "2023-07-18",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230718T170000Z",
+        "score": "34",
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230721T170000Z": {
+        "date": "2023-07-21",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230721T170000Z",
+        "score": "34",
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230725T170000Z": {
+        "date": "2023-07-25",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230725T170000Z",
+        "score": "34",
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230728T170000Z": {
+        "date": "2023-07-28",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230728T170000Z",
+        "score": 10,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230801T170000Z": {
+        "date": "2023-08-01",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230801T170000Z",
+        "score": 87,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230808T170000Z": {
+        "date": "2023-08-08",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230808T170000Z",
+        "score": 3,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230811T170000Z": {
+        "date": "2023-08-11",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230811T170000Z",
+        "score": 65,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230815T170000Z": {
+        "date": "2023-08-15",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230815T170000Z",
+        "score": 50,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230818T170000Z": {
+        "date": "2023-08-18",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230818T170000Z",
+        "score": 45,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230822T170000Z": {
+        "date": "2023-08-22",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230822T170000Z",
+        "score": 94,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230825T170000Z": {
+        "date": "2023-08-25",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230825T170000Z",
+        "score": 0,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230829T170000Z": {
+        "date": "2023-08-29",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230829T170000Z",
+        "score": 37,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230901T170000Z": {
+        "date": "2023-09-01",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230901T170000Z",
+        "score": 27,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230908T170000Z": {
+        "date": "2023-09-08",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230908T170000Z",
+        "score": 69,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230912T170000Z": {
+        "date": "2023-09-12",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230912T170000Z",
+        "score": 50,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230915T170000Z": {
+        "date": "2023-09-15",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230915T170000Z",
+        "score": 65,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230919T170000Z": {
+        "date": "2023-09-19",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230919T170000Z",
+        "score": 33,
+        "coefficient": "1",
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230922T170000Z": {
+        "date": "2023-09-22",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230922T170000Z",
+        "score": 44,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230926T170000Z": {
+        "date": "2023-09-26",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230926T170000Z",
+        "score": 64,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20230929T170000Z": {
+        "date": "2023-09-29",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20230929T170000Z",
+        "score": 52,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231003T170000Z": {
+        "date": "2023-10-03",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231003T170000Z",
+        "score": 94,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231006T170000Z": {
+        "date": "2023-10-06",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231006T170000Z",
+        "score": 54,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231010T170000Z": {
+        "date": "2023-10-10",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231010T170000Z",
+        "score": 79,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231013T170000Z": {
+        "date": "2023-10-13",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231013T170000Z",
+        "score": 70,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231017T170000Z": {
+        "date": "2023-10-17",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231017T170000Z",
+        "score": 97,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231020T170000Z": {
+        "date": "2023-10-20",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231020T170000Z",
+        "score": 89,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231024T170000Z": {
+        "date": "2023-10-24",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231024T170000Z",
+        "score": 44,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231027T170000Z": {
+        "date": "2023-10-27",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231027T170000Z",
+        "score": 94,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231031T180000Z": {
+        "date": "2023-10-31",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231031T180000Z",
+        "score": 97,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231103T180000Z": {
+        "date": "2023-11-03",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231103T180000Z",
+        "score": 1,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231107T180000Z": {
+        "date": "2023-11-07",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231107T180000Z",
+        "score": 24,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231110T180000Z": {
+        "date": "2023-11-10",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231110T180000Z",
+        "score": 48,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231114T180000Z": {
+        "date": "2023-11-14",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231114T180000Z",
+        "score": 71,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231117T180000Z": {
+        "date": "2023-11-17",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231117T180000Z",
+        "score": 39,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231121T180000Z": {
+        "date": "2023-11-21",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231121T180000Z",
+        "score": 23,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231124T180000Z": {
+        "date": "2023-11-24",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231124T180000Z",
+        "score": 74,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231128T180000Z": {
+        "date": "2023-11-28",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231128T180000Z",
+        "score": 7,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231201T180000Z": {
+        "date": "2023-12-01",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231201T180000Z",
+        "score": 59,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231205T180000Z": {
+        "date": "2023-12-05",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231205T180000Z",
+        "score": 85,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231208T180000Z": {
+        "date": "2023-12-08",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231208T180000Z",
+        "score": 12,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231212T180000Z": {
+        "date": "2023-12-12",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231212T180000Z",
+        "score": 14,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_2ai848el5g91a93m61cvc9uesm_20231215T180000Z": {
+        "date": "2023-12-15",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "2ai848el5g91a93m61cvc9uesm",
+        "eventId": "2ai848el5g91a93m61cvc9uesm_20231215T180000Z",
+        "score": 21,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20230520T110000Z": {
+        "date": "2023-05-20",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20230520T110000Z",
+        "score": 6,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20230617T110000Z": {
+        "date": "2023-06-17",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20230617T110000Z",
+        "score": 26,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20230715T110000Z": {
+        "date": "2023-07-15",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20230715T110000Z",
+        "score": "34",
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20230819T110000Z": {
+        "date": "2023-08-19",
+        "win": null,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20230819T110000Z",
+        "score": null,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20231021T110000Z": {
+        "date": "2023-10-21",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20231021T110000Z",
+        "score": 28,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_4d06bu8godice3gdt7qs8k3cg4_20231118T120000Z": {
+        "date": "2023-11-18",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "4d06bu8godice3gdt7qs8k3cg4",
+        "eventId": "4d06bu8godice3gdt7qs8k3cg4_20231118T120000Z",
+        "score": 80,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230519T180000Z": {
+        "date": "2023-05-19",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230519T180000Z",
+        "score": 2,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230526T180000Z": {
+        "date": "2023-05-26",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230526T180000Z",
+        "score": 47,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230602T180000Z": {
+        "date": "2023-06-02",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230602T180000Z",
+        "score": 16,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230609T180000Z": {
+        "date": "2023-06-09",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230609T180000Z",
+        "score": 63,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230616T180000Z": {
+        "date": "2023-06-16",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230616T180000Z",
+        "score": 43,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230623T180000Z": {
+        "date": "2023-06-23",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230623T180000Z",
+        "score": 90,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230630T180000Z": {
+        "date": "2023-06-30",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230630T180000Z",
+        "score": 49,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230707T180000Z": {
+        "date": "2023-07-07",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230707T180000Z",
+        "score": 58,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230714T180000Z": {
+        "date": "2023-07-14",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230714T180000Z",
+        "score": 96,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230721T180000Z": {
+        "date": "2023-07-21",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230721T180000Z",
+        "score": 73,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230728T180000Z": {
+        "date": "2023-07-28",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230728T180000Z",
+        "score": 84,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230818T180000Z": {
+        "date": "2023-08-18",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230818T180000Z",
+        "score": 76,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230825T180000Z": {
+        "date": "2023-08-25",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230825T180000Z",
+        "score": 47,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230901T180000Z": {
+        "date": "2023-09-01",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230901T180000Z",
+        "score": 56,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230908T180000Z": {
+        "date": "2023-09-08",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230908T180000Z",
+        "score": "3",
+        "coefficient": "1",
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230915T180000Z": {
+        "date": "2023-09-15",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230915T180000Z",
+        "score": 86,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230922T180000Z": {
+        "date": "2023-09-22",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230922T180000Z",
+        "score": 47,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20230929T180000Z": {
+        "date": "2023-09-29",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20230929T180000Z",
+        "score": 4,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231006T180000Z": {
+        "date": "2023-10-06",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231006T180000Z",
+        "score": 42,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231013T180000Z": {
+        "date": "2023-10-13",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231013T180000Z",
+        "score": 47,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231020T180000Z": {
+        "date": "2023-10-20",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231020T180000Z",
+        "score": 23,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231027T180000Z": {
+        "date": "2023-10-27",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231027T180000Z",
+        "score": 34,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231103T190000Z": {
+        "date": "2023-11-03",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231103T190000Z",
+        "score": 8,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231110T190000Z": {
+        "date": "2023-11-10",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231110T190000Z",
+        "score": 85,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231117T190000Z": {
+        "date": "2023-11-17",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231117T190000Z",
+        "score": 85,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231124T190000Z": {
+        "date": "2023-11-24",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231124T190000Z",
+        "score": 22,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231201T190000Z": {
+        "date": "2023-12-01",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231201T190000Z",
+        "score": 48,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com_6cm8ofu930v8ijkkomtf6ktjdf_20231208T190000Z": {
+        "date": "2023-12-08",
+        "win": true,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "6cm8ofu930v8ijkkomtf6ktjdf",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf_20231208T190000Z",
+        "score": 26,
+        "coefficient": null,
+        "attended": true
+    },
+    "dcromp88@googlemail.com__8d136ea184o42ba36l1jeb9k8kqjaba264qjgba36t2jgdhp8gq44ha66s": {
+        "date": "2023-11-12",
+        "win": false,
+        "calendarId": "dcromp88@googlemail.com",
+        "eventParentId": "",
+        "eventId": "_8d136ea184o42ba36l1jeb9k8kqjaba264qjgba36t2jgdhp8gq44ha66s",
+        "score": 1,
+        "coefficient": null,
+        "attended": true
+    }
+}
