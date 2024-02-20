@@ -1,0 +1,15 @@
+{
+    "age": 22,
+    "clubs_roles": [
+        {
+            "club_id": "1",
+            "role": "athlete"
+        }
+    ],
+    "occupation": "Student",
+    "is_active": false,
+    "address": "0xFA8b27A0d9C5Bf7490ea03eDAB652c3a18cAc19b",
+    "email": "mart@example.com",
+    "privateKey": "0x061b6fe863c1e69a4cac495ee20692cb94419ae3a0439db8bbb942c2a17df7f4",
+    "name": "Mart"
+}

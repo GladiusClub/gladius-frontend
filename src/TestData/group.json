@@ -1,0 +1,33 @@
+[
+  {
+    "group_id": "KXkR3pntnXEo1bxwLrvm",
+    "event_ids": [
+      {
+        "calendarId": "dcromp88@googlemail.com",
+        "eventId": "2ai848el5g91a93m61cvc9uesm"
+      }
+    ],
+    "member_uuids": [
+      "Z6XpBUZ3IGNafmdreaAKzv2rjPw1",
+      "fiSADdKf32XvwO4NHuNYHRVv3iU2",
+      "fuUKIZ5iqzf3S1Y5hVrQ7pZ9k5u2",
+      "j2rbTsXFtfYFK3cM2Gt8BlOz9tc2",
+      "4KKWdVfzUcUcJf9mVSVdPRXSNLI2"
+    ],
+    "name": "After school under 12's"
+  },
+  {
+    "group_id": "VYr4jTXHQ6f1cE1KTMyZ",
+    "event_ids": [
+      {
+        "calendarId": "dcromp88@googlemail.com",
+        "eventId": "6cm8ofu930v8ijkkomtf6ktjdf"
+      }
+    ],
+    "member_uuids": [
+      "Z6XpBUZ3IGNafmdreaAKzv2rjPw1",
+      "4KKWdVfzUcUcJf9mVSVdPRXSNLI2"
+    ],
+    "name": "Adults"
+  }
+]
