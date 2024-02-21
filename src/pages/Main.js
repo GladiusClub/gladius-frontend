@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import {protectedRoutes, unProtectedRoutes} from '../constants/routes';
+import Loader from "../components/Loader";
+import { protectedRoutes, unProtectedRoutes } from "../constants/routes";
 
 const UnProtectedLayout = lazy(() => import("./unprotected/Layout"));
 const ProtectedLayout = lazy(() => import("./protected/Layout"));
@@ -17,10 +18,12 @@ const Tasks = lazy(() => import("./protected/Tasks"));
 
 const Main = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={<Loader className="flex justify-center items-center h-full" />}
+    >
       <Routes>
         <Route element={<UnProtectedLayout />}>
-          <Route path='*' element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
           <Route path={unProtectedRoutes.welcome} element={<Welcome />} />
           <Route path={unProtectedRoutes.signIn} element={<SignIn />} />
           <Route path={unProtectedRoutes.signUp} element={<SignUp />} />

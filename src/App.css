@@ -4,13 +4,20 @@
   --color-default: white;
   --color-neutral: #7487a1;
   --color-dark: #101835;
+  --color-active: linear-gradient(180deg, #008DF3 0%, #007CE7 12%, #00B6D2 89%, #00CDDD 100%);
 }
 
 body {
   margin: 0;
+  height: 100vh;
   font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #121e49 0%, #004261 100%);
   color: var(--color-default);
+}
+
+#root {
+  height: 100%;
+  overflow: auto;
 }
