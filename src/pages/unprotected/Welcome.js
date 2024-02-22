@@ -17,7 +17,11 @@ const Welcome = () => {
         <p className="text-xl mt-5">Join the excitement now!</p>
 
         <Link to="/signup">
-          <Button size="large" variant="contained" className="w-full mt-5 bg-active">
+          <Button
+            size="large"
+            variant="contained"
+            className="w-full normal-case mt-5 bg-active"
+          >
             Sign Up
           </Button>
         </Link>
@@ -25,7 +29,7 @@ const Welcome = () => {
           <Button
             size="large"
             variant="outlined"
-            className="text-default border-primary w-full mt-5"
+            className="text-default normal-case border-primary w-full mt-5"
           >
             Sign In
           </Button>
