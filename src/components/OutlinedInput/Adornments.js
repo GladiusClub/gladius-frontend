@@ -31,7 +31,7 @@ export const PasswordAdornment = ({ onPasswordVisibilityClick }) => {
 
   useEffect(() => {
     onPasswordVisibilityClick(showPassword);
-  }, [showPassword]);
+  }, [showPassword, onPasswordVisibilityClick]);
 
   const handleIconClick = () => {
     setShowPassword((prev) => !prev);
