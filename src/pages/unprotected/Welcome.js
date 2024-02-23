@@ -1,20 +1,21 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 import gladiusLogo from "../../assets/gladius-logo.svg";
-import { Link } from "react-router-dom";
+import Typography from "../../components/Typography";
 
 const Welcome = () => {
   return (
     <div>
-      <img src={gladiusLogo} alt="Gladius" className="mt-20 mx-auto" />
-      <section className="mt-10 text-center">
-        <h1>Welcome!</h1>
-        <p className="text-xl mt-5">
+      <img src={gladiusLogo} alt="Gladius" className="mt-10 mx-auto" />
+      <section className="mt-5 text-center">
+        <Typography variant='h1'>Welcome!</Typography>
+        <Typography className="text-xl mt-5">
           Dive into the ultimate sports club. Earn crypto, collect NFTs, and
           train like never before!
-        </p>
-        <p className="text-xl mt-5">Join the excitement now!</p>
+        </Typography>
+        <Typography className="text-xl mt-5">Join the excitement now!</Typography>
 
         <Link to="/signup">
           <Button
