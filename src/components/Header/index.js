@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import Divider from "../Divider";
 import { protectedRoutes } from "../../constants/routes";
+import classNames from "classnames";
 
 const links = [
   {
@@ -36,7 +37,7 @@ const Header = () => {
             key={text}
             to={to}
             className={({ isActive }) =>
-              isActive ? "text-primary pointer-events-none" : ""
+              classNames({ "text-primary pointer-events-none": isActive })
             }
           >
             {text}
