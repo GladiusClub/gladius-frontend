@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Loader from "../components/Loader";
-import { protectedRoutes, unProtectedRoutes } from "../constants/routes";
+import Loader from "components/Loader";
+import { protectedRoutes, unProtectedRoutes } from "constants/routes";
 
 const UnProtectedLayout = lazy(() => import("./unprotected/Layout"));
 const ProtectedLayout = lazy(() => import("./protected/Layout"));

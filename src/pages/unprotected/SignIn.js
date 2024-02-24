@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-import Typography from "../../components/Typography";
-import OutlinedInput from "../../components/OutlinedInput";
+import Typography from "components/Typography";
+import OutlinedInput from "components/OutlinedInput";
 import {
   UserAdornment,
   PasswordAdornment,
-} from "../../components/OutlinedInput/Adornments";
-import { useValidate } from "../../components/OutlinedInput/useValidate";
-import { unProtectedRoutes } from "../../constants/routes";
-import gladiusLogo from "../../assets/gladius-logo.svg";
+} from "components/OutlinedInput/Adornments";
+import { useValidate } from "components/OutlinedInput/useValidate";
+import { unProtectedRoutes } from "constants/routes";
+import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignIn = () => {
   const [values, setValues] = useState({ username: "", password: "" });

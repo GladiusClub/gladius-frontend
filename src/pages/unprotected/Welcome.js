@@ -2,8 +2,8 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
-import gladiusLogo from "../../assets/gladius-logo.svg";
-import Typography from "../../components/Typography";
+import gladiusLogo from "assets/gladius-logo.svg";
+import Typography from "components/Typography";
 
 const Welcome = () => {
   return (

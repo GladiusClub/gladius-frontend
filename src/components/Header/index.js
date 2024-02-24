@@ -1,9 +1,9 @@
 import React from "react";
+import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 
-import Divider from "../Divider";
-import { protectedRoutes } from "../../constants/routes";
-import classNames from "classnames";
+import Divider from "components/Divider";
+import { protectedRoutes } from "constants/routes";
 
 const links = [
   {
@@ -30,7 +30,7 @@ const links = [
 
 const Header = () => {
   return (
-    <div className="sticky top-0">
+    <div className="sticky top-0 z-10">
       <nav className="flex justify-between bg-dark px-3 pt-8 pb-3">
         {links.map(({ to, text }) => (
           <NavLink
