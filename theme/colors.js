@@ -4,6 +4,7 @@ const colors = {
   secondary: "var(--color-secondary)",
   neutral: "var(--color-neutral)",
   dark: "var(--color-dark)",
+  success: "var(--color-success)",
   active: "var(--color-active)"
 };
 
