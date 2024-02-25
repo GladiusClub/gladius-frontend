@@ -9,8 +9,8 @@ const Badges = lazy(() => import("modules/profile/badges"));
 const Profile = () => {
   return (
     <div>
-      <Typography className="text-center text-xl">Wallet</Typography>
-      <Tabs className="mt-5">
+      <Typography className="text-center text-xl mt-5">Wallet</Typography>
+      <Tabs className="mt-10">
         <Tab label="Points">
           <Points />
         </Tab>
