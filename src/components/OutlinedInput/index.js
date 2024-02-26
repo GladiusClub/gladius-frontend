@@ -8,26 +8,34 @@ import "./outlinedInput.css";
 
 const OutlinedInput = ({ field, onBlur, endAdornment }) => {
   const inputRef = useRef(null);
+  const { error, autoComplete, ...rest } = field;
 
   const handleBlur = () => {
     onBlur(field.name, inputRef.current?.value);
   };
 
   return (
-    <FormControl variant="outlined" className="w-full my-2 text-default">
-      <InputLabel className="text-default font-manrope font-light">
+    <FormControl variant="outlined" className="w-full text-default">
+      <InputLabel
+        className="text-default font-manrope font-light"
+        aria-label={field.label}
+      >
         {field.label}
       </InputLabel>
       <MuiOutlinedInput
-        {...{ ...field, error: !!field.error }}
+        {...rest}
         inputRef={inputRef}
+        onBlur={handleBlur}
+        error={!!error}
+        autoComplete={autoComplete}
         inputProps={{
           className: "text-default font-light font-manrope",
         }}
-        onBlur={handleBlur}
         endAdornment={endAdornment}
+        aria-invalid={!!field.error}
+        aria-describedby={field.name || field.label}
       />
-      <FormHelperText className="text-secondary ml-0 h-3">
+      <FormHelperText className="text-secondary ml-0 min-h-5" aria-live="assertive">
         {field.error}
       </FormHelperText>
     </FormControl>
