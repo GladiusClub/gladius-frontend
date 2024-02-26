@@ -42,6 +42,8 @@ const SignIn = () => {
             type: "text",
             name: "username",
             label: "Username",
+            required: true,
+            autoComplete: "username",
             error: errors.username,
           }}
           endAdornment={<UserAdornment />}
@@ -52,6 +54,7 @@ const SignIn = () => {
             type: showPassword ? "text" : "password",
             name: "password",
             label: "Password",
+            required: true,
             error: errors.password,
           }}
           endAdornment={

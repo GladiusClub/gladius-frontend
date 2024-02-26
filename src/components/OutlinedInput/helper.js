@@ -1,38 +1,50 @@
+const usernameRegex = /^(?!_)(?!.*?_$)[a-zA-Z0-9_]{3,20}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
+
+const requiredText = {
+  username: "Username",
+  email: "Email",
+  password: "Password",
+  confirmPassword: "Confirm password",
+};
+
 export const getError = (name, values) => {
-  let error = "";
+  if (!values[name].trim()) {
+    return `${requiredText[name]} is required`;
+  }
+
   switch (name) {
     case "username": {
-      if (!values[name].trim()) {
-        error = "Username is required";
+      if (!usernameRegex.test(values[name])) {
+        return "Username must be between 3 and 20 characters long and can contain letters, digits, and underscores. It cannot start or end with an underscore";
       }
       break;
     }
     case "email": {
-      if (!values[name].trim()) {
-        error = "Email is required";
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values[name])) {
-        error = "Invalid email format";
+      if (!emailRegex.test(values[name])) {
+        return "Invalid email format";
       }
       break;
     }
     case "password": {
-      if (!values[name].trim()) {
-        error = "Password is required";
+      if (!passwordRegex.test(values[name])) {
+        return "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*())";
       }
       break;
     }
     case "confirmPassword": {
-      if (!values[name].trim()) {
-        error = "Confirm Password is required";
-      } else if (values[name] !== values.password) {
-        error = "Passwords do not match";
+      if (values[name] !== values.password) {
+        return "Passwords do not match";
       }
       break;
     }
     default: {
+      return ""
     }
   }
-  return error;
+  return "";
 };
 
 export const getAllErrors = (values) => {
