@@ -5,7 +5,8 @@ const colors = {
   neutral: "var(--color-neutral)",
   dark: "var(--color-dark)",
   success: "var(--color-success)",
-  active: "var(--color-active)"
+  active: "var(--color-active)",
+  info: "var(--color-info)",
 };
 
 export default colors;

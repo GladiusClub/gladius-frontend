@@ -5,6 +5,7 @@
   --color-neutral: #7487a1;
   --color-dark: #101835;
   --color-success: #00AC53;
+  --color-info: #DB5B00;
   --color-active: linear-gradient(180deg, #008DF3 0%, #007CE7 12%, #00B6D2 89%, #00CDDD 100%);
 }
 

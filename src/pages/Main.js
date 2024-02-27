@@ -23,10 +23,10 @@ const Main = () => {
     >
       <Routes>
         <Route element={<UnProtectedLayout />}>
-          <Route path="*" element={<NotFound />} />
           <Route path={unProtectedRoutes.welcome} element={<Welcome />} />
           <Route path={unProtectedRoutes.signIn} element={<SignIn />} />
           <Route path={unProtectedRoutes.signUp} element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         <Route path="/" element={<ProtectedLayout />}>
