@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import Typography from "components/Typography";
 import OutlinedInput from "components/OutlinedInput";
 import {
-  UserAdornment,
+  EmailAdornment,
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
 import { useValidate } from "components/OutlinedInput/useValidate";
+import { auth } from "services/firebase-config";
 import { unProtectedRoutes } from "constants/routes";
+import { authMessages } from "constants/auth";
 import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignIn = () => {
-  const [values, setValues] = useState({ username: "", password: "" });
+  const [values, setValues] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const { errors, validateOnBlur, validateOnSubmit } = useValidate(values);
+  const firebaseErrorRef = useRef(null);
 
   const handleBlur = (name, value) => {
     const newValues = { ...values, [name]: value };
@@ -23,30 +27,40 @@ const SignIn = () => {
     validateOnBlur(name, newValues);
   };
 
-  const handleSignInClick = () => {
+  const handleSignInClick = async () => {
     const isValid = validateOnSubmit(values);
-    console.log(values);
-    console.log(isValid);
+    if (isValid) {
+      try {
+        await signInWithEmailAndPassword(auth, values.email, values.password);
+        firebaseErrorRef.current.textContent = "";
+      } catch (err) {
+        firebaseErrorRef.current.textContent =
+          authMessages[err.code] || err.message;
+      }
+    }
   };
 
   return (
     <div>
       <img src={gladiusLogo} alt="Gladius" className="mx-auto" />
       <section className="text-center">
-        <Typography variant="h2" className="mb-14">
-          Sign in to your account
-        </Typography>
+        <Typography variant="h2">Sign in to your account</Typography>
+        <p
+          ref={firebaseErrorRef}
+          className="text-secondary min-h-5 text-sm my-6"
+          aria-live="assertive"
+        />
         <OutlinedInput
           onBlur={handleBlur}
           field={{
             type: "text",
-            name: "username",
-            label: "Username",
+            name: "email",
+            label: "Email",
             required: true,
-            autoComplete: "username",
-            error: errors.username,
+            autoComplete: "email",
+            error: errors.email,
           }}
-          endAdornment={<UserAdornment />}
+          endAdornment={<EmailAdornment />}
         />
         <OutlinedInput
           onBlur={handleBlur}

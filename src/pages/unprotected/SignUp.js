@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 
 import Typography from "components/Typography";
 import OutlinedInput from "components/OutlinedInput";
@@ -10,7 +11,9 @@ import {
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
 import { useValidate } from "components/OutlinedInput/useValidate";
+import { auth } from "services/firebase-config";
 import { unProtectedRoutes } from "constants/routes";
+import { authMessages } from "constants/auth";
 import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignUp = () => {
@@ -23,6 +26,8 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { errors, validateOnBlur, validateOnSubmit } = useValidate(values);
+  const navigate = useNavigate();
+  const firebaseErrorRef = useRef(null);
 
   const handleBlur = (name, value) => {
     const newValues = { ...values, [name]: value };
@@ -30,25 +35,47 @@ const SignUp = () => {
     validateOnBlur(name, newValues);
   };
 
-  const handleSignUpClick = () => {
+  const handleSignUpClick = async () => {
     const isValid = validateOnSubmit(values);
-    console.log(values);
-    console.log(isValid);
+    if (isValid) {
+      try {
+        const response = await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
+        if (response.user) {
+          firebaseErrorRef.current.textContent = "";
+          await signOut(auth);
+          navigate(unProtectedRoutes.signIn, {
+            replace: true,
+          });
+        }
+      } catch (err) {
+        firebaseErrorRef.current.textContent =
+          authMessages[err.code] || err.message;
+      }
+    }
   };
 
   return (
     <div>
       <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
       <section className="text-center -mt-5">
-        <Typography variant="h2" className="mb-10">
-          Create account
-        </Typography>
+        <Typography variant="h2">Create account</Typography>
+        <p
+          ref={firebaseErrorRef}
+          className="text-secondary min-h-5 text-sm my-5"
+          aria-live="assertive"
+        />
         <OutlinedInput
           onBlur={handleBlur}
           field={{
             type: "text",
             name: "username",
             label: "Username",
+            required: true,
+            autoComplete: "username",
             error: errors.username,
           }}
           endAdornment={<UserAdornment />}
@@ -59,6 +86,8 @@ const SignUp = () => {
             type: "email",
             name: "email",
             label: "Email",
+            required: true,
+            autoComplete: "email",
             error: errors.email,
           }}
           endAdornment={<EmailAdornment />}
@@ -69,6 +98,7 @@ const SignUp = () => {
             type: showPassword ? "text" : "password",
             name: "password",
             label: "Password",
+            required: true,
             error: errors.password,
           }}
           endAdornment={
@@ -81,6 +111,7 @@ const SignUp = () => {
             type: showConfirmPassword ? "text" : "password",
             name: "confirmPassword",
             label: "Confirm Password",
+            required: true,
             error: errors.confirmPassword,
           }}
           endAdornment={

@@ -1,7 +1,6 @@
 const usernameRegex = /^(?!_)(?!.*?_$)[a-zA-Z0-9_]{3,20}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
+const passwordRegex = /^.{4,}$/;
 
 const requiredText = {
   username: "Username",
@@ -30,7 +29,7 @@ export const getError = (name, values) => {
     }
     case "password": {
       if (!passwordRegex.test(values[name])) {
-        return "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*())";
+        return "Password must be at least 4 characters";
       }
       break;
     }
