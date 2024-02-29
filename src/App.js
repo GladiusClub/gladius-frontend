@@ -1,12 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
 
 import Main from "./pages/Main";
+import { UserProfileProvider } from "context/UserProfileContext";
 import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <Main />
+      <UserProfileProvider>
+        <Main />
+      </UserProfileProvider>
     </BrowserRouter>
   );
 }
