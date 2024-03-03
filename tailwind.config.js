@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors,
       backgroundImage: {
-        active: colors.active,
+        ...colors,
       },
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
