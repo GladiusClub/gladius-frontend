@@ -35,8 +35,11 @@ const Main = () => {
           <Route path={protectedRoutes.profile} element={<Profile />} />
           <Route path={protectedRoutes.tasks} element={<Tasks />} />
         </Route>
-        
-        <Route path="/" element={<Navigate to={protectedRoutes.home} />} />
+
+        <Route
+          path="/"
+          element={<Navigate to={protectedRoutes.home} replace />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

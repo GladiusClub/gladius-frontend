@@ -3,16 +3,19 @@ import TabContent from "./TabContent";
 import TabsList from "./TabsList";
 import "./tabs.css";
 
-const Tabs = ({ className, children }) => {
+const Tabs = ({ className, classes, children }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <>
-      <div className={`tabs ${className}`}>
-        <TabsList activeIndex={activeIndex} onTabChange={setActiveIndex}>
-          {children}
-        </TabsList>
-      </div>
+      <TabsList
+        className={`tabs ${className}`}
+        activeIndex={activeIndex}
+        onTabChange={setActiveIndex}
+        classes={classes}
+      >
+        {children}
+      </TabsList>
       <TabContent>{children[activeIndex]?.props.children}</TabContent>
     </>
   );

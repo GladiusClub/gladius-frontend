@@ -14,7 +14,7 @@ const NonPerformers = ({ nonPerformers }) => {
           className={classNames(
             "bg-dark border border-primary my-3 rounded-xl",
             {
-              "bg-active": item.active,
+              "bg-gradient-active": item.active,
             }
           )}
           hideDivider

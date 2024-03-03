@@ -5,9 +5,9 @@ import List from "components/List";
 import PointsListItem from "./PointsListItem";
 import ListItem from "components/List/ListItem";
 
-const PointsList = ({ title, list }) => {
+const PointsList = ({ title, list, className }) => {
   return (
-    <section className="mt-10">
+    <section className={className}>
       <Typography className="text-xl text-primary">{title}</Typography>
       <List>
         {list.map((event) => (

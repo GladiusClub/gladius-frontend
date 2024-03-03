@@ -6,7 +6,7 @@ import Typography from "components/Typography";
 const classes = {
   2: {
     root: "mt-14",
-    rank: "bg-active w-7 h-7 text-sm",
+    rank: "bg-gradient-active w-7 h-7 text-sm",
     avatar: "w-24 h-24",
   },
   1: {

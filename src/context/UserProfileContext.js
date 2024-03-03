@@ -1,21 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
 
-import { auth, db } from "services/firebase-config";
+import { auth } from "services/firebase-config";
+import { useFirebase } from "services/useFirebase";
 import { collections } from "constants/collections";
 
 export const UserProfileContext = createContext({});
 
 export const UserProfileProvider = ({ children }) => {
   const [user, setUser] = useState({ isFetching: true });
+  const { data, getDocDataByUid } = useFirebase();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser({ isFetching: false, email: user.email });
-        fetchUserByUid(user.uid);
+        getDocDataByUid(collections.users, user.uid);
       } else {
         setUser({ isFetching: false });
       }
@@ -24,19 +25,9 @@ export const UserProfileProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const fetchUserByUid = async (uid) => {
-    const userRef = doc(db, collections.users, uid);
-    try {
-      const userDoc = await getDoc(userRef);
-      if (userDoc.exists()) {
-        setUser((prev) => ({ ...prev, ...userDoc.data() }));
-      } else {
-        console.log("No such document!");
-      }
-    } catch (error) {
-      console.error("Error getting user document:", error);
-    }
-  };
+  useEffect(() => {
+    setUser((prev) => ({ ...prev, ...data }));
+  }, [data]);
 
   return (
     <UserProfileContext.Provider value={{ user }}>

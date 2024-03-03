@@ -1,17 +1,18 @@
 import React from "react";
 import classNames from "classnames";
 
-const Tab = ({ label, active, className, onClick }) => {
+const Tab = ({ label, active, className, classes, ...rest }) => {
   return (
     <button
       className={classNames(
         className,
-        "tab py-1 w-1/2 text-center rounded-lg",
+        "tab py-1 text-center rounded-lg",
         {
-          "bg-active active": active,
+          [`${classes?.active} active`]: active,
+          [classes?.default]: !active,
         }
       )}
-      onClick={onClick}
+      {...rest}
     >
       {label}
     </button>

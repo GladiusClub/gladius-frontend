@@ -1,5 +1,5 @@
 import React from "react";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { IoMdArrowDropup } from "react-icons/io";
 
 import Typography from "components/Typography";
 
@@ -8,9 +8,9 @@ const BadgesInfo = () => {
     <div className="flex items-center flex-col">
       <Typography className="text-lg">My Badges</Typography>
       <Typography className="text-4xl text-secondary mt-1">24</Typography>
-      <Typography className="text-success">
-        <ArrowDropUpIcon className="w-8 h-8" />
-        <Typography variant="span" className="text-sm -ml-1">
+      <Typography className="flex text-success items-center">
+        <IoMdArrowDropup className="w-7 h-7" />
+        <Typography variant="span" className="text-sm">
           3 badges last week
         </Typography>
       </Typography>

@@ -1,12 +1,15 @@
 :root {
   --color-primary: #00cbdc;
   --color-secondary: #ff9500;
-  --color-default: white;
+  --color-default: #ffffff;
   --color-neutral: #7487a1;
   --color-dark: #101835;
   --color-success: #00AC53;
   --color-info: #DB5B00;
-  --color-active: linear-gradient(180deg, #008DF3 0%, #007CE7 12%, #00B6D2 89%, #00CDDD 100%);
+  --color-shadow: #00CBDC33;
+  --color-gradient-body: linear-gradient(135deg, #121e49 0%, #004261 100%);
+  --color-gradient-active: linear-gradient(180deg, #008DF3 0%, #007CE7 12%, #00B6D2 89%, #00CDDD 100%);
+  --color-gradient-dark: linear-gradient(135deg, #191A34 0%, #072F46 100%);
 }
 
 body {
@@ -15,7 +18,7 @@ body {
   font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #121e49 0%, #004261 100%);
+  background: var(--color-gradient-body);
   color: var(--color-default);
   font-weight: 500;
 }

@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 import Typography from "components/Typography";
 import OutlinedInput from "components/OutlinedInput";
@@ -12,8 +12,8 @@ import {
 } from "components/OutlinedInput/Adornments";
 import { useValidate } from "components/OutlinedInput/useValidate";
 import { auth } from "services/firebase-config";
+import { useFirebase } from "services/useFirebase";
 import { unProtectedRoutes } from "constants/routes";
-import { authMessages } from "constants/auth";
 import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignUp = () => {
@@ -26,8 +26,9 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { errors, validateOnBlur, validateOnSubmit } = useValidate(values);
+  const { firebaseError, loading, signUpUser } = useFirebase();
+
   const navigate = useNavigate();
-  const firebaseErrorRef = useRef(null);
 
   const handleBlur = (name, value) => {
     const newValues = { ...values, [name]: value };
@@ -38,22 +39,12 @@ const SignUp = () => {
   const handleSignUpClick = async () => {
     const isValid = validateOnSubmit(values);
     if (isValid) {
-      try {
-        const response = await createUserWithEmailAndPassword(
-          auth,
-          values.email,
-          values.password
-        );
-        if (response.user) {
-          firebaseErrorRef.current.textContent = "";
-          await signOut(auth);
-          navigate(unProtectedRoutes.signIn, {
-            replace: true,
-          });
-        }
-      } catch (err) {
-        firebaseErrorRef.current.textContent =
-          authMessages[err.code] || err.message;
+      const response = await signUpUser(values.email, values.password);
+      if (response?.user) {
+        await signOut(auth);
+        navigate(unProtectedRoutes.signIn, {
+          replace: true,
+        });
       }
     }
   };
@@ -63,11 +54,12 @@ const SignUp = () => {
       <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
       <section className="text-center -mt-5">
         <Typography variant="h2">Create account</Typography>
-        <p
-          ref={firebaseErrorRef}
+        <Typography
           className="text-secondary min-h-5 text-sm my-5"
           aria-live="assertive"
-        />
+        >
+          {firebaseError}
+        </Typography>
         <OutlinedInput
           onBlur={handleBlur}
           field={{
@@ -123,10 +115,10 @@ const SignUp = () => {
         <Button
           size="large"
           variant="contained"
-          className="w-full normal-case mt-5 bg-active"
+          className="w-full normal-case mt-5 bg-gradient-active"
           onClick={handleSignUpClick}
         >
-          Sign Up
+          {loading ? "Loading..." : "Sign Up"}
         </Button>
         <Typography className="mt-5 text-lg">
           Already have an account?
