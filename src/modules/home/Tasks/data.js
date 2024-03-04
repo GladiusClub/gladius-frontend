@@ -1,0 +1,43 @@
+export const tasks = [
+  {
+    eventName: "Football Play",
+    points: 100,
+    date: "February 23",
+    time: "17:00",
+    location: "Tallinn Sport Club",
+    attended: true,
+  },
+  {
+    eventName: "Basketball Tournament",
+    points: 120,
+    badges: 4, 
+    date: "March 5",
+    time: "15:30",
+    location: "City Arena",
+    attended: false,
+  },
+  {
+    eventName: "Running Marathon",
+    points: 150,
+    date: "April 10",
+    time: "08:00",
+    location: "Central Park",
+    attended: true,
+  },
+  {
+    eventName: "Swimming Competition",
+    points: 90,
+    date: "May 15",
+    time: "12:00",
+    location: "Community Pool",
+    attended: true,
+  },
+  {
+    eventName: "Chess Tournament",
+    points: 80,
+    date: "June 20",
+    time: "14:00",
+    location: "Public Library",
+    attended: false,
+  },
+];

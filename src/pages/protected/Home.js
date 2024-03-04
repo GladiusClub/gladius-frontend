@@ -2,6 +2,7 @@ import React from "react";
 
 import Typography from "components/Typography";
 import ScoreOverview from "modules/home/ScoreOverview";
+import Tasks from "modules/home/Tasks";
 import sportClub from "assets/sport-club.jpeg";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
         </Typography>
       </div>
       <ScoreOverview />
+      <Tasks />
     </div>
   );
 };
