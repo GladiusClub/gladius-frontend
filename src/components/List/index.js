@@ -5,7 +5,7 @@ const List = ({ children, ...rest }) => {
     <ul {...rest}>
       {children.map((child, index) => {
         return cloneElement(child, {
-          hideDivider: index === children.length - 1,
+          hideDivider: child.props.hideDivider || index === children.length - 1,
         });
       })}
     </ul>
