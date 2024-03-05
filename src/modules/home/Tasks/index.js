@@ -12,7 +12,7 @@ const Tasks = () => {
       <Typography className="text-xl text-primary">My tasks</Typography>
       <TaskTabs tasks={tasks}>
         <Tab label="Today">
-          <TasksList tasks={tasks}/>
+          <TasksList tasks={tasks} />
         </Tab>
         <Tab label="Tomorrow">Tomorrow</Tab>
         <Tab label="Previous">Previous</Tab>

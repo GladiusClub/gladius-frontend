@@ -15,7 +15,7 @@ const NonPerformers = ({ nonPerformers }) => {
             "bg-dark border border-primary my-3 rounded-xl",
             {
               "bg-gradient-active": item.active,
-            }
+            },
           )}
           hideDivider
         >

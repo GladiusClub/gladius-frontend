@@ -10,12 +10,14 @@ const Welcome = () => {
     <div>
       <img src={gladiusLogo} alt="Gladius" className="mt-10 mx-auto" />
       <section className="mt-5 text-center">
-        <Typography variant='h1'>Welcome!</Typography>
+        <Typography variant="h1">Welcome!</Typography>
         <Typography className="text-xl mt-5">
           Dive into the ultimate sports club. Earn crypto, collect NFTs, and
           train like never before!
         </Typography>
-        <Typography className="text-xl mt-5">Join the excitement now!</Typography>
+        <Typography className="text-xl mt-5">
+          Join the excitement now!
+        </Typography>
 
         <Link to="/signup">
           <Button

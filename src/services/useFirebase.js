@@ -64,7 +64,7 @@ export const useFirebase = () => {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       setError(null);
       return response;

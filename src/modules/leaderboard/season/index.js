@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Season = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Season
+export default Season;

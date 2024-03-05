@@ -27,14 +27,14 @@ const SinglePerformer = ({ performer, position }) => {
     <div
       className={classNames(
         "flex flex-col items-center relative",
-        classObj.root
+        classObj.root,
       )}
     >
       <Typography
         variant="span"
         className={classNames(
           "absolute left-0 rounded-full flex justify-center items-center font-semibold",
-          classObj.rank
+          classObj.rank,
         )}
       >
         {position}
@@ -43,7 +43,7 @@ const SinglePerformer = ({ performer, position }) => {
         src={performer.avatar}
         className={classNames(
           "rounded-full border border-primary",
-          classObj.avatar
+          classObj.avatar,
         )}
         alt={performer.name}
       />

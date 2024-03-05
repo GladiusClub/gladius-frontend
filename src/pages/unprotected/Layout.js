@@ -17,7 +17,7 @@ const Unprotected = () => {
   if (user.email) {
     return <Navigate to={from} replace />;
   }
-  
+
   return (
     <div className="p-3">
       <Outlet />

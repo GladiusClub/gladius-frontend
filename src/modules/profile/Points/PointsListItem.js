@@ -6,7 +6,10 @@ const PointsListItem = ({ item }) => {
   return (
     <div className="py-5">
       <div className="flex justify-between items-center">
-        <Typography variant="span" className="text-lg font-semibold w-3/5 truncate">
+        <Typography
+          variant="span"
+          className="text-lg font-semibold w-3/5 truncate"
+        >
           {item.eventName}
         </Typography>
         <Typography variant="span" className="text-secondary">

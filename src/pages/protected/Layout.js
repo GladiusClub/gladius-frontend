@@ -11,7 +11,7 @@ const Layout = () => {
   const location = useLocation();
 
   if (user.isFetching) {
-    return <Loader className="flex justify-center items-center h-full"/>;
+    return <Loader className="flex justify-center items-center h-full" />;
   }
 
   if (!user.email) {

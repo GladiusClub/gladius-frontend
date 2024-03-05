@@ -10,7 +10,7 @@ export const tasks = [
   {
     eventName: "Basketball Tournament",
     points: 120,
-    badges: 4, 
+    badges: 4,
     date: "March 5",
     time: "15:30",
     location: "City Arena",

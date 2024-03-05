@@ -86,8 +86,8 @@ const data = [
 data.sort((a, b) => b.points - a.points);
 
 const CurrentMonth = () => {
-  const performers = data.slice(0,3);
-  const nonPerformers = data.slice(3);  
+  const performers = data.slice(0, 3);
+  const nonPerformers = data.slice(3);
   return (
     <div className="mt-10">
       <PositionInfo />
