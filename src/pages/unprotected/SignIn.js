@@ -34,7 +34,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <img src={gladiusLogo} alt="Gladius" className="mx-auto" />
+      <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
       <section className="text-center">
         <Typography variant="h2">Sign in to your account</Typography>
         <Typography

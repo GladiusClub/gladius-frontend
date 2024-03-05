@@ -8,20 +8,22 @@ import Typography from "components/Typography";
 const Welcome = () => {
   return (
     <div>
-      <img src={gladiusLogo} alt="Gladius" className="mt-10 mx-auto" />
+      <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
       <section className="mt-5 text-center">
-        <Typography variant='h1'>Welcome!</Typography>
+        <Typography variant="h1">Welcome!</Typography>
         <Typography className="text-xl mt-5">
           Dive into the ultimate sports club. Earn crypto, collect NFTs, and
           train like never before!
         </Typography>
-        <Typography className="text-xl mt-5">Join the excitement now!</Typography>
+        <Typography className="text-xl mt-5">
+          Join the excitement now!
+        </Typography>
 
         <Link to="/signup">
           <Button
             size="large"
             variant="contained"
-            className="w-full normal-case mt-5 bg-gradient-active"
+            className="w-full normal-case mt-10 bg-gradient-active"
           >
             Sign Up
           </Button>

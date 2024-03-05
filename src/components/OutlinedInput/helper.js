@@ -40,7 +40,7 @@ export const getError = (name, values) => {
       break;
     }
     default: {
-      return ""
+      return "";
     }
   }
   return "";

@@ -12,7 +12,7 @@ const NonPerformerListItem = ({ item, rank }) => {
           "text-lg font-semibold border border-primary rounded-full flex justify-center items-center w-10 h-10 bg-dark",
           {
             "border-none": item.active,
-          }
+          },
         )}
       >
         {rank}

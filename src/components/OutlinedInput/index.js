@@ -35,7 +35,10 @@ const OutlinedInput = ({ field, onBlur, endAdornment }) => {
         aria-invalid={!!field.error}
         aria-describedby={field.name || field.label}
       />
-      <FormHelperText className="text-secondary ml-0 min-h-5" aria-live="assertive">
+      <FormHelperText
+        className="text-secondary ml-0 min-h-5"
+        aria-live="assertive"
+      >
         {field.error}
       </FormHelperText>
     </FormControl>

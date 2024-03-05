@@ -14,7 +14,7 @@ const TabsList = ({
     <div
       className={classNames(
         className,
-        "flex text-default w-full p-1 rounded-xl"
+        "flex text-default w-full p-1 rounded-xl",
       )}
     >
       {children.map((child, index) => {

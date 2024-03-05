@@ -17,9 +17,9 @@ const Unprotected = () => {
   if (user.email) {
     return <Navigate to={from} replace />;
   }
-  
+
   return (
-    <div className="p-3">
+    <div className="p-3 h-full flex flex-col justify-center ">
       <Outlet />
     </div>
   );
