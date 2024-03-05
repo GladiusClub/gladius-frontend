@@ -27,6 +27,7 @@ body {
   background: var(--color-gradient-body);
   color: var(--color-default);
   font-weight: 500;
+  overflow: auto;
 }
 
 #root {
