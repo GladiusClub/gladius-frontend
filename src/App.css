@@ -4,12 +4,18 @@
   --color-default: #ffffff;
   --color-neutral: #7487a1;
   --color-dark: #101835;
-  --color-success: #00AC53;
-  --color-info: #DB5B00;
-  --color-shadow: #00CBDC33;
+  --color-success: #00ac53;
+  --color-info: #db5b00;
+  --color-shadow: #00cbdc33;
   --color-gradient-body: linear-gradient(135deg, #121e49 0%, #004261 100%);
-  --color-gradient-active: linear-gradient(180deg, #008DF3 0%, #007CE7 12%, #00B6D2 89%, #00CDDD 100%);
-  --color-gradient-dark: linear-gradient(135deg, #191A34 0%, #072F46 100%);
+  --color-gradient-active: linear-gradient(
+    180deg,
+    #008df3 0%,
+    #007ce7 12%,
+    #00b6d2 89%,
+    #00cddd 100%
+  );
+  --color-gradient-dark: linear-gradient(135deg, #191a34 0%, #072f46 100%);
 }
 
 body {
