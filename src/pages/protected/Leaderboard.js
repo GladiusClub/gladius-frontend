@@ -1,4 +1,5 @@
 import React from "react";
+import Fade from "@mui/material/Fade";
 
 import Tabs from "components/Tabs";
 import Tab from "components/Tabs/Tab";
@@ -8,22 +9,24 @@ import Season from "modules/leaderboard/Season";
 
 const Leaderboard = () => {
   return (
-    <div>
-      <Typography className="text-center text-xl">Leaderboard</Typography>
-      <Tabs
-        className="mt-10 bg-dark p-1"
-        classes={{
-          active: "bg-gradient-active",
-        }}
-      >
-        <Tab label="Current month">
-          <CurrentMonth />
-        </Tab>
-        <Tab label="Season">
-          <Season />
-        </Tab>
-      </Tabs>
-    </div>
+    <Fade in={true}>
+      <div>
+        <Typography className="text-center text-xl">Leaderboard</Typography>
+        <Tabs
+          className="mt-10 bg-dark p-1"
+          classes={{
+            active: "bg-gradient-active",
+          }}
+        >
+          <Tab label="Current month">
+            <CurrentMonth />
+          </Tab>
+          <Tab label="Season">
+            <Season />
+          </Tab>
+        </Tabs>
+      </div>
+    </Fade>
   );
 };
 

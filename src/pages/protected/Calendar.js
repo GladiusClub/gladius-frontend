@@ -1,10 +1,17 @@
 import React from "react";
+import Fade from "@mui/material/Fade";
+
+import Typography from "components/Typography";
+import Dates from "modules/calendar/Dates";
 
 const Calendar = () => {
   return (
-    <>
-      <div className="h-32 w-32 bg-primary">Calendar</div>
-    </>
+    <Fade in={true}>
+      <div>
+        <Typography className="text-center text-xl">Event</Typography>
+        <Dates />
+      </div>
+    </Fade>
   );
 };
 

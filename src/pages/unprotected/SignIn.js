@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
 
 import Typography from "components/Typography";
 import OutlinedInput from "components/OutlinedInput";
@@ -33,57 +34,59 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
-      <section className="text-center">
-        <Typography variant="h2">Sign in to your account</Typography>
-        <Typography
-          className="text-secondary min-h-5 text-sm my-6"
-          aria-live="assertive"
-        >
-          {firebaseError}
-        </Typography>
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: "text",
-            name: "email",
-            label: "Email",
-            required: true,
-            autoComplete: "email",
-            error: errors.email,
-          }}
-          endAdornment={<EmailAdornment />}
-        />
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: showPassword ? "text" : "password",
-            name: "password",
-            label: "Password",
-            required: true,
-            error: errors.password,
-          }}
-          endAdornment={
-            <PasswordAdornment onPasswordVisibilityClick={setShowPassword} />
-          }
-        />
-        <Button
-          size="large"
-          variant="contained"
-          className="w-full normal-case mt-5 bg-gradient-active"
-          onClick={handleSignInClick}
-        >
-          {loading ? "Loading..." : "Sign In"}
-        </Button>
-        <Typography className="mt-5 text-lg">
-          Don't have an account?
-          <Link to={unProtectedRoutes.signUp} className="ml-2 text-primary">
-            Sign up
-          </Link>
-        </Typography>
-      </section>
-    </div>
+    <Fade in={true}>
+      <div>
+        <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
+        <section className="text-center">
+          <Typography variant="h2">Sign in to your account</Typography>
+          <Typography
+            className="text-secondary min-h-5 text-sm my-6"
+            aria-live="assertive"
+          >
+            {firebaseError}
+          </Typography>
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: "text",
+              name: "email",
+              label: "Email",
+              required: true,
+              autoComplete: "email",
+              error: errors.email,
+            }}
+            endAdornment={<EmailAdornment />}
+          />
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: showPassword ? "text" : "password",
+              name: "password",
+              label: "Password",
+              required: true,
+              error: errors.password,
+            }}
+            endAdornment={
+              <PasswordAdornment onPasswordVisibilityClick={setShowPassword} />
+            }
+          />
+          <Button
+            size="large"
+            variant="contained"
+            className="w-full normal-case mt-5 bg-gradient-active"
+            onClick={handleSignInClick}
+          >
+            {loading ? "Loading..." : "Sign In"}
+          </Button>
+          <Typography className="mt-5 text-lg">
+            Don't have an account?
+            <Link to={unProtectedRoutes.signUp} className="ml-2 text-primary">
+              Sign up
+            </Link>
+          </Typography>
+        </section>
+      </div>
+    </Fade>
   );
 };
 
