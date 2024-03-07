@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
 import { signOut } from "firebase/auth";
 
 import Typography from "components/Typography";
@@ -50,84 +51,86 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
-      <section className="text-center -mt-5">
-        <Typography variant="h2">Create account</Typography>
-        <Typography
-          className="text-secondary min-h-5 text-sm my-5"
-          aria-live="assertive"
-        >
-          {firebaseError}
-        </Typography>
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: "text",
-            name: "username",
-            label: "Username",
-            required: true,
-            autoComplete: "username",
-            error: errors.username,
-          }}
-          endAdornment={<UserAdornment />}
-        />
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: "email",
-            name: "email",
-            label: "Email",
-            required: true,
-            autoComplete: "email",
-            error: errors.email,
-          }}
-          endAdornment={<EmailAdornment />}
-        />
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: showPassword ? "text" : "password",
-            name: "password",
-            label: "Password",
-            required: true,
-            error: errors.password,
-          }}
-          endAdornment={
-            <PasswordAdornment onPasswordVisibilityClick={setShowPassword} />
-          }
-        />
-        <OutlinedInput
-          onBlur={handleBlur}
-          field={{
-            type: showConfirmPassword ? "text" : "password",
-            name: "confirmPassword",
-            label: "Confirm Password",
-            required: true,
-            error: errors.confirmPassword,
-          }}
-          endAdornment={
-            <PasswordAdornment
-              onPasswordVisibilityClick={setShowConfirmPassword}
-            />
-          }
-        />
-        <Button
-          size="large"
-          variant="contained"
-          className="w-full normal-case mt-5 bg-gradient-active"
-          onClick={handleSignUpClick}
-        >
-          {loading ? "Loading..." : "Sign Up"}
-        </Button>
-        <Typography className="mt-5 text-lg">
-          Already have an account?
-          <Link to={unProtectedRoutes.signIn} className="ml-2 text-primary">
-            Sign in
-          </Link>
-        </Typography>
-      </section>
-    </div>
+    <Fade in={true}>
+      <div>
+        <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
+        <section className="text-center -mt-5">
+          <Typography variant="h2">Create account</Typography>
+          <Typography
+            className="text-secondary min-h-5 text-sm my-5"
+            aria-live="assertive"
+          >
+            {firebaseError}
+          </Typography>
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: "text",
+              name: "username",
+              label: "Username",
+              required: true,
+              autoComplete: "username",
+              error: errors.username,
+            }}
+            endAdornment={<UserAdornment />}
+          />
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: "email",
+              name: "email",
+              label: "Email",
+              required: true,
+              autoComplete: "email",
+              error: errors.email,
+            }}
+            endAdornment={<EmailAdornment />}
+          />
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: showPassword ? "text" : "password",
+              name: "password",
+              label: "Password",
+              required: true,
+              error: errors.password,
+            }}
+            endAdornment={
+              <PasswordAdornment onPasswordVisibilityClick={setShowPassword} />
+            }
+          />
+          <OutlinedInput
+            onBlur={handleBlur}
+            field={{
+              type: showConfirmPassword ? "text" : "password",
+              name: "confirmPassword",
+              label: "Confirm Password",
+              required: true,
+              error: errors.confirmPassword,
+            }}
+            endAdornment={
+              <PasswordAdornment
+                onPasswordVisibilityClick={setShowConfirmPassword}
+              />
+            }
+          />
+          <Button
+            size="large"
+            variant="contained"
+            className="w-full normal-case mt-5 bg-gradient-active"
+            onClick={handleSignUpClick}
+          >
+            {loading ? "Loading..." : "Sign Up"}
+          </Button>
+          <Typography className="mt-5 text-lg">
+            Already have an account?
+            <Link to={unProtectedRoutes.signIn} className="ml-2 text-primary">
+              Sign in
+            </Link>
+          </Typography>
+        </section>
+      </div>
+    </Fade>
   );
 };
 
