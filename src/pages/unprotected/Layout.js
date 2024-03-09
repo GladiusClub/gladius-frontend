@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import Loader from "components/Loader";
-import { useUserProfile } from "context/useUserProfile";
+import { useUserProfile } from "context/userProfile/useUserProfile";
 import { protectedRoutes } from "constants/routes";
 
 const Unprotected = () => {

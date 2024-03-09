@@ -10,7 +10,7 @@ import {
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
 import { useValidate } from "components/OutlinedInput/useValidate";
-import { useFirebase } from "services/useFirebase";
+import { useFirebase } from "services/firebase/useFirebase";
 import { unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
 
@@ -26,8 +26,13 @@ const SignIn = () => {
     validateOnBlur(name, newValues);
   };
 
-  const handleSignInClick = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const values = Object.fromEntries(formData.entries());
     const isValid = validateOnSubmit(values);
+
     if (isValid) {
       signInUser(values.email, values.password);
     }
@@ -35,7 +40,7 @@ const SignIn = () => {
 
   return (
     <Fade in={true}>
-      <div>
+      <form onSubmit={handleSubmit}>
         <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
         <section className="text-center">
           <Typography variant="h2">Sign in to your account</Typography>
@@ -64,6 +69,7 @@ const SignIn = () => {
               name: "password",
               label: "Password",
               required: true,
+              autoComplete: "off",
               error: errors.password,
             }}
             endAdornment={
@@ -74,7 +80,7 @@ const SignIn = () => {
             size="large"
             variant="contained"
             className="w-full normal-case mt-5 bg-gradient-active"
-            onClick={handleSignInClick}
+            type="submit"
           >
             {loading ? "Loading..." : "Sign In"}
           </Button>
@@ -85,7 +91,7 @@ const SignIn = () => {
             </Link>
           </Typography>
         </section>
-      </div>
+      </form>
     </Fade>
   );
 };

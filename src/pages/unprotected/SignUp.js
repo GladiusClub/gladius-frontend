@@ -12,8 +12,8 @@ import {
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
 import { useValidate } from "components/OutlinedInput/useValidate";
-import { auth } from "services/firebase-config";
-import { useFirebase } from "services/useFirebase";
+import { auth } from "services/firebase/firebase-config";
+import { useFirebase } from "services/firebase/useFirebase";
 import { unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
 
@@ -37,8 +37,13 @@ const SignUp = () => {
     validateOnBlur(name, newValues);
   };
 
-  const handleSignUpClick = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const values = Object.fromEntries(formData.entries());
     const isValid = validateOnSubmit(values);
+
     if (isValid) {
       const response = await signUpUser(values.email, values.password);
       if (response?.user) {
@@ -52,7 +57,7 @@ const SignUp = () => {
 
   return (
     <Fade in={true}>
-      <div>
+      <form onSubmit={handleSubmit}>
         <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
         <section className="text-center -mt-5">
           <Typography variant="h2">Create account</Typography>
@@ -93,6 +98,7 @@ const SignUp = () => {
               name: "password",
               label: "Password",
               required: true,
+              autoComplete: "off",
               error: errors.password,
             }}
             endAdornment={
@@ -106,6 +112,7 @@ const SignUp = () => {
               name: "confirmPassword",
               label: "Confirm Password",
               required: true,
+              autoComplete: "off",
               error: errors.confirmPassword,
             }}
             endAdornment={
@@ -115,10 +122,10 @@ const SignUp = () => {
             }
           />
           <Button
+            type="submit"
             size="large"
             variant="contained"
             className="w-full normal-case mt-5 bg-gradient-active"
-            onClick={handleSignUpClick}
           >
             {loading ? "Loading..." : "Sign Up"}
           </Button>
@@ -129,7 +136,7 @@ const SignUp = () => {
             </Link>
           </Typography>
         </section>
-      </div>
+      </form>
     </Fade>
   );
 };

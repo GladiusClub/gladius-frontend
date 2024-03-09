@@ -2,35 +2,11 @@ import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Main from "./pages/Main";
-import { UserProfileProvider } from "context/UserProfileContext";
+import { UserProfileProvider } from "context/userProfile/UserProfileContext";
+import { muiTheme } from "theme/muiTheme";
 import "./App.css";
 
-const rootElement = document.getElementById("root");
-
-const theme = createTheme({
-  components: {
-    MuiPopover: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-    MuiPopper: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-    MuiDialog: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-    MuiModal: {
-      defaultProps: {
-        container: rootElement,
-      },
-    },
-  },
-});
+const theme = createTheme(muiTheme);
 
 function App() {
   return (
