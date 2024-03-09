@@ -41,6 +41,14 @@ export const getPrevDatesByDays = (days, date) => {
   return result;
 };
 
+export const getDatesRange = (days, date) => {
+  return [
+    ...getPrevDatesByDays(days, date),
+    date,
+    ...getNextDatesByDays(days, date),
+  ];
+};
+
 export const getNextDay = (date) => {
   const currentDate = date ? new Date(date) : new Date();
   currentDate.setDate(currentDate.getDate() + 1);

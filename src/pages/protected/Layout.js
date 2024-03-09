@@ -3,7 +3,7 @@ import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import Header from "components/Header";
 import Loader from "components/Loader";
-import { useUserProfile } from "context/useUserProfile";
+import { useUserProfile } from "context/userProfile/useUserProfile";
 import { unProtectedRoutes } from "constants/routes";
 
 const Layout = () => {

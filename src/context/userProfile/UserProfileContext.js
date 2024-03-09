@@ -2,8 +2,8 @@
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth } from "services/firebase-config";
-import { useFirebase } from "services/useFirebase";
+import { auth } from "services/firebase/firebase-config";
+import { useFirebase } from "services/firebase/useFirebase";
 import { collections } from "constants/collections";
 
 export const UserProfileContext = createContext({});

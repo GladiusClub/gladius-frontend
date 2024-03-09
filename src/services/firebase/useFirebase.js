@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
-import { auth, db } from "services/firebase-config";
+import { auth, db } from "services/firebase/firebase-config";
 import { authMessages } from "constants/auth";
 import { unProtectedRoutes } from "constants/routes";
 

@@ -1,49 +1,65 @@
 import React, { useState } from "react";
 
-import SelectedDate from "./SelectedDate";
-import { getNextDatesByDays, getPrevDatesByDays } from "utils/dateUtils";
-import "./dates.css";
 import DatesBar from "./DatesBar";
+import SelectedDate from "./SelectedDate";
+import {
+  getNextDatesByDays,
+  getPrevDatesByDays,
+  getDatesRange,
+} from "utils/dateUtils";
+import "./dates.css";
 
-const initialDate = [
-  ...getPrevDatesByDays(7),
-  new Date(),
-  ...getNextDatesByDays(7),
-];
+const daysToSlide = 1;
+const initialDatesOnSilder = 2;
 
 const Dates = () => {
-  const [datesToShow, setDatesToShow] = useState(initialDate);
-  const [activeIndex, setActiveIndex] = useState(7);
+  const [datesToSlide, setDatesToSlide] = useState(
+    getDatesRange(initialDatesOnSilder, new Date())
+  );
+  const [activeIndex, setActiveIndex] = useState(initialDatesOnSilder);
 
   const handlePrevClick = () => {
-    if (activeIndex === 6) {
-      const prevSevenDays = getPrevDatesByDays(7, datesToShow[0]);
-      const newDatesToShow = [...prevSevenDays, ...datesToShow];
-      setDatesToShow(newDatesToShow);
-      setActiveIndex(12);
+    if (activeIndex === 0) {
+      const prevDates = getPrevDatesByDays(daysToSlide, datesToSlide[0]);
+      const newdatesToSlide = [...prevDates, ...datesToSlide];
+      setDatesToSlide(newdatesToSlide);
+      setActiveIndex(daysToSlide - 1);
     } else {
       setActiveIndex((prev) => prev - 1);
     }
   };
 
   const handleNextClick = () => {
-    const lastDateIndex = datesToShow.length - 1;
-    if (activeIndex === lastDateIndex - 6) {
-      const nextSevenDays = getNextDatesByDays(7, datesToShow[lastDateIndex]);
-      const newDatesToShow = [...datesToShow, ...nextSevenDays];
-      setDatesToShow(newDatesToShow);
+    const lastDateIndex = datesToSlide.length - 1;
+    if (activeIndex === lastDateIndex) {
+      const nextDates = getNextDatesByDays(
+        daysToSlide,
+        datesToSlide[lastDateIndex]
+      );
+      const newdatesToSlide = [...datesToSlide, ...nextDates];
+      setDatesToSlide(newdatesToSlide);
     }
     setActiveIndex((prev) => prev + 1);
+  };
+
+  const handleDateChange = (date) => {
+    setDatesToSlide(getDatesRange(initialDatesOnSilder, date));
+    setActiveIndex(initialDatesOnSilder);
   };
 
   return (
     <div className="mt-5 date-selector">
       <SelectedDate
-        date={datesToShow[activeIndex]}
+        date={datesToSlide[activeIndex]}
         onPrevClick={handlePrevClick}
         onNextClick={handleNextClick}
+        onDateChange={handleDateChange}
       />
-      <DatesBar activeIndex={activeIndex} datesToShow={datesToShow} />
+      <DatesBar
+        activeIndex={activeIndex}
+        datesToSlide={datesToSlide}
+        onDateClick={setActiveIndex}
+      />
     </div>
   );
 };
