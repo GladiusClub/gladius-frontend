@@ -14,7 +14,7 @@ const Unprotected = () => {
     return <Loader className="flex justify-center items-center h-full" />;
   }
 
-  if (user.email) {
+  if (user.uid) {
     return <Navigate to={from} replace />;
   }
 

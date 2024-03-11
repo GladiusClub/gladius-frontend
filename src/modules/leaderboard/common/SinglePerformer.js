@@ -40,7 +40,7 @@ const SinglePerformer = ({ performer, position }) => {
         {position}
       </Typography>
       <img
-        src={performer.avatar}
+        src={`https://ui-avatars.com/api?name=${performer.name}`}
         className={classNames(
           "rounded-full border border-primary",
           classObj.avatar,
@@ -49,7 +49,7 @@ const SinglePerformer = ({ performer, position }) => {
       />
       <Typography variant="span">{performer.name}</Typography>
       <Typography variant="span" className="text-secondary text-lg">
-        {performer.points}
+        {performer.score}
       </Typography>
       <Typography variant="span" className="text-neutral text-sm">
         points

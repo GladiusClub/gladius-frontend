@@ -1,10 +1,9 @@
 import React from "react";
+import classNames from "classnames";
 
-const Loader = ({ className }) => {
+const Loader = ({ className, children }) => {
   return (
-    <div className={`${className || "flex justify-center items-center"}`}>
-      Loading...
-    </div>
+    <div className={classNames(className)}>{children || "Loading..."}</div>
   );
 };
 

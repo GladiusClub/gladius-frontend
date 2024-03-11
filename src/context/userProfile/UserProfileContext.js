@@ -3,22 +3,21 @@ import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "services/firebase/firebase-config";
-import { useFirebase } from "services/firebase/useFirebase";
-import { collections } from "constants/collections";
+import { clear, setItem } from "helpers/localStorageHelper";
+import { localStorageKeys } from "constants/storage";
 
 export const UserProfileContext = createContext({});
 
 export const UserProfileProvider = ({ children }) => {
   const [user, setUser] = useState({ isFetching: true });
-  const { data, getDocDataByUid } = useFirebase();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser({ isFetching: false, email: user.email });
-        getDocDataByUid(collections.users, user.uid);
+        setUser({ isFetching: false, uid: user.uid, club: null });
       } else {
         setUser({ isFetching: false });
+        clear();
       }
     });
 
@@ -26,11 +25,13 @@ export const UserProfileProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    setUser((prev) => ({ ...prev, ...data }));
-  }, [data]);
+    if (user.email) {
+      setItem(localStorageKeys.user, user);
+    }
+  }, [user]);
 
   return (
-    <UserProfileContext.Provider value={{ user }}>
+    <UserProfileContext.Provider value={{ user, setUser }}>
       {children}
     </UserProfileContext.Provider>
   );

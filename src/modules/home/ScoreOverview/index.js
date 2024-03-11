@@ -13,7 +13,7 @@ const style = {
 
 const ScoreOverview = () => {
   return (
-    <Box className="flex justify-around gap-4">
+    <Box className="flex justify-around gap-4 mt-5">
       <Box
         style={style}
         className="bg-gradient-dark p-3 rounded-2xl text-center w-1/2"

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -7,6 +8,7 @@ import {
 import { doc, getDoc } from "firebase/firestore";
 
 import { auth, db } from "services/firebase/firebase-config";
+import { getItem } from "helpers/localStorageHelper";
 import { authMessages } from "constants/auth";
 import { unProtectedRoutes } from "constants/routes";
 
@@ -27,7 +29,7 @@ export const useFirebase = () => {
     }
   };
 
-  const handleSucces = (doc) => {
+  const getDataFromDoc = (doc) => {
     if (doc.exists()) {
       const data = doc.data();
       setData(data);
@@ -43,6 +45,7 @@ export const useFirebase = () => {
     console.error(err);
     checkForNavigateToSignIn(err.code);
     setError(err.message);
+    setData(null);
   };
 
   const signInUser = async (email, password) => {
@@ -64,7 +67,7 @@ export const useFirebase = () => {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
-        password,
+        password
       );
       setError(null);
       return response;
@@ -75,12 +78,23 @@ export const useFirebase = () => {
     }
   };
 
-  const getDocDataByUid = async (collection, uid) => {
-    const docRef = doc(db, collection, uid);
+  const fetchDocDataByUid = async (
+    collection,
+    uid,
+    key = null,
+    cb = _.noop
+  ) => {
+    if (key) {
+      const item = getItem(key);
+      if (item) {
+        cb(item);
+      }
+    }
     setLoading(true);
     try {
-      const doc = await getDoc(docRef);
-      handleSucces(doc);
+      const docRef = doc(db, collection, uid);
+      const record = await getDoc(docRef);
+      return getDataFromDoc(record);
     } catch (err) {
       handleFailure(err);
     } finally {
@@ -92,8 +106,9 @@ export const useFirebase = () => {
     data,
     loading,
     firebaseError: error,
+    checkForNavigateToSignIn,
     signInUser,
     signUpUser,
-    getDocDataByUid,
+    fetchDocDataByUid,
   };
 };

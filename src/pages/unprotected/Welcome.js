@@ -1,12 +1,14 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Fade from "@mui/material/Fade";
 
-import gladiusLogo from "assets/gladius-logo.svg";
 import Typography from "components/Typography";
+import { unProtectedRoutes } from "constants/routes";
+import gladiusLogo from "assets/gladius-logo.svg";
 
 const Welcome = () => {
+  const location = useLocation();
   return (
     <Fade in={true}>
       <div>
@@ -21,7 +23,7 @@ const Welcome = () => {
             Join the excitement now!
           </Typography>
 
-          <Link to="/signup">
+          <Link to={unProtectedRoutes.signUp}>
             <Button
               size="large"
               variant="contained"
@@ -30,7 +32,7 @@ const Welcome = () => {
               Sign Up
             </Button>
           </Link>
-          <Link to="/signin">
+          <Link to={unProtectedRoutes.signIn} state={location.state}>
             <Button
               size="large"
               variant="outlined"

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import Fade from "@mui/material/Fade";
 
 import Tabs from "components/Tabs";
@@ -6,8 +7,19 @@ import Tab from "components/Tabs/Tab";
 import Typography from "components/Typography";
 import CurrentMonth from "modules/leaderboard/CurrentMonth";
 import Season from "modules/leaderboard/Season";
+import { useUserProfile } from "context/userProfile/useUserProfile";
+import useClub from "hooks/useClub";
 
 const Leaderboard = () => {
+  const { members, getMembersList } = useClub();
+  const { user } = useUserProfile();
+
+  useEffect(() => {
+    if (user.clubId) {
+      getMembersList(user.clubId);
+    }
+  }, [user.clubId]);
+
   return (
     <Fade in={true}>
       <div>
@@ -19,10 +31,10 @@ const Leaderboard = () => {
           }}
         >
           <Tab label="Current month">
-            <CurrentMonth />
+            <CurrentMonth members={members} />
           </Tab>
           <Tab label="Season">
-            <Season />
+            <Season members={members} />
           </Tab>
         </Tabs>
       </div>
