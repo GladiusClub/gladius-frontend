@@ -1,9 +1,11 @@
+import colors from 'theme/colors';
+
 export const calendarTheme = {
   MuiDayCalendar: {
     styleOverrides: {
       root: {
         "& .MuiDayCalendar-weekDayLabel": {
-          color: "var(--color-primary)",
+          color: colors.primary,
         },
       },
     },
@@ -11,7 +13,7 @@ export const calendarTheme = {
   MuiPickersDay: {
     styleOverrides: {
       root: {
-        color: "var(--color-default)",
+        color: colors.default,
       },
     },
   },

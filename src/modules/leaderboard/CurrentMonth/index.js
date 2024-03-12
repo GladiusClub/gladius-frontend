@@ -1,20 +1,34 @@
-import React, { useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useMemo, useEffect } from "react";
 import Fade from "@mui/material/Fade";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
+import { useUserProfile } from "context/userProfile/useUserProfile";
+import useClub from "hooks/useClub";
 import Performers from "../common/Performers";
 import NonPerformers from "../common/NonPerformers";
 import PositionInfo from "../common/PositionInfo";
 
-const CurrentMonth = ({ members }) => {
+const CurrentMonth = () => {
+  const { user } = useUserProfile();
+  const { members, getMembersList } = useClub();
+
+  useEffect(() => {
+    if (user.clubId) {
+      getMembersList(user.clubId, [1, "month"]);
+    }
+  }, [user.clubId]);
+
   const { performers, nonPerformers } = useMemo(() => {
-    const leaderboardList = members.data.filter((item) => !!item.score);
+    const leadersList = members.data.filter(
+      (member) => !!member.score || member.id === user.uid
+    );
     return {
-      performers: leaderboardList.slice(0, 3),
-      nonPerformers: leaderboardList.slice(3),
+      performers: leadersList.slice(0, 3),
+      nonPerformers: leadersList.slice(3),
     };
-  }, [members.data]);
+  }, [members.data, user.uid]);
 
   if (members.loading) {
     return (
@@ -27,18 +41,24 @@ const CurrentMonth = ({ members }) => {
   }
 
   if (members.error) {
-    return <div className="mt-10 text-secondary text-lg text-center">Failed to load!</div>;
+    return (
+      <div className="mt-10 text-secondary text-lg text-center">
+        Failed to load!
+      </div>
+    );
   }
 
-  if(members.data.length === 0){
-    return <div className="mt-10 text-lg text-center">No data for this month!</div>;
+  if (performers.length === 0) {
+    return (
+      <div className="mt-10 text-lg text-center">No data for this month!</div>
+    );
   }
 
   return (
     <Fade in={true}>
       <div className="mt-10">
         <PositionInfo membersList={members.data} />
-        {performers.length > 0 && <Performers performers={performers} />}
+        <Performers performers={performers} />
         <NonPerformers nonPerformers={nonPerformers} />
       </div>
     </Fade>

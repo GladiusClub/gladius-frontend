@@ -1,8 +1,10 @@
+import colors from 'theme/colors';
+
 export const spinnerTheme = {
   MuiCircularProgress: {
     styleOverrides: {
       root: {
-        color: "var(--color-primary)",
+        color: colors.primary,
       },
     },
   },

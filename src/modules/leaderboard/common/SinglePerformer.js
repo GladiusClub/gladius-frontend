@@ -27,23 +27,25 @@ const SinglePerformer = ({ performer, position }) => {
     <div
       className={classNames(
         "flex flex-col items-center relative",
-        classObj.root,
+        classObj.root
       )}
     >
-      <Typography
-        variant="span"
-        className={classNames(
-          "absolute left-0 rounded-full flex justify-center items-center font-semibold",
-          classObj.rank,
-        )}
-      >
-        {position}
-      </Typography>
+      {performer.score > 0 && (
+        <Typography
+          variant="span"
+          className={classNames(
+            "absolute left-0 rounded-full flex justify-center items-center font-semibold",
+            classObj.rank
+          )}
+        >
+          {position}
+        </Typography>
+      )}
       <img
         src={`https://ui-avatars.com/api?name=${performer.name}`}
         className={classNames(
           "rounded-full border border-primary",
-          classObj.avatar,
+          classObj.avatar
         )}
         alt={performer.name}
       />

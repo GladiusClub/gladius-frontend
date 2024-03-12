@@ -1,8 +1,10 @@
+import colors from 'theme/colors';
+
 export const iconTheme = {
   MuiSvgIcon: {
     styleOverrides: {
       root: {
-        color: "var(--color-default)",
+        color: colors.default,
       },
     },
   },

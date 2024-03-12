@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import dayjs from "dayjs";
 
 import { db } from "services/firebase/firebase-config";
@@ -18,7 +18,7 @@ const useClub = () => {
     checkForNavigateToSignIn(err.code);
   };
 
-  const getMembersList = async (clubId) => {
+  const getMembersList = async (clubId, fromDate=[1, 'year']) => {
     setMembers((prev) => ({ ...prev, loading: true }));
     try {
       // Get reference to members collection of a club
@@ -39,22 +39,28 @@ const useClub = () => {
           `clubs/${clubId}/members/${memberId}/attendance`
         );
 
-        const attendanceDocs = await getDocs(attendanceRef);
+        const todaysDate = dayjs();
+
+        const attendanceQuery = query(
+          attendanceRef,
+          where("date", "<", todaysDate.format("YYYY-MM-DD")),
+          where(
+            "date",
+            ">=",
+            todaysDate.subtract(...fromDate).format("YYYY-MM-DD")
+          )
+        );
+
+        const attendanceDocs = await getDocs(attendanceQuery);
 
         // Get max score of the member
         let score = 0;
-        let latestDate = '1972-01-01';
 
         if (!attendanceDocs.empty) {
           score = attendanceDocs.docs.reduce((acc, doc) => {
             const data = doc.data();
-
-            if (dayjs(data.date).isAfter(dayjs(latestDate))) {
-              latestDate = data.date;
-            }
-
-            if (data.score && data.score > acc) {
-              acc = +data.score;
+            if (data.score) {
+              acc += +data.score;
             }
             return acc;
           }, 0);
@@ -64,7 +70,6 @@ const useClub = () => {
         return {
           id: memberId,
           name: memberName,
-          date: latestDate,
           score,
         };
       });

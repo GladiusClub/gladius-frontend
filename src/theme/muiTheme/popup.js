@@ -1,11 +1,13 @@
+import colors from 'theme/colors';
+
 const rootElement = document.getElementById("root");
 
 export const popupTheme = {
   MuiPaper: {
     styleOverrides: {
       root: {
-        color: "var(--color-default)",
-        background: "var(--color-gradient-body)",
+        color: colors.default,
+        background: colors['gradient-body'],
       },
     },
   },

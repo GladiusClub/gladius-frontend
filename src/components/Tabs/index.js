@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import TabContent from "./TabContent";
 import TabsList from "./TabsList";
 import "./tabs.css";
 
-const Tabs = ({ className, classes, children }) => {
+const Tabs = ({ className, classes, children, useLazyLoad = true }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -16,7 +17,20 @@ const Tabs = ({ className, classes, children }) => {
       >
         {children}
       </TabsList>
-      <TabContent>{children[activeIndex]?.props.children}</TabContent>
+      {useLazyLoad ? (
+        <TabContent>{children[activeIndex]?.props.children}</TabContent>
+      ) : (
+        children.map((child, index) => (
+          <TabContent
+            className={classNames({
+              hidden: index !== activeIndex,
+            })}
+            key={index}
+          >
+            {child.props.children}
+          </TabContent>
+        ))
+      )}
     </>
   );
 };

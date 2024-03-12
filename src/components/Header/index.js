@@ -14,10 +14,10 @@ const links = [
     to: protectedRoutes.calendar,
     text: "Calendar",
   },
-  {
-    to: protectedRoutes.tasks,
-    text: "Tasks",
-  },
+  // {
+  //   to: protectedRoutes.tasks,
+  //   text: "Tasks",
+  // },
   {
     to: protectedRoutes.leaderboard,
     text: "Leaderboard",

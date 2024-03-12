@@ -4,11 +4,12 @@ import { PiCoins } from "react-icons/pi";
 import { TbJewishStarFilled } from "react-icons/tb";
 
 import Typography from "components/Typography";
+import colors from 'theme/colors';
 import league from "assets/league.svg";
 import diamond from "assets/diamond.svg";
 
 const style = {
-  boxShadow: "0px 0px 20px 0px var(--color-shadow)",
+  boxShadow: `0px 0px 20px 0px ${colors.shadow}`,
 };
 
 const ScoreOverview = () => {
