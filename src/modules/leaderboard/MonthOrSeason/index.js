@@ -6,17 +6,17 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Loader from "components/Loader";
 import { useUserProfile } from "context/userProfile/useUserProfile";
 import useClub from "hooks/useClub";
-import Performers from "../common/Performers";
-import NonPerformers from "../common/NonPerformers";
-import PositionInfo from "../common/PositionInfo";
+import Performers from "./Performers";
+import NonPerformers from "./NonPerformers";
+import PositionInfo from "./PositionInfo";
 
-const CurrentMonth = () => {
+const MonthOrSeason = ({ fromDate }) => {
   const { user } = useUserProfile();
   const { members, getMembersList } = useClub();
 
   useEffect(() => {
     if (user.clubId) {
-      getMembersList(user.clubId, [1, "month"]);
+      getMembersList(user.clubId, fromDate);
     }
   }, [user.clubId]);
 
@@ -65,4 +65,4 @@ const CurrentMonth = () => {
   );
 };
 
-export default CurrentMonth;
+export default MonthOrSeason;

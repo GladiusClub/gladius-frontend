@@ -4,8 +4,7 @@ import Fade from "@mui/material/Fade";
 import Tabs from "components/Tabs";
 import Tab from "components/Tabs/Tab";
 import Typography from "components/Typography";
-import CurrentMonth from "modules/leaderboard/CurrentMonth";
-import Season from "modules/leaderboard/Season";
+import MonthOrSeason from "modules/leaderboard/MonthOrSeason";
 
 const Leaderboard = () => {
   return (
@@ -20,10 +19,10 @@ const Leaderboard = () => {
           }}
         >
           <Tab label="Current month">
-            <CurrentMonth />
+            <MonthOrSeason fromDate={[1, "month"]} />
           </Tab>
           <Tab label="Season">
-            <Season />
+            <MonthOrSeason fromDate={[1, "year"]} />
           </Tab>
         </Tabs>
       </div>
