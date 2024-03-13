@@ -12,11 +12,11 @@ import PositionInfo from "./PositionInfo";
 
 const MonthOrSeason = ({ fromDate }) => {
   const { user } = useUserProfile();
-  const { members, getMembersList } = useClub();
+  const { members, getMembers } = useClub();
 
   useEffect(() => {
     if (user.clubId) {
-      getMembersList(user.clubId, fromDate);
+      getMembers(fromDate);
     }
   }, [user.clubId]);
 
@@ -50,7 +50,7 @@ const MonthOrSeason = ({ fromDate }) => {
 
   if (performers.length === 0) {
     return (
-      <div className="mt-10 text-lg text-center">No data for this month!</div>
+      <div className="mt-10 text-lg text-center">No data found!</div>
     );
   }
 

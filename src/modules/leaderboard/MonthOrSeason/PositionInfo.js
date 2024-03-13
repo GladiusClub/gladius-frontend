@@ -19,7 +19,7 @@ const PositionInfo = ({ membersList }) => {
     return {
       rank,
       percent: Math.round(
-        ((membersList.length - rank) / (membersList.length - 1)) * 100
+        ((membersList.length - rank) / (membersList.length)) * 100
       ),
     };
   }, [membersList, user.uid]);

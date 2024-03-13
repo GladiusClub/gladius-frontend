@@ -78,7 +78,7 @@ export const useFirebase = () => {
     }
   };
 
-  const fetchDocDataByUid = async (
+  const getDocDataByUid = async (
     collection,
     uid,
     key = null,
@@ -109,6 +109,6 @@ export const useFirebase = () => {
     checkForNavigateToSignIn,
     signInUser,
     signUpUser,
-    fetchDocDataByUid,
+    getDocDataByUid,
   };
 };
