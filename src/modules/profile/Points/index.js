@@ -16,7 +16,7 @@ const Points = () => {
 
   useEffect(() => {
     if (user.clubId) {
-      getEvents("<");
+      getEvents({ maxDate: new Date() });
     }
   }, [user.clubId]);
 

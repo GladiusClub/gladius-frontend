@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-import { useUserProfile } from "context/userProfile/useUserProfile";
 import { useFirebase } from "services/firebase/useFirebase";
 import { fetchMembers } from "api/clubApi";
 
 const useClub = () => {
-  const { user } = useUserProfile();
   const { checkForNavigateToSignIn } = useFirebase();
 
   const [members, setMembers] = useState({
@@ -19,10 +17,10 @@ const useClub = () => {
     checkForNavigateToSignIn(err.code);
   };
 
-  const getMembers = async (fromDate) => {
+  const getMembers = async (dates) => {
     setMembers((prev) => ({ ...prev, loading: true }));
     try {
-      const data = await fetchMembers(user.uid, user.clubId, fromDate);
+      const data = await fetchMembers(dates);
       setMembers({ data, error: null, loading: false });
     } catch (err) {
       console.error("Error getting members list");

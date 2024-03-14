@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-import { useUserProfile } from "context/userProfile/useUserProfile";
 import { useFirebase } from "services/firebase/useFirebase";
 import { fetchEvents } from "api/eventsApi";
 
 const useEvents = () => {
-  const { user } = useUserProfile();
   const { checkForNavigateToSignIn } = useFirebase();
   const [events, setEvents] = useState({
     data: [],
@@ -18,10 +16,10 @@ const useEvents = () => {
     checkForNavigateToSignIn(err.code);
   };
 
-  const getEvents = async (operator) => {
+  const getEvents = async (dates) => {
     setEvents((prev) => ({ ...prev, loading: true }));
     try {
-      const data = await fetchEvents(user.clubId, user.uid, user.club.calendarId, operator);
+      const data = await fetchEvents(dates);
       setEvents({ data, error: null, loading: false });
     } catch (err) {
       console.error("Error getting past events");

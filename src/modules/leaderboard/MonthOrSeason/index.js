@@ -11,13 +11,13 @@ import Performers from "./Performers";
 import NonPerformers from "./NonPerformers";
 import PositionInfo from "./PositionInfo";
 
-const MonthOrSeason = ({ fromDate }) => {
+const MonthOrSeason = ({ dates }) => {
   const { user } = useUserProfile();
   const { members, getMembers } = useClub();
 
   useEffect(() => {
     if (user.clubId) {
-      getMembers(fromDate);
+      getMembers(dates);
     }
   }, [user.clubId]);
 

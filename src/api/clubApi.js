@@ -2,8 +2,11 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import dayjs from "dayjs";
 
 import { db } from "services/firebase/firebase-config";
+import { getItem } from "helpers/localStorageHelper";
 
-export const fetchMembers = async (uid, clubId, fromDate = [1, "year"]) => {
+export const fetchMembers = async ({ minDate, maxDate }) => {
+  const { uid, clubId } = getItem("user");
+
   // Get reference to groups collection of a club
   const groupsRef = collection(db, `clubs/${clubId}/groups`);
 
@@ -54,18 +57,20 @@ export const fetchMembers = async (uid, clubId, fromDate = [1, "year"]) => {
         `clubs/${clubId}/members/${memberId}/attendance`
       );
 
-      const todaysDate = dayjs();
+      // Get attendance data using
+      const datesQuery = [];
+      if (minDate) {
+        datesQuery.push(
+          where("date", ">=", dayjs(minDate).format("YYYY-MM-DD"))
+        );
+      }
+      if (maxDate) {
+        datesQuery.push(
+          where("date", "<=", dayjs(maxDate).format("YYYY-MM-DD"))
+        );
+      }
 
-      // Get attendance data less than today's date and greater than given date
-      const fromDateFormatted = todaysDate
-        .subtract(...fromDate)
-        .format("YYYY-MM-DD");
-
-      const attendanceQuery = query(
-        attendanceRef,
-        where("date", "<", todaysDate.format("YYYY-MM-DD")),
-        where("date", ">=", fromDateFormatted)
-      );
+      const attendanceQuery = query(attendanceRef, ...datesQuery);
 
       const attendanceDocs = await getDocs(attendanceQuery);
 

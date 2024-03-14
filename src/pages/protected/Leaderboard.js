@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import Fade from "@mui/material/Fade";
 
 import Tabs from "components/Tabs";
@@ -19,10 +20,17 @@ const Leaderboard = () => {
           }}
         >
           <Tab label="Current month">
-            <MonthOrSeason fromDate={[1, "month"]} />
+            <MonthOrSeason
+              dates={{
+                minDate: dayjs().subtract(1, "month"),
+                maxDate: dayjs(),
+              }}
+            />
           </Tab>
           <Tab label="Season">
-            <MonthOrSeason fromDate={[1, "year"]} />
+            <MonthOrSeason
+              dates={{ minDate: dayjs().subtract(1, "year"), maxDate: dayjs() }}
+            />
           </Tab>
         </Tabs>
       </div>
