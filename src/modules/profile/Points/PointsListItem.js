@@ -16,9 +16,11 @@ const PointsListItem = ({ item }) => {
           {item.score} points
         </Typography>
       </div>
-      <Typography variant="span" className="text-neutral text-sm">
-        {item.date}
-      </Typography>
+      {item.date && (
+        <Typography variant="span" className="text-neutral text-sm">
+          {new Date(item.date).toLocaleDateString()}
+        </Typography>
+      )}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
-import Typography from "components/Typography";
+import NoData from "components/NoData";
 import { useUserProfile } from "context/userProfile/useUserProfile";
 import useEvents from "hooks/useEvents";
 import PointsList from "./PointsList";
@@ -39,7 +39,7 @@ const Points = () => {
   }
 
   if (events.data.length === 0) {
-    return <Typography className="mt-10 text-lg text-center">No data!</Typography>;
+    return <NoData className="mt-10 text-lg text-center" />;
   }
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Typography from "components/Typography";
 import List from "components/List";
+import NoData from "components/NoData";
 import PointsListItem from "./PointsListItem";
 import ListItem from "components/List/ListItem";
 import { Button } from "@mui/material";
@@ -36,7 +37,7 @@ const PointsList = ({ title, list, className }) => {
           )}
         </>
       ) : (
-        <Typography className="mt-5 text-lg text-center">No Data!</Typography>
+        <NoData className="mt-5 text-lg text-center" />
       )}
     </section>
   );

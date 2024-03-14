@@ -4,6 +4,7 @@ import Fade from "@mui/material/Fade";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
+import NoData from "components/NoData";
 import { useUserProfile } from "context/userProfile/useUserProfile";
 import useClub from "hooks/useClub";
 import Performers from "./Performers";
@@ -49,9 +50,7 @@ const MonthOrSeason = ({ fromDate }) => {
   }
 
   if (performers.length === 0) {
-    return (
-      <div className="mt-10 text-lg text-center">No data!</div>
-    );
+    return <NoData className="mt-10 text-lg text-center" />;
   }
 
   return (
