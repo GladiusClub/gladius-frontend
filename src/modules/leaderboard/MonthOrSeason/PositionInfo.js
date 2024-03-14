@@ -10,7 +10,7 @@ const PositionInfo = ({ membersList }) => {
     const foundIndex = membersList.findIndex(
       (member) => member.id === user.uid
     );
-    if (membersList[foundIndex]?.score === 0) {
+    if (membersList.length === 1 || membersList[foundIndex]?.score === 0) {
       return {
         rank: null,
       };

@@ -50,7 +50,7 @@ const MonthOrSeason = ({ fromDate }) => {
 
   if (performers.length === 0) {
     return (
-      <div className="mt-10 text-lg text-center">No data found!</div>
+      <div className="mt-10 text-lg text-center">No data!</div>
     );
   }
 

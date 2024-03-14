@@ -10,10 +10,10 @@ const PointsListItem = ({ item }) => {
           variant="span"
           className="text-lg font-semibold w-3/5 truncate"
         >
-          {item.eventName}
+          {item.summary}
         </Typography>
         <Typography variant="span" className="text-secondary">
-          {item.points} points
+          {item.score} points
         </Typography>
       </div>
       <Typography variant="span" className="text-neutral text-sm">
