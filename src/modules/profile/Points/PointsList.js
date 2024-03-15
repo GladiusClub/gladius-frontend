@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import { Button } from "@mui/material";
 
 import Typography from "components/Typography";
 import List from "components/List";
 import NoData from "components/NoData";
 import PointsListItem from "./PointsListItem";
 import ListItem from "components/List/ListItem";
-import { Button } from "@mui/material";
 
-const PointsList = ({ title, list, className }) => {
+const PointsList = ({ title, list }) => {
   const [listToShow, setListToShow] = useState(list.slice(0, 5));
 
   const handleShowAllClick = () => {
@@ -15,7 +15,7 @@ const PointsList = ({ title, list, className }) => {
   };
 
   return (
-    <section className={className}>
+    <section className="mt-10">
       <Typography className="text-xl text-primary">{title}</Typography>
       {list.length > 0 ? (
         <>

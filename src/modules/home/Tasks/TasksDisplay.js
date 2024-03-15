@@ -1,29 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, {memo, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
 import NoData from "components/NoData";
 import { useUserProfile } from "context/userProfile/useUserProfile";
 import useEvents from "hooks/useEvents";
-import PointsList from "./PointsList";
-import PointsInfo from "./PointsInfo";
-import PointsSendReceive from "./PointsSendReceive";
+import TasksList from "./TasksList";
 
-const Points = () => {
+const TasksDisplay = memo(({ dates, onDataLoaded }) => {
   const { user } = useUserProfile();
   const { events, getEvents } = useEvents();
 
   useEffect(() => {
     if (user.clubId) {
-      getEvents({ maxDate: new Date() });
+      getEvents(dates);
     }
-  }, [user.clubId]);
+  }, [user.clubId, dates]);
+
+  useEffect(() => {
+    onDataLoaded(events.data.length);
+  }, [events.data]);
 
   if (events.loading) {
     return (
-      <div className="mt-10 h-full flex justify-center item-center w-30 h-30">
-        <Loader className="w-20 h-20">
+      <div className="mt-10 h-full flex justify-center item-center">
+        <Loader>
           <CircularProgress className="w-20 h-20" />
         </Loader>
       </div>
@@ -39,16 +41,10 @@ const Points = () => {
   }
 
   if (events.data.length === 0) {
-    return <NoData className="mt-10 text-lg text-center" />;
+    return <NoData className="mt-10 text-lg text-center">No Events!</NoData>;
   }
 
-  return (
-    <div className="mt-10">
-      <PointsInfo eventsList={events.data} />
-      <PointsSendReceive />
-      <PointsList title="Received" list={events.data} />
-    </div>
-  );
-};
+  return <TasksList list={events.data} />;
+});
 
-export default Points;
+export default TasksDisplay;

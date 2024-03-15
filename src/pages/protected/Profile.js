@@ -13,6 +13,7 @@ const Profile = () => {
       <div>
         <Typography className="text-center text-xl">Wallet</Typography>
         <Tabs
+          lazyLoad
           className="mt-10 bg-dark p-1"
           classes={{
             active: "bg-gradient-active",

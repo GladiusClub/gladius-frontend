@@ -11,20 +11,20 @@ const TasksListItem = ({ item }) => {
           variant="span"
           className="text-lg font-semibold w-4/5 truncate"
         >
-          {item.eventName}
+          {item.summary}
         </Typography>
         <Typography variant="span" className="text-lg">
-          {item.time}
+          {item.startTime}
         </Typography>
         <Typography variant="span" className="text-sm w-3/5">
           {item.location}
         </Typography>
         <Typography variant="span" className="text-sm text-neutral">
-          {item.date}
+          {new Date(item.date).toLocaleDateString()}
         </Typography>
         <div className="w-full">
           <Typography variant="span" className="text-sm text-secondary">
-            {item.points} points
+            {item.score} points
           </Typography>
           {item.badges && (
             <Typography variant="span" className="text-sm text-secondary ml-5">

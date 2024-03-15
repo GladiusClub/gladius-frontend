@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, memo } from "react";
 import Fade from "@mui/material/Fade";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -11,7 +11,7 @@ import Performers from "./Performers";
 import NonPerformers from "./NonPerformers";
 import PositionInfo from "./PositionInfo";
 
-const MonthOrSeason = ({ dates }) => {
+const MonthOrSeason = memo(({ dates }) => {
   const { user } = useUserProfile();
   const { members, getMembers } = useClub();
 
@@ -19,7 +19,7 @@ const MonthOrSeason = ({ dates }) => {
     if (user.clubId) {
       getMembers(dates);
     }
-  }, [user.clubId]);
+  }, [user.clubId, dates]);
 
   const { performers, nonPerformers } = useMemo(() => {
     const leadersList = members.data.filter(
@@ -62,6 +62,6 @@ const MonthOrSeason = ({ dates }) => {
       </div>
     </Fade>
   );
-};
+});
 
 export default MonthOrSeason;

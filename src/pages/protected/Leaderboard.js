@@ -14,7 +14,6 @@ const Leaderboard = () => {
         <Typography className="text-center text-xl">Leaderboard</Typography>
         <Tabs
           className="mt-10 bg-dark p-1"
-          useLazyLoad={false}
           classes={{
             active: "bg-gradient-active",
           }}

@@ -4,7 +4,7 @@ import TabContent from "./TabContent";
 import TabsList from "./TabsList";
 import "./tabs.css";
 
-const Tabs = ({ className, classes, children, useLazyLoad = true }) => {
+const Tabs = ({ className, classes, children, lazyLoad = false }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -17,7 +17,7 @@ const Tabs = ({ className, classes, children, useLazyLoad = true }) => {
       >
         {children}
       </TabsList>
-      {useLazyLoad ? (
+      {lazyLoad ? (
         <TabContent>{children[activeIndex]?.props.children}</TabContent>
       ) : (
         children.map((child, index) => (

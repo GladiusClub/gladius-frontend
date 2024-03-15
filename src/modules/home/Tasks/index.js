@@ -1,22 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Typography from "components/Typography";
+import Tabs from "components/Tabs";
 import Tab from "components/Tabs/Tab";
-import TasksList from "./TasksList";
-import TaskTabs from "./TaskTabs";
-import { tasks } from "./data";
+import { getNextDay } from "utils/dateUtils";
+import TasksDisplay from "./TasksDisplay";
+
+const today = new Date();
+const tomorrow = getNextDay();
+
+const dates = {
+  today: { minDate: today, maxDate: today },
+  tomorrow: { minDate: tomorrow, maxDate: tomorrow },
+  previous: { maxDate: today },
+};
 
 const Tasks = () => {
+  const [todayEventsCount, setTodaysEventsCount] = useState(0);
+  const [tomorrowEventsCount, setTomorrowEventsCount] = useState(0);
+  const [previousEventsCount, setPreviousEventsCount] = useState(0);
+
   return (
     <section className="mt-10">
       <Typography className="text-xl text-primary">My tasks</Typography>
-      <TaskTabs tasks={tasks}>
-        <Tab label="Today">
-          <TasksList tasks={tasks} />
+      <Tabs
+        className="mt-3 text-neutral text-sm justify-between gap-3"
+        classes={{
+          active: "border border-primary text-default",
+          default: "border border-neutral text-neutral",
+        }}
+      >
+        <Tab label={`Today (${todayEventsCount})`}>
+          <TasksDisplay
+            dates={dates.today}
+            onDataLoaded={setTodaysEventsCount}
+          />
         </Tab>
-        <Tab label="Tomorrow">Tomorrow</Tab>
-        <Tab label="Previous">Previous</Tab>
-      </TaskTabs>
+        <Tab label={`Tomorrow (${tomorrowEventsCount})`}>
+          <TasksDisplay
+            dates={dates.tomorrow}
+            onDataLoaded={setTomorrowEventsCount}
+          />
+        </Tab>
+        <Tab label={`Previous (${previousEventsCount})`}>
+          <TasksDisplay
+            dates={dates.previous}
+            onDataLoaded={setPreviousEventsCount}
+          />
+        </Tab>
+      </Tabs>
     </section>
   );
 };
