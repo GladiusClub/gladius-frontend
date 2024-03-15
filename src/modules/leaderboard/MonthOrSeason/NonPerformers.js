@@ -4,7 +4,7 @@ import classNames from "classnames";
 import List from "components/List";
 import ListItem from "components/List/ListItem";
 import NonPerformerListItem from "./NonPerformerListItem";
-import { useUserProfile } from "context/userProfile/useUserProfile";
+import useUserProfile from "context/userProfile/useUserProfile";
 
 const NonPerformers = ({ nonPerformers }) => {
   const { user } = useUserProfile();

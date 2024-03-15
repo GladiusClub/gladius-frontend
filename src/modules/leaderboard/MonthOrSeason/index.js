@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
 import NoData from "components/NoData";
-import { useUserProfile } from "context/userProfile/useUserProfile";
+import useUserProfile from "context/userProfile/useUserProfile";
 import useClub from "hooks/useClub";
 import Performers from "./Performers";
 import NonPerformers from "./NonPerformers";

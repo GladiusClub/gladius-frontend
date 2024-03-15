@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getError, getAllErrors } from "./helper";
 
-export const useValidate = (values) => {
+const useValidate = (values) => {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
@@ -23,3 +23,5 @@ export const useValidate = (values) => {
 
   return { errors, isValid, validateOnBlur, validateOnSubmit };
 };
+
+export default useValidate;

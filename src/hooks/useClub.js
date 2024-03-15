@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useFirebase } from "services/firebase/useFirebase";
+import useFirebase from "services/firebase/useFirebase";
 import { fetchMembers } from "api/clubApi";
 
 const useClub = () => {

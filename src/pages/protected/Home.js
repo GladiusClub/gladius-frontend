@@ -4,7 +4,7 @@ import Fade from "@mui/material/Fade";
 import Typography from "components/Typography";
 import ScoreOverview from "modules/home/ScoreOverview";
 import Tasks from "modules/home/Tasks";
-import { useUserProfile } from "context/userProfile/useUserProfile";
+import useUserProfile from "context/userProfile/useUserProfile";
 
 const Home = () => {
   const { user } = useUserProfile();

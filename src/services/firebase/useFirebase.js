@@ -12,7 +12,7 @@ import { getItem } from "helpers/localStorageHelper";
 import { authMessages } from "constants/auth";
 import { unProtectedRoutes } from "constants/routes";
 
-export const useFirebase = () => {
+const useFirebase = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -112,3 +112,5 @@ export const useFirebase = () => {
     getDocDataByUid,
   };
 };
+
+export default useFirebase;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useFirebase } from "services/firebase/useFirebase";
+import useFirebase from "services/firebase/useFirebase";
 import { fetchEvents } from "api/eventsApi";
 
 const useEvents = () => {

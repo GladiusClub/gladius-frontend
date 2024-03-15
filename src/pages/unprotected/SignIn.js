@@ -9,8 +9,8 @@ import {
   EmailAdornment,
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
-import { useValidate } from "components/OutlinedInput/useValidate";
-import { useFirebase } from "services/firebase/useFirebase";
+import useValidate from "components/OutlinedInput/useValidate";
+import useFirebase from "services/firebase/useFirebase";
 import { unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
 

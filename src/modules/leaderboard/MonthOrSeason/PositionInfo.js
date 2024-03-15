@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import Typography from "components/Typography";
-import { useUserProfile } from "context/userProfile/useUserProfile";
+import useUserProfile from "context/userProfile/useUserProfile";
 
 const PositionInfo = ({ membersList }) => {
   const { user } = useUserProfile();

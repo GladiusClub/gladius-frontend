@@ -4,8 +4,8 @@ import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import Header from "components/Header";
 import Loader from "components/Loader";
-import { useUserProfile } from "context/userProfile/useUserProfile";
-import { useFirebase } from "services/firebase/useFirebase";
+import useUserProfile from "context/userProfile/useUserProfile";
+import useFirebase from "services/firebase/useFirebase";
 import { generateUserInfo } from "modules/utils";
 import { unProtectedRoutes } from "constants/routes";
 import { collections } from "constants/collections";
