@@ -20,8 +20,8 @@ const PointsInfo = ({ eventsList }) => {
     const today = dayjs();
     let pointsInWeek = 0;
     for (let event of eventsList) {
-      const sevenDaysAgo = today.subtract(7, "day");
-      if (dayjs(event.date).isBefore(sevenDaysAgo)) {
+      const sevenDaysAgoDate = today.subtract(7, "day");
+      if (dayjs(event.date).isBefore(sevenDaysAgoDate)) {
         break;
       }
       pointsInWeek += event.score;

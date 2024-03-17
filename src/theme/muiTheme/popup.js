@@ -1,4 +1,4 @@
-import colors from 'theme/colors';
+import colors from "theme/colors";
 
 const rootElement = document.getElementById("root");
 
@@ -7,7 +7,8 @@ export const popupTheme = {
     styleOverrides: {
       root: {
         color: colors.default,
-        background: colors['gradient-body'],
+        background: colors["gradient-body"],
+        borderRadius: "2rem",
       },
     },
   },
@@ -29,6 +30,14 @@ export const popupTheme = {
   MuiModal: {
     defaultProps: {
       container: rootElement,
+    },
+  },
+  MuiBackdrop: {
+    styleOverrides: {
+      root: {
+        backgroundColor: colors["dark"],
+        opacity: "0.5 !important",
+      },
     },
   },
 };

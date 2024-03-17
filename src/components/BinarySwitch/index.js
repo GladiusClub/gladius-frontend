@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classNames from "classnames";
 
 import SwitchButton from "./SwitchButton";
 import "./switch.css";
@@ -9,6 +8,10 @@ const BinarySwitch = ({ value, onSwitchClick, disabled }) => {
   const [isTrue, setIsTrue] = useState(value);
 
   const handleSwitchClick = (e) => {
+    e.stopPropagation();
+    if (disabled) {
+      return;
+    }
     const { value } = e.target.dataset;
     const newState = value === "yes";
     setIsTrue(newState);
@@ -17,9 +20,7 @@ const BinarySwitch = ({ value, onSwitchClick, disabled }) => {
 
   return (
     <div
-      className={classNames("flex w-2/5 cursor-pointer text-sm", {
-        "pointer-events-none": disabled,
-      })}
+      className="flex w-2/5 text-sm"
       role="button"
       onClick={handleSwitchClick}
     >

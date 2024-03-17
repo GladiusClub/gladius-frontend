@@ -30,7 +30,7 @@ const NonPerformerListItem = ({ item, userId, rank }) => {
             "text-secondary": userId !== item.id,
           })}
         >
-          {item.score} points
+          {item.score.toLocaleString()} points
         </Typography>
       </div>
     </div>

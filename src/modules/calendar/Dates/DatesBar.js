@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
+import useEventsByDate from "context/EventsByDate/useEventsByDate";
 import Date from "./Date";
 
-const DatesBar = ({ activeIndex, datesToSlide, onDateClick }) => {
+const DatesBar = () => {
   const datesBarRef = useRef(null);
+  const { datesToSlide, activeIndex } = useEventsByDate();
 
   useEffect(() => {
     const scrollWidth = datesBarRef.current.scrollWidth;
@@ -18,15 +20,7 @@ const DatesBar = ({ activeIndex, datesToSlide, onDateClick }) => {
       ref={datesBarRef}
     >
       {datesToSlide.map((date, index) => {
-        return (
-          <Date
-            key={date.toDateString()}
-            date={date}
-            index={index}
-            activeIndex={activeIndex}
-            onDateClick={onDateClick}
-          />
-        );
+        return <Date key={date.toDateString()} date={date} index={index} />;
       })}
     </div>
   );

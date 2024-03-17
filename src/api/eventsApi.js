@@ -6,7 +6,9 @@ import { db } from "services/firebase/firebase-config";
 import { isDefined } from "utils/commonUtils";
 import { getItem } from "helpers/localStorageHelper";
 
-const googleCalendarApiKey = process.env.REACT_APP_CALENDAR_APIKEY;
+const GOOGLE_CALENDAR_API_URL =
+  "https://www.googleapis.com/calendar/v3/calendars";
+const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
 let eventCache = {};
 
@@ -44,6 +46,7 @@ export const fetchEvents = async ({ minDate, maxDate }) => {
   if (attendanceDocs.empty) {
     return [];
   }
+
   const attendances = attendanceDocs.docs.map((attendanceDoc) =>
     attendanceDoc.data()
   );
@@ -62,13 +65,15 @@ export const fetchEvents = async ({ minDate, maxDate }) => {
     datesParams.timeMax = dayjs(maxDate).toISOString();
   }
 
-  const datesQueryParam = Object.entries(datesParams).map(([param, value]) => `${param}=${value}`).join('&');
+  const datesQueryParam = Object.entries(datesParams)
+    .map(([param, value]) => `${param}=${value}`)
+    .join("&");
 
   const eventsPromises = eventIds.map(async (eventId) => {
     try {
       if (eventId && !eventCache[eventId]) {
         const response = await fetch(
-          `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${eventId}?key=${googleCalendarApiKey}&${datesQueryParam}`
+          `${GOOGLE_CALENDAR_API_URL}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}&${datesQueryParam}`
         );
         return await response.json();
       }

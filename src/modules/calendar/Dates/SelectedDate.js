@@ -15,25 +15,66 @@ import {
   PopoverContent,
   PopoverTarget,
 } from "components/Popover";
+import useEventsByDate from "context/EventsByDate/useEventsByDate";
+import { getDatesRange, getNextDay, getPrevDay } from "utils/dateUtils";
 
-const SelectedDate = ({ date, onPrevClick, onNextClick, onDateChange }) => {
-  const handleChange = (e) => {
-    onDateChange(e.$d);
+const SelectedDate = ({ initialDatesOnSilder }) => {
+  const {
+    datesToSlide,
+    activeIndex,
+    eventsCount,
+    setDatesToSlide,
+    setActiveIndex,
+  } = useEventsByDate();
+
+  const handlePrevClick = () => {
+    if (activeIndex === 0) {
+      setDatesToSlide((prev) => [getPrevDay(prev[0]), ...prev]);
+      setActiveIndex(0);
+    } else {
+      setActiveIndex((prev) => prev - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    const lastDateIndex = datesToSlide.length - 1;
+    if (activeIndex === lastDateIndex) {
+      setDatesToSlide((prev) => [...prev, getNextDay(prev[lastDateIndex])]);
+      setActiveIndex(lastDateIndex);
+    }
+    setActiveIndex((prev) => prev + 1);
+  };
+
+  const handleDateChange = (e) => {
+    const date = e.$d;
+    setDatesToSlide(getDatesRange(initialDatesOnSilder, date));
+    setActiveIndex(initialDatesOnSilder);
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <button onClick={onPrevClick}>
+    <div className="mt-5 flex justify-between items-center">
+      <button onClick={handlePrevClick}>
         <MdOutlineArrowBackIos className="text-lg" />
       </button>
       <div className="flex flex-col items-center">
         <Popover>
           <PopoverTarget>
             <Typography variant="span" className="text-xl" role="button">
-              {date.toLocaleDateString()}
+              {dayjs(datesToSlide[activeIndex]).format("MMMM D, YYYY")}
             </Typography>
           </PopoverTarget>
-          <PopoverContent>
+          <PopoverContent
+            origin={{
+              anchorOrigin: {
+                vertical: "bottom",
+                horizontal: "center",
+              },
+              transformOrigin: {
+                vertical: "top",
+                horizontal: "center",
+              },
+            }}
+          >
             <Box>
               <div className="flex justify-end mr-5 mt-5">
                 <PopoverClose>
@@ -43,16 +84,19 @@ const SelectedDate = ({ date, onPrevClick, onNextClick, onDateChange }) => {
                 </PopoverClose>
               </div>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateCalendar value={dayjs(date)} onChange={handleChange} />
+                <DateCalendar
+                  value={dayjs(datesToSlide[activeIndex])}
+                  onChange={handleDateChange}
+                />
               </LocalizationProvider>
             </Box>
           </PopoverContent>
         </Popover>
         <Typography variant="span" className="text-neutral text-sm">
-          No events
+          {eventsCount ? `You have ${eventsCount} events` : "No events"}
         </Typography>
       </div>
-      <button onClick={onNextClick}>
+      <button onClick={handleNextClick}>
         <MdOutlineArrowForwardIos className="text-lg" />
       </button>
     </div>

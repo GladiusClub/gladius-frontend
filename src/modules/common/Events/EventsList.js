@@ -3,9 +3,9 @@ import { Button } from "@mui/material";
 
 import List from "components/List";
 import ListItem from "components/List/ListItem";
-import TasksListItem from "./TasksListItem";
+import EventsListItem from "./EventsListItem";
 
-const TasksList = ({ list }) => {
+const EventsList = ({ list }) => {
   const [listToShow, setListToShow] = useState(list.slice(0, 5));
 
   const handleShowAllClick = () => {
@@ -17,7 +17,7 @@ const TasksList = ({ list }) => {
       <List>
         {listToShow.map((event) => (
           <ListItem key={`${event.summary}-${event.date}`}>
-            <TasksListItem item={event} />
+            <EventsListItem item={event} />
           </ListItem>
         ))}
       </List>
@@ -34,4 +34,4 @@ const TasksList = ({ list }) => {
   );
 };
 
-export default TasksList;
+export default EventsList;

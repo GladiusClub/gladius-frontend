@@ -2,10 +2,14 @@ import React from "react";
 import classNames from "classnames";
 
 import Typography from "components/Typography";
+import useEventsByDate from "context/EventsByDate/useEventsByDate";
+import EventsCount from "./EventsCount";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
 
-const Date = ({ date, index, activeIndex, onDateClick }) => {
+const Date = ({ date, index }) => {
+  const { activeIndex, eventsCount, setActiveIndex } = useEventsByDate();
+
   return (
     <div
       className={classNames(
@@ -15,7 +19,7 @@ const Date = ({ date, index, activeIndex, onDateClick }) => {
           "bg-dark": index !== activeIndex,
         }
       )}
-      onClick={() => onDateClick(index)}
+      onClick={() => setActiveIndex(index)}
     >
       <Typography variant="span" className="text-xl">
         {date.getDate()}
@@ -23,12 +27,11 @@ const Date = ({ date, index, activeIndex, onDateClick }) => {
       <Typography variant="span" className="text-sm">
         {days[date.getDay()]}
       </Typography>
-      <Typography
-        variant="span"
-        className="flex justify-center items-center text-sm text-dark bg-neutral w-6 h-6 rounded-full"
-      >
-        0
-      </Typography>
+      <EventsCount
+        count={eventsCount}
+        dateString={date.toDateString()}
+        isActive={index === activeIndex}
+      />
     </div>
   );
 };

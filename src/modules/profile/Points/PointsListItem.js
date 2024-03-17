@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 
 import Typography from "components/Typography";
 
@@ -18,7 +19,7 @@ const PointsListItem = ({ item }) => {
       </div>
       {item.date && (
         <Typography variant="span" className="text-neutral text-sm">
-          {new Date(item.date).toLocaleDateString()}
+          {dayjs(item.date).format("MMMM D, YYYY")}
         </Typography>
       )}
     </div>

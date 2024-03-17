@@ -51,7 +51,7 @@ const SinglePerformer = ({ performer, position }) => {
       />
       <Typography variant="span">{performer.name}</Typography>
       <Typography variant="span" className="text-secondary text-lg">
-        {performer.score}
+        {performer.score.toLocaleString()}
       </Typography>
       <Typography variant="span" className="text-neutral text-sm">
         points

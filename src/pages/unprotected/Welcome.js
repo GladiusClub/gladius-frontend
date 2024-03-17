@@ -27,7 +27,7 @@ const Welcome = () => {
             <Button
               size="large"
               variant="contained"
-              className="w-full normal-case mt-10 bg-gradient-active"
+              className="font-manrope w-full normal-case mt-10 bg-gradient-active"
             >
               Sign Up
             </Button>
@@ -36,7 +36,7 @@ const Welcome = () => {
             <Button
               size="large"
               variant="outlined"
-              className="text-default normal-case border-primary w-full mt-5"
+              className="font-manrope text-default normal-case border-primary w-full mt-5"
             >
               Sign In
             </Button>

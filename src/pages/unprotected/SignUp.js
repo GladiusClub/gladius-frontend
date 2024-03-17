@@ -125,7 +125,7 @@ const SignUp = () => {
             type="submit"
             size="large"
             variant="contained"
-            className="w-full normal-case mt-5 bg-gradient-active"
+            className="font-manrope w-full normal-case mt-5 bg-gradient-active"
           >
             {loading ? "Loading..." : "Sign Up"}
           </Button>

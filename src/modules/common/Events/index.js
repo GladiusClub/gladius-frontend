@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {memo, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
 import useEvents from "hooks/useEvents";
-import TasksList from "./TasksList";
+import EventsList from "./EventsList";
 
-const TasksDisplay = memo(({ dates, onDataLoaded }) => {
+const Events = memo(({ dates, onDataLoaded, onLoading }) => {
   const { user } = useUserProfile();
   const { events, getEvents } = useEvents();
 
@@ -21,6 +21,10 @@ const TasksDisplay = memo(({ dates, onDataLoaded }) => {
   useEffect(() => {
     onDataLoaded(events.data.length);
   }, [events.data]);
+
+  useEffect(() => {
+    onLoading(events.loading);
+  }, [events.loading]);
 
   if (events.loading) {
     return (
@@ -44,7 +48,13 @@ const TasksDisplay = memo(({ dates, onDataLoaded }) => {
     return <NoData className="mt-10 text-lg text-center">No Events!</NoData>;
   }
 
-  return <TasksList list={events.data} />;
+  return <EventsList list={events.data} />;
 });
 
-export default TasksDisplay;
+Events.defaultProps = {
+  dates: {},
+  onDataLoaded: () => null,
+  onLoading: () => null,
+};
+
+export default Events;

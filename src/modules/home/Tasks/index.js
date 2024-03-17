@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Typography from "components/Typography";
 import Tabs from "components/Tabs";
 import Tab from "components/Tabs/Tab";
-import { getNextDay } from "utils/dateUtils";
-import TasksDisplay from "./TasksDisplay";
+import Events from "modules/common/Events";
+import { getNextDay, getPrevDay } from "utils/dateUtils";
 
 const today = new Date();
 const tomorrow = getNextDay();
@@ -12,7 +12,7 @@ const tomorrow = getNextDay();
 const dates = {
   today: { minDate: today, maxDate: today },
   tomorrow: { minDate: tomorrow, maxDate: tomorrow },
-  previous: { maxDate: today },
+  previous: { maxDate: getPrevDay() },
 };
 
 const Tasks = () => {
@@ -31,19 +31,19 @@ const Tasks = () => {
         }}
       >
         <Tab label={`Today (${todayEventsCount})`}>
-          <TasksDisplay
+          <Events
             dates={dates.today}
             onDataLoaded={setTodaysEventsCount}
           />
         </Tab>
         <Tab label={`Tomorrow (${tomorrowEventsCount})`}>
-          <TasksDisplay
+          <Events
             dates={dates.tomorrow}
             onDataLoaded={setTomorrowEventsCount}
           />
         </Tab>
         <Tab label={`Previous (${previousEventsCount})`}>
-          <TasksDisplay
+          <Events
             dates={dates.previous}
             onDataLoaded={setPreviousEventsCount}
           />
