@@ -21,7 +21,7 @@ const Leaderboard = () => {
           <Tab label="Current month">
             <MonthOrSeason
               dates={{
-                minDate: dayjs().subtract(1, "month"),
+                minDate: dayjs().startOf("month"),
                 maxDate: dayjs(),
               }}
             />

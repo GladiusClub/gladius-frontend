@@ -16,16 +16,22 @@ const PointsInfo = ({ eventsList }) => {
         percentInWeek: 0,
       };
     }
-    
+
     const today = dayjs();
+    const lastWeekDate = today.subtract(1, "week");
+    const firstDateOfLastWeek = lastWeekDate.startOf("week");
+    const firstDateOfCurrWeek = today.startOf("week");
     let pointsInWeek = 0;
+
     for (let event of eventsList) {
-      const sevenDaysAgoDate = today.subtract(7, "day");
-      if (dayjs(event.date).isBefore(sevenDaysAgoDate)) {
+      if (dayjs(event.date).isBefore(firstDateOfLastWeek)) {
         break;
       }
-      pointsInWeek += event.score;
+      if (dayjs(event.date).isBefore(firstDateOfCurrWeek)) {
+        pointsInWeek += event.score;
+      }
     }
+
     return {
       pointsInWeek,
       percentInWeek: ((pointsInWeek / pointsBalance) * 100)
