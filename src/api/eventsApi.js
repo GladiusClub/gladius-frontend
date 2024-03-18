@@ -4,20 +4,19 @@ import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
 import { isDefined } from "utils/commonUtils";
-import { getItem } from "helpers/localStorageHelper";
 import { apiUrls } from "constants/urls";
 
 const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
 let eventCache = {};
 
-export const fetchEvents = async ({ minDate, maxDate }) => {
-  const {
-    uid,
-    clubId,
-    club: { calendarId },
-  } = getItem("user");
-
+export const fetchEvents = async ({
+  minDate,
+  maxDate,
+  uid,
+  clubId,
+  calendarId,
+}) => {
   // Get reference to attendance collection of the user
   const attendanceRef = collection(
     db,
