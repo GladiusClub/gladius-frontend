@@ -22,7 +22,7 @@ const withScreenWidthValidation = (WrappedComponent) => {
 
     if (isLargeScreen) {
       return (
-        <div className="flex justify-center items-center h-full text-3xl">
+        <div className="flex justify-center items-center h-full text-2xl">
           <p>This app is not yet supported for larger screens!</p>
         </div>
       );

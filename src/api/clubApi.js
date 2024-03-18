@@ -22,13 +22,12 @@ export const fetchMembers = async ({ minDate, maxDate }) => {
 
   //Get memberIds of the memebers assigned to groups.
   if (!groupDocs.empty) {
-    const groupMembersId = groupDocs.docs.map((groupDoc) => {
+    groupDocs.docs.forEach((groupDoc) => {
       const groupData = groupDoc.data();
-      return groupData.member_uuids;
+      groupData.member_uuids.forEach((memberId) => {
+        membersObj[memberId] = true;
+      });
     });
-    for (let memberId of groupMembersId) {
-      membersObj[memberId] = true;
-    }
   }
 
   const groupsMembersIds = Object.keys(membersObj);
