@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import Typography from "components/Typography";
+import { apiUrls } from "constants/urls";
 
 const NonPerformerListItem = ({ item, userId, rank }) => {
   return (
@@ -18,7 +19,7 @@ const NonPerformerListItem = ({ item, userId, rank }) => {
         {rank}
       </Typography>
       <img
-        src={`https://ui-avatars.com/api?name=${item.name}`}
+        src={`${apiUrls.uiAvatarApi}?name=${item.name}`}
         className="rounded-full w-12 h-12"
         alt={item.name}
       />

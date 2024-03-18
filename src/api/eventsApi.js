@@ -5,9 +5,8 @@ import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "services/firebase/firebase-config";
 import { isDefined } from "utils/commonUtils";
 import { getItem } from "helpers/localStorageHelper";
+import { apiUrls } from "constants/urls";
 
-const GOOGLE_CALENDAR_API_URL =
-  "https://www.googleapis.com/calendar/v3/calendars";
 const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
 let eventCache = {};
@@ -73,7 +72,7 @@ export const fetchEvents = async ({ minDate, maxDate }) => {
     try {
       if (eventId && !eventCache[eventId]) {
         const response = await fetch(
-          `${GOOGLE_CALENDAR_API_URL}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}&${datesQueryParam}`
+          `${apiUrls.calendarApi}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}&${datesQueryParam}`
         );
         return await response.json();
       }

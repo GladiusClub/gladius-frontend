@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import Typography from "components/Typography";
+import { apiUrls } from "constants/urls";
 
 const classes = {
   2: {
@@ -42,7 +43,7 @@ const SinglePerformer = ({ performer, position }) => {
         </Typography>
       )}
       <img
-        src={`https://ui-avatars.com/api?name=${performer.name}`}
+        src={`${apiUrls.uiAvatarApi}?name=${performer.name}`}
         className={classNames(
           "rounded-full border border-primary",
           classObj.avatar

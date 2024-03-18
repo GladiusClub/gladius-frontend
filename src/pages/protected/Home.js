@@ -5,6 +5,7 @@ import Typography from "components/Typography";
 import ScoreOverview from "modules/home/ScoreOverview";
 import Tasks from "modules/home/Tasks";
 import useUserProfile from "context/userProfile/useUserProfile";
+import { apiUrls } from "constants/urls";
 
 const Home = () => {
   const { user } = useUserProfile();
@@ -16,7 +17,7 @@ const Home = () => {
         {user.club && (
           <div className="flex justify-center items-center gap-3 mt-5">
             <img
-              src={user.club.src || `https://ui-avatars.com/api?name=${user.club.name}`}
+              src={user.club.src || `${apiUrls.uiAvatarApi}?name=${user.club.name}`}
               alt="sport-club"
               className="w-10 h-10 rounded-full"
             />
