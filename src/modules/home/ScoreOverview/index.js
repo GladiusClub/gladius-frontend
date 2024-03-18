@@ -1,10 +1,15 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useMemo } from "react";
+import dayjs from "dayjs";
 import { Box } from "@mui/material";
 import { PiCoins } from "react-icons/pi";
 import { TbJewishStarFilled } from "react-icons/tb";
 
 import Typography from "components/Typography";
-import colors from 'theme/colors';
+import useUserProfile from "context/userProfile/useUserProfile";
+import useEvents from "hooks/useEvents";
+import { getPointsAndPercentInWeek } from "modules/utils";
+import colors from "theme/colors";
 import league from "assets/league.svg";
 import diamond from "assets/diamond.svg";
 
@@ -13,6 +18,23 @@ const style = {
 };
 
 const ScoreOverview = () => {
+  const { user } = useUserProfile();
+  const { events, getEvents } = useEvents();
+
+  useEffect(() => {
+    if (user.clubId) {
+      getEvents({ maxDate: dayjs() });
+    }
+  }, [user.clubId]);
+
+  const pointsBalance = useMemo(() => {
+    return events.data.reduce((acc, curr) => acc + curr.score, 0);
+  }, [events.data]);
+
+  const { pointsInWeek } = useMemo(() => {
+    return getPointsAndPercentInWeek(pointsBalance, events.data);
+  }, [events.data, pointsBalance]);
+
   return (
     <Box className="flex justify-around gap-4 mt-5">
       <Box
@@ -22,20 +44,20 @@ const ScoreOverview = () => {
         <div className="flex items-center gap-2 justify-center">
           <PiCoins className="text-primary w-7 h-7" />
           <Typography variant="h2" className="text-secondary">
-            1,250
+            {pointsBalance.toLocaleString()}
           </Typography>
         </div>
         <Typography className="text-neutral text-sm">
-          + 150 last week
+          + {pointsInWeek} last week
         </Typography>
 
         <div className="flex items-center gap-2 mt-5 justify-center">
           <TbJewishStarFilled className="text-primary w-7 h-7" />
           <Typography variant="h2" className="text-secondary">
-            24
+            0
           </Typography>
         </div>
-        <Typography className="text-neutral text-sm">+ 3 last week</Typography>
+        <Typography className="text-neutral text-sm">+ 0 last week</Typography>
       </Box>
       <Box
         style={style}

@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import dayjs from "dayjs";
 import { IoMdArrowDropup } from "react-icons/io";
 
 import Typography from "components/Typography";
+import { getPointsAndPercentInWeek } from "modules/utils";
 
 const PointsInfo = ({ eventsList }) => {
   const pointsBalance = useMemo(() => {
@@ -10,34 +10,7 @@ const PointsInfo = ({ eventsList }) => {
   }, [eventsList]);
 
   const { pointsInWeek, percentInWeek } = useMemo(() => {
-    if (pointsBalance === 0) {
-      return {
-        pointsInWeek: 0,
-        percentInWeek: 0,
-      };
-    }
-
-    const today = dayjs();
-    const lastWeekDate = today.subtract(1, "week");
-    const firstDateOfLastWeek = lastWeekDate.startOf("week");
-    const firstDateOfCurrWeek = today.startOf("week");
-    let pointsInWeek = 0;
-
-    for (let event of eventsList) {
-      if (dayjs(event.date).isBefore(firstDateOfLastWeek)) {
-        break;
-      }
-      if (dayjs(event.date).isBefore(firstDateOfCurrWeek)) {
-        pointsInWeek += event.score;
-      }
-    }
-
-    return {
-      pointsInWeek,
-      percentInWeek: ((pointsInWeek / pointsBalance) * 100)
-        .toFixed(1)
-        .replace(/\.0+$/, ""),
-    };
+    return getPointsAndPercentInWeek(pointsBalance, eventsList);
   }, [eventsList, pointsBalance]);
 
   return (

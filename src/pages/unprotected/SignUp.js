@@ -7,7 +7,6 @@ import { signOut } from "firebase/auth";
 import Typography from "components/Typography";
 import OutlinedInput from "components/OutlinedInput";
 import {
-  UserAdornment,
   EmailAdornment,
   PasswordAdornment,
 } from "components/OutlinedInput/Adornments";
@@ -19,7 +18,6 @@ import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignUp = () => {
   const [values, setValues] = useState({
-    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -67,18 +65,6 @@ const SignUp = () => {
           >
             {firebaseError}
           </Typography>
-          <OutlinedInput
-            onBlur={handleBlur}
-            field={{
-              type: "text",
-              name: "username",
-              label: "Username",
-              required: true,
-              autoComplete: "username",
-              error: errors.username,
-            }}
-            endAdornment={<UserAdornment />}
-          />
           <OutlinedInput
             onBlur={handleBlur}
             field={{

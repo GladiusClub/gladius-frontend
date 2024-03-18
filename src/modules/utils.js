@@ -1,4 +1,5 @@
 import _ from "lodash";
+import dayjs from "dayjs";
 
 export const generateUserInfo = ({ user, club }) => {
   let userObj = {};
@@ -25,5 +26,36 @@ export const generateUserInfo = ({ user, club }) => {
   return {
     ...userObj,
     club: clubObj,
+  };
+};
+
+export const getPointsAndPercentInWeek = (pointsBalance, eventsList) => {
+  if (pointsBalance === 0) {
+    return {
+      pointsInWeek: 0,
+      percentInWeek: 0,
+    };
+  }
+
+  const today = dayjs();
+  const lastWeekDate = today.subtract(1, "week");
+  const firstDateOfLastWeek = lastWeekDate.startOf("week");
+  const firstDateOfCurrWeek = today.startOf("week");
+  let pointsInWeek = 0;
+
+  for (let event of eventsList) {
+    if (dayjs(event.date).isBefore(firstDateOfLastWeek)) {
+      break;
+    }
+    if (dayjs(event.date).isBefore(firstDateOfCurrWeek)) {
+      pointsInWeek += event.score;
+    }
+  }
+
+  return {
+    pointsInWeek,
+    percentInWeek: ((pointsInWeek / pointsBalance) * 100)
+      .toFixed(1)
+      .replace(/\.0+$/, ""),
   };
 };
