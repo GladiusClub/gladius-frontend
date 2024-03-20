@@ -13,10 +13,10 @@ const Events = memo(({ dates, onDataLoaded }) => {
   const { attendedEvents, getAttendedEvents } = useAttendedEvents();
 
   useEffect(() => {
-    if (user.clubId) {
+    if (user.club) {
       getAttendedEvents(dates);
     }
-  }, [user.clubId, dates]);
+  }, [user.club, dates]);
 
   useEffect(() => {
     onDataLoaded(attendedEvents.data.length);

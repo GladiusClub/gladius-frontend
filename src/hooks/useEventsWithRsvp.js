@@ -30,7 +30,7 @@ const useEventsWithRsvp = (events) => {
       const data = await fetchEventsWithRsvp({
         events,
         uid: user.uid,
-        clubId: user.clubId,
+        clubId: user.club.id,
       });
       setEventsWithRsvp({ data, error: null, loading: false });
     } catch (err) {

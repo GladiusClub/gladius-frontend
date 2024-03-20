@@ -11,7 +11,6 @@ export const generateUserInfo = ({ user, club }) => {
       email: user.email,
       isActive: user.is_active,
       occupation: user.occupation,
-      clubId: _.get(user, "clubs_roles[0].club_id", ""),
     };
   }
   if (club) {

@@ -25,7 +25,7 @@ const useAttendedEvents = () => {
       const data = await fetchAttendedEvents({
         ...dates,
         uid: user.uid,
-        clubId: user.clubId,
+        clubId: user.club.id,
         calendarId: user.club.calendarId,
       });
       setEvents({ data, error: null, loading: false });

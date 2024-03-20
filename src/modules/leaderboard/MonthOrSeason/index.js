@@ -16,10 +16,10 @@ const MonthOrSeason = memo(({ dates }) => {
   const { members, getMembers } = useMembers();
 
   useEffect(() => {
-    if (user.clubId) {
+    if (user.club) {
       getMembers(dates);
     }
-  }, [user.clubId, dates]);
+  }, [user.club, dates]);
 
   const { performers, nonPerformers } = useMemo(() => {
     const leadersList = members.data.filter(

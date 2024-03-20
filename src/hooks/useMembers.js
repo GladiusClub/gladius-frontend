@@ -25,7 +25,7 @@ const useMembers = () => {
       const data = await fetchMembers({
         ...dates,
         uid: user.uid,
-        clubId: user.clubId,
+        clubId: user.club.id,
       });
       setMembers({ data, error: null, loading: false });
     } catch (err) {

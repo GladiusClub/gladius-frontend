@@ -4,13 +4,13 @@ import { Popover } from "components/Popover";
 import EventPopoverContent from "./EventPopoverContent";
 import EventPopoverTarget from "./EventPopoverTarget";
 
-const EventsListItem = ({ item }) => {
+const EventListItem = ({ item }) => {
   return (
     <Popover>
-      <EventPopoverTarget content={item} />
+      <EventPopoverTarget event={item} />
       <EventPopoverContent content={item} />
     </Popover>
   );
 };
 
-export default EventsListItem;
+export default EventListItem;

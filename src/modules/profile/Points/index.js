@@ -15,10 +15,10 @@ const Points = () => {
   const { attendedEvents, getAttendedEvents } = useAttendedEvents();
 
   useEffect(() => {
-    if (user.clubId) {
+    if (user.club) {
       getAttendedEvents({ maxDate: new Date() });
     }
-  }, [user.clubId]);
+  }, [user.club]);
 
   if (attendedEvents.loading) {
     return (

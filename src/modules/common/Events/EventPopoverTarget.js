@@ -7,22 +7,20 @@ import { PopoverTarget } from "components/Popover";
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
 import { isDefined } from "utils/commonUtils";
+import { collections } from "constants/collections";
 
-const EventPopoverTarget = ({ content }) => {
+const EventPopoverTarget = ({ event }) => {
   const { addDocData, updateDocData } = useFirebase();
   const { user } = useUserProfile();
 
   const handleSwitchClick = (rsvp) => {
-    if (isDefined(content.rsvpId)) {
-      updateDocData(
-        `clubs/${user.clubId}/members/${user.uid}/eventRsvps`,
-        content.rsvpId,
-        { rsvp }
-      );
+    const collectionPath = `clubs/${user.club.id}/members/${user.uid}/${collections.eventRsvps}`;
+    if (isDefined(event.rsvpId)) {
+      updateDocData(collectionPath, event.rsvpId, { rsvp });
     } else {
-      addDocData(`clubs/${user.clubId}/members/${user.uid}/eventRsvps`, {
-        eventId: content.id,
-        date: content.date,
+      addDocData(collectionPath, {
+        eventId: event.id,
+        date: event.date,
         rsvp,
       });
     }
@@ -36,29 +34,29 @@ const EventPopoverTarget = ({ content }) => {
             variant="span"
             className="text-lg font-semibold w-4/5 truncate"
           >
-            {content.summary}
+            {event.summary}
           </Typography>
           <Typography variant="span" className="text-lg">
-            {content.startTime}
+            {event.startTime}
           </Typography>
           <Typography variant="span" className="text-sm w-3/5">
-            {content.location}
+            {event.location}
           </Typography>
           <Typography variant="span" className="text-sm text-neutral">
-            {dayjs(content.date).format("MMMM D, YYYY")}
+            {dayjs(event.date).format("MMMM D, YYYY")}
           </Typography>
           <div className="w-full">
-            {content.score && (
+            {event.score && (
               <Typography variant="span" className="text-sm text-secondary">
-                {content.score} points
+                {event.score} points
               </Typography>
             )}
-            {content.badges && (
+            {event.badges && (
               <Typography
                 variant="span"
                 className="text-sm text-secondary ml-5"
               >
-                {content.badges} badges
+                {event.badges} badges
               </Typography>
             )}
           </div>
@@ -67,8 +65,8 @@ const EventPopoverTarget = ({ content }) => {
           </Typography>
           <BinarySwitch
             onSwitchClick={handleSwitchClick}
-            value={content.rsvp}
-            disabled={dayjs(content.date).isBefore(dayjs())}
+            value={event.rsvp}
+            disabled={dayjs(event.date).isBefore(dayjs())}
           />
         </div>
       </div>

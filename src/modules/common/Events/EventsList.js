@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 import List from "components/List";
 import NoData from "components/NoData";
 import ListItem from "components/List/ListItem";
-import EventsListItem from "./EventsListItem";
+import EventListItem from "./EventListItem";
 
 const EventsList = ({ list }) => {
   const [listToShow, setListToShow] = useState(list.slice(0, 5));
@@ -26,7 +26,7 @@ const EventsList = ({ list }) => {
       <List>
         {listToShow.map((event) => (
           <ListItem key={`${event.summary}-${event.date}-${event.rsvp}`}>
-            <EventsListItem item={event} />
+            <EventListItem item={event} />
           </ListItem>
         ))}
       </List>

@@ -34,10 +34,10 @@ const useEventsByDate = (dates) => {
   }, [dates, eventsByDate.data]);
 
   useEffect(() => {
-    if (user.clubId) {
+    if (user.club) {
       getEventsByDate();
     }
-  }, [user.clubId]);
+  }, [user.club]);
 
   const handleFailure = (err) => {
     console.error(err);
@@ -49,7 +49,7 @@ const useEventsByDate = (dates) => {
     try {
       const data = await fetchEventsByDate({
         uid: user.uid,
-        clubId: user.clubId,
+        clubId: user.club.id,
         calendarId: user.club.calendarId,
       });
       setEventsByDate({ data, error: null, loading: false });

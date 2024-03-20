@@ -22,10 +22,10 @@ const ScoreOverview = () => {
   const { attendedEvents, getAttendedEvents } = useAttendedEvents();
 
   useEffect(() => {
-    if (user.clubId) {
+    if (user.club) {
       getAttendedEvents({ maxDate: dayjs() });
     }
-  }, [user.clubId]);
+  }, [user.club]);
 
   const pointsBalance = useMemo(() => {
     return attendedEvents.data.reduce((acc, curr) => acc + curr.score, 0);
