@@ -3,30 +3,27 @@ import { createContext, useState } from "react";
 
 import { getDatesRange } from "utils/dateUtils";
 
-export const EventsByDateContext = createContext({});
+export const DatesSelectionContext = createContext({});
 
-export const EventsByDateProvider = ({ children, initialDatesOnSilder }) => {
+export const DatesSelectionProvider = ({ children, initialDatesOnSilder }) => {
   const [datesToSlide, setDatesToSlide] = useState(
     getDatesRange(initialDatesOnSilder, new Date())
   );
   const [activeIndex, setActiveIndex] = useState(initialDatesOnSilder);
-  const [eventsCount, setEventsCount] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [datesOfWeek, setDatesOfWeek] = useState([]);
 
   return (
-    <EventsByDateContext.Provider
+    <DatesSelectionContext.Provider
       value={{
         datesToSlide,
         activeIndex,
-        eventsCount,
-        loading,
+        datesOfWeek,
         setDatesToSlide,
         setActiveIndex,
-        setEventsCount,
-        setLoading,
+        setDatesOfWeek
       }}
     >
       {children}
-    </EventsByDateContext.Provider>
+    </DatesSelectionContext.Provider>
   );
 };

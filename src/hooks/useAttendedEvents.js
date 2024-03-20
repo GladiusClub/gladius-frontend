@@ -2,13 +2,13 @@ import { useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { fetchEvents } from "api/eventsApi";
+import { fetchAttendedEvents } from "api/attendanceApi";
 
-const useEvents = () => {
+const useAttendedEvents = () => {
   const { checkForNavigateToSignIn } = useFirebase();
   const { user } = useUserProfile();
 
-  const [events, setEvents] = useState({
+  const [attendedEvents, setEvents] = useState({
     data: [],
     loading: false,
     error: null,
@@ -19,10 +19,10 @@ const useEvents = () => {
     checkForNavigateToSignIn(err.code);
   };
 
-  const getEvents = async (dates) => {
+  const getAttendedEvents = async (dates) => {
     setEvents((prev) => ({ ...prev, loading: true }));
     try {
-      const data = await fetchEvents({
+      const data = await fetchAttendedEvents({
         ...dates,
         uid: user.uid,
         clubId: user.clubId,
@@ -37,9 +37,9 @@ const useEvents = () => {
   };
 
   return {
-    events,
-    getEvents,
+    attendedEvents,
+    getAttendedEvents,
   };
 };
 
-export default useEvents;
+export default useAttendedEvents;

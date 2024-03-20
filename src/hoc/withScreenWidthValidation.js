@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
 
+import Typography from "components/Typography";
+
 const LARGE_SCREEN_WIDTH = 900;
 
 const withScreenWidthValidation = (WrappedComponent) => {
@@ -22,8 +24,10 @@ const withScreenWidthValidation = (WrappedComponent) => {
 
     if (isLargeScreen) {
       return (
-        <div className="flex justify-center items-center h-full text-2xl">
-          <p>This app is not yet supported for larger screens!</p>
+        <div className="flex justify-center items-center h-full">
+          <Typography variant="h2">
+            This app is not yet supported for larger screens!
+          </Typography>
         </div>
       );
     }

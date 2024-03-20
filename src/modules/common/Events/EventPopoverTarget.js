@@ -4,8 +4,30 @@ import dayjs from "dayjs";
 import Typography from "components/Typography";
 import BinarySwitch from "components/BinarySwitch";
 import { PopoverTarget } from "components/Popover";
+import useFirebase from "services/firebase/useFirebase";
+import useUserProfile from "context/userProfile/useUserProfile";
+import { isDefined } from "utils/commonUtils";
 
 const EventPopoverTarget = ({ content }) => {
+  const { addDocData, updateDocData } = useFirebase();
+  const { user } = useUserProfile();
+
+  const handleSwitchClick = (rsvp) => {
+    if (isDefined(content.rsvpId)) {
+      updateDocData(
+        `clubs/${user.clubId}/members/${user.uid}/eventRsvps`,
+        content.rsvpId,
+        { rsvp }
+      );
+    } else {
+      addDocData(`clubs/${user.clubId}/members/${user.uid}/eventRsvps`, {
+        eventId: content.id,
+        date: content.date,
+        rsvp,
+      });
+    }
+  };
+
   return (
     <PopoverTarget>
       <div className="py-5">
@@ -26,9 +48,11 @@ const EventPopoverTarget = ({ content }) => {
             {dayjs(content.date).format("MMMM D, YYYY")}
           </Typography>
           <div className="w-full">
-            <Typography variant="span" className="text-sm text-secondary">
-              {content.score} points
-            </Typography>
+            {content.score && (
+              <Typography variant="span" className="text-sm text-secondary">
+                {content.score} points
+              </Typography>
+            )}
             {content.badges && (
               <Typography
                 variant="span"
@@ -42,8 +66,8 @@ const EventPopoverTarget = ({ content }) => {
             Attendance
           </Typography>
           <BinarySwitch
-            onSwitchClick={console.log}
-            value={content.attended}
+            onSwitchClick={handleSwitchClick}
+            value={content.rsvp}
             disabled={dayjs(content.date).isBefore(dayjs())}
           />
         </div>

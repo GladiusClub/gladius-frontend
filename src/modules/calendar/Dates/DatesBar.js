@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
-import useEventsByDate from "context/EventsByDate/useEventsByDate";
+import useDatesSelection from "../context/DatesSelection/useDatesSelection";
 import Date from "./Date";
 
 const DatesBar = () => {
   const datesBarRef = useRef(null);
-  const { datesToSlide, activeIndex } = useEventsByDate();
+  const { datesToSlide, activeIndex } = useDatesSelection();
 
   useEffect(() => {
     const scrollWidth = datesBarRef.current.scrollWidth;

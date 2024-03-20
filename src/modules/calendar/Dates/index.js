@@ -1,20 +1,41 @@
 import React from "react";
+import dayjs from "dayjs";
 
+import useDatesSelection from "../context/DatesSelection/useDatesSelection";
 import DatesBar from "./DatesBar";
 import SelectedDate from "./SelectedDate";
 import "./dates.css";
-import GroupEvents from "./GroupEvents";
-import { EventsByDateProvider } from "context/EventsByDate/EventsByDateContext";
 
-const initialDatesOnSilder = 2;
+const Dates = ({ initialDatesOnSilder }) => {
+  const { datesToSlide, activeIndex, setActiveIndex, setDatesOfWeek } =
+    useDatesSelection();
 
-const Dates = () => {
+  const handleShowAllClick = () => {
+    const activeDate = datesToSlide[activeIndex];
+    const startDate = dayjs(activeDate).startOf("week");
+    const datesOfWeek = [];
+
+    for (let i = 0; i < 7; i++) {
+      datesOfWeek.push(startDate.add(i, "day").format("YYYY-MM-DD"));
+    }
+    
+    setActiveIndex(-1);
+    setDatesOfWeek(datesOfWeek);
+  };
+
   return (
-    <EventsByDateProvider initialDatesOnSilder={initialDatesOnSilder}>
+    <>
       <SelectedDate initialDatesOnSilder={initialDatesOnSilder} />
       <DatesBar />
-      <GroupEvents />
-    </EventsByDateProvider>
+      <div className="flex justify-end">
+        <button
+          className="bg-dark border border-primary mt-5 py-1 px-3 rounded-lg"
+          onClick={handleShowAllClick}
+        >
+          Show all events for this week
+        </button>
+      </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
 
 import { auth, db } from "services/firebase/firebase-config";
 import { getItem } from "helpers/localStorageHelper";
@@ -78,9 +78,9 @@ const useFirebase = () => {
     }
   };
 
-  const getDocDataByUid = async (
+  const getDocDataById = async (
     collection,
-    uid,
+    id,
     key = null,
     cb = _.noop
   ) => {
@@ -92,9 +92,42 @@ const useFirebase = () => {
     }
     setLoading(true);
     try {
-      const docRef = doc(db, collection, uid);
+      const docRef = doc(db, collection, id);
       const record = await getDoc(docRef);
       return getDataFromDoc(record);
+    } catch (err) {
+      handleFailure(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addDocData = async (
+    collectionPath,
+    data,
+  ) => {
+    setLoading(true);
+    try {
+      const collectionRef = collection(db, collectionPath);
+      await addDoc(collectionRef, data);
+      setError(null)
+    } catch (err) {
+      handleFailure(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateDocData = async (
+    collectionPath,
+    id,
+    data,
+  ) => {
+    setLoading(true);
+    try {
+      const docRef = doc(db, collectionPath, id);
+      await updateDoc(docRef, data);
+      setError(null)
     } catch (err) {
       handleFailure(err);
     } finally {
@@ -109,7 +142,9 @@ const useFirebase = () => {
     checkForNavigateToSignIn,
     signInUser,
     signUpUser,
-    getDocDataByUid,
+    getDocDataById,
+    addDocData,
+    updateDocData,
   };
 };
 

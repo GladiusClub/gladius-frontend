@@ -5,28 +5,24 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
-import useEvents from "hooks/useEvents";
+import useAttendedEvents from "hooks/useAttendedEvents";
 import EventsList from "./EventsList";
 
-const Events = memo(({ dates, onDataLoaded, onLoading }) => {
+const Events = memo(({ dates, onDataLoaded }) => {
   const { user } = useUserProfile();
-  const { events, getEvents } = useEvents();
+  const { attendedEvents, getAttendedEvents } = useAttendedEvents();
 
   useEffect(() => {
     if (user.clubId) {
-      getEvents(dates);
+      getAttendedEvents(dates);
     }
   }, [user.clubId, dates]);
 
   useEffect(() => {
-    onDataLoaded(events.data.length);
-  }, [events.data]);
+    onDataLoaded(attendedEvents.data.length);
+  }, [attendedEvents.data]);
 
-  useEffect(() => {
-    onLoading(events.loading);
-  }, [events.loading]);
-
-  if (events.loading) {
+  if (attendedEvents.loading) {
     return (
       <div className="mt-10 h-full flex justify-center item-center">
         <Loader>
@@ -36,7 +32,7 @@ const Events = memo(({ dates, onDataLoaded, onLoading }) => {
     );
   }
 
-  if (events.error) {
+  if (attendedEvents.error) {
     return (
       <div className="mt-10 text-secondary text-lg text-center">
         Failed to load!
@@ -44,17 +40,16 @@ const Events = memo(({ dates, onDataLoaded, onLoading }) => {
     );
   }
 
-  if (events.data.length === 0) {
+  if (attendedEvents.data.length === 0) {
     return <NoData className="mt-10 text-lg text-center">No Events!</NoData>;
   }
 
-  return <EventsList list={events.data} />;
+  return <EventsList list={attendedEvents.data} />;
 });
 
 Events.defaultProps = {
   dates: {},
   onDataLoaded: () => null,
-  onLoading: () => null,
 };
 
 export default Events;

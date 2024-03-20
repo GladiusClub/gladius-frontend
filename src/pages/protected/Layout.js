@@ -14,7 +14,7 @@ import { localStorageKeys } from "constants/storage";
 const Layout = () => {
   const { user, setUser } = useUserProfile();
   const location = useLocation();
-  const { getDocDataByUid } = useFirebase();
+  const { getDocDataById } = useFirebase();
 
   const fetchUserInfo = async () => {
     const info = {
@@ -22,7 +22,7 @@ const Layout = () => {
       club: null,
     };
 
-    const userData = await getDocDataByUid(
+    const userData = await getDocDataById(
       collections.users,
       user.uid,
       localStorageKeys.user,
@@ -34,7 +34,7 @@ const Layout = () => {
 
       if (userData?.clubs_roles?.length) {
         const clubData =
-          (await getDocDataByUid(
+          (await getDocDataById(
             collections.clubs,
             userData.clubs_roles[0].club_id
           )) || {};
@@ -73,7 +73,11 @@ const Layout = () => {
     <>
       <Header />
       <div className="p-3">
-        <Suspense fallback={<Loader className='flex justify-center items-center h-full'/>}>
+        <Suspense
+          fallback={
+            <Loader className="flex justify-center items-center h-full" />
+          }
+        >
           <Outlet />
         </Suspense>
       </div>

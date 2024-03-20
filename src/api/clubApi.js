@@ -2,10 +2,8 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import dayjs from "dayjs";
 
 import { db } from "services/firebase/firebase-config";
-import { getItem } from "helpers/localStorageHelper";
 
-export const fetchMembers = async ({ minDate, maxDate }) => {
-  const { uid, clubId } = getItem("user");
+export const fetchMembers = async ({ minDate, maxDate, uid, clubId }) => {
 
   // Get reference to groups collection of a club
   const groupsRef = collection(db, `clubs/${clubId}/groups`);

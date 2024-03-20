@@ -7,7 +7,7 @@ import { TbJewishStarFilled } from "react-icons/tb";
 
 import Typography from "components/Typography";
 import useUserProfile from "context/userProfile/useUserProfile";
-import useEvents from "hooks/useEvents";
+import useAttendedEvents from "hooks/useAttendedEvents";
 import { getPointsAndPercentInWeek } from "modules/utils";
 import colors from "theme/colors";
 import league from "assets/league.svg";
@@ -19,21 +19,21 @@ const style = {
 
 const ScoreOverview = () => {
   const { user } = useUserProfile();
-  const { events, getEvents } = useEvents();
+  const { attendedEvents, getAttendedEvents } = useAttendedEvents();
 
   useEffect(() => {
     if (user.clubId) {
-      getEvents({ maxDate: dayjs() });
+      getAttendedEvents({ maxDate: dayjs() });
     }
   }, [user.clubId]);
 
   const pointsBalance = useMemo(() => {
-    return events.data.reduce((acc, curr) => acc + curr.score, 0);
-  }, [events.data]);
+    return attendedEvents.data.reduce((acc, curr) => acc + curr.score, 0);
+  }, [attendedEvents.data]);
 
   const { pointsInWeek } = useMemo(() => {
-    return getPointsAndPercentInWeek(pointsBalance, events.data);
-  }, [events.data, pointsBalance]);
+    return getPointsAndPercentInWeek(pointsBalance, attendedEvents.data);
+  }, [attendedEvents.data, pointsBalance]);
 
   return (
     <Box className="flex justify-around gap-4 mt-5">

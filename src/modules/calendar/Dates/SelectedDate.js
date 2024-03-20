@@ -15,17 +15,22 @@ import {
   PopoverContent,
   PopoverTarget,
 } from "components/Popover";
-import useEventsByDate from "context/EventsByDate/useEventsByDate";
+import useDatesSelection from "../context/DatesSelection/useDatesSelection";
 import { getDatesRange, getNextDay, getPrevDay } from "utils/dateUtils";
+import useEventsByDate from "hooks/useEventsByDate";
+import classNames from "classnames";
 
 const SelectedDate = ({ initialDatesOnSilder }) => {
   const {
     datesToSlide,
     activeIndex,
-    eventsCount,
+    datesOfWeek,
     setDatesToSlide,
     setActiveIndex,
-  } = useEventsByDate();
+  } = useDatesSelection();
+  const { eventsByDate } = useEventsByDate(
+    activeIndex > -1 ? [datesToSlide[activeIndex]] : datesOfWeek
+  );
 
   const handlePrevClick = () => {
     if (activeIndex === 0) {
@@ -53,14 +58,21 @@ const SelectedDate = ({ initialDatesOnSilder }) => {
 
   return (
     <div className="mt-5 flex justify-between items-center">
-      <button onClick={handlePrevClick}>
+      <button
+        onClick={handlePrevClick}
+        className={classNames({
+          "opacity-0 pointer-events-none": activeIndex === -1,
+        })}
+      >
         <MdOutlineArrowBackIos className="text-lg" />
       </button>
       <div className="flex flex-col items-center">
         <Popover>
           <PopoverTarget>
             <Typography variant="span" className="text-xl" role="button">
-              {dayjs(datesToSlide[activeIndex]).format("MMMM D, YYYY")}
+              {activeIndex > -1
+                ? dayjs(datesToSlide[activeIndex]).format("MMMM D, YYYY")
+                : `${dayjs(datesOfWeek[0]).format("MMMM D, YYYY")} - ${dayjs(datesOfWeek[datesOfWeek.length - 1]).format("MMMM D, YYYY")}`}
             </Typography>
           </PopoverTarget>
           <PopoverContent
@@ -93,10 +105,17 @@ const SelectedDate = ({ initialDatesOnSilder }) => {
           </PopoverContent>
         </Popover>
         <Typography variant="span" className="text-neutral text-sm">
-          {eventsCount ? `You have ${eventsCount} events` : "No events"}
+          {eventsByDate.data.length
+            ? `You have ${eventsByDate.data.length} events`
+            : "No events"}
         </Typography>
       </div>
-      <button onClick={handleNextClick}>
+      <button
+        onClick={handleNextClick}
+        className={classNames({
+          "opacity-0 pointer-events-none": activeIndex === -1,
+        })}
+      >
         <MdOutlineArrowForwardIos className="text-lg" />
       </button>
     </div>

@@ -4,7 +4,7 @@ import { Popover } from "components/Popover";
 import EventPopoverContent from "./EventPopoverContent";
 import EventPopoverTarget from "./EventPopoverTarget";
 
-const TasksListItem = ({ item }) => {
+const EventsListItem = ({ item }) => {
   return (
     <Popover>
       <EventPopoverTarget content={item} />
@@ -13,4 +13,4 @@ const TasksListItem = ({ item }) => {
   );
 };
 
-export default TasksListItem;
+export default EventsListItem;

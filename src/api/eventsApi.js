@@ -1,77 +1,61 @@
 import dayjs from "dayjs";
-import { compact, uniqBy, keyBy } from "lodash";
-import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import { compact, isEmpty } from "lodash";
+import { RRule } from "rrule";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
-import { isDefined } from "utils/commonUtils";
 import { apiUrls } from "constants/urls";
 
 const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
-let eventCache = {};
+export let eventsByDateCache = {};
+let isPendingRequest = false;
+let resolves = [];
 
-export const fetchEvents = async ({
-  minDate,
-  maxDate,
-  uid,
-  clubId,
-  calendarId,
-}) => {
-  // Get reference to attendance collection of the user
-  const attendanceRef = collection(
-    db,
-    `clubs/${clubId}/members/${uid}/attendance`
+export const fetchEventsByDate = async ({ uid, clubId, calendarId }) => {
+  // Return from cache
+  if (!isEmpty(eventsByDateCache)) {
+    return eventsByDateCache;
+  }
+
+  if (isPendingRequest) {
+    return new Promise((resolve) => {
+      resolves.push(resolve);
+    });
+  }
+
+  isPendingRequest = true;
+
+  // Get reference to groups collection of a club
+  const groupsRef = collection(db, `clubs/${clubId}/groups`);
+
+  // Get only those groups in which user is assigned
+  const groupsQuery = query(
+    groupsRef,
+    where("member_uuids", "array-contains", uid)
   );
 
-  // Get attendance data using query
-  const datesQuery = [];
-  if (minDate) {
-    datesQuery.push(where("date", ">=", dayjs(minDate).format("YYYY-MM-DD")));
-  }
-  if (maxDate) {
-    datesQuery.push(where("date", "<=", dayjs(maxDate).format("YYYY-MM-DD")));
-  }
+  const groupDocs = await getDocs(groupsQuery);
 
-  const attendanceQuery = query(
-    attendanceRef,
-    ...datesQuery,
-    orderBy("date", "desc")
-  );
+  const eventsIdObj = {};
 
-  // Get all the attendance for the user
-  const attendanceDocs = await getDocs(attendanceQuery);
-
-  if (attendanceDocs.empty) {
-    return [];
+  // Get unique eventIds
+  if (!groupDocs.empty) {
+    groupDocs.docs.forEach((groupDoc) => {
+      const groupData = groupDoc.data();
+      groupData.event_ids.forEach(({ eventId }) => {
+        eventsIdObj[eventId] = true;
+      });
+    });
   }
 
-  const attendances = attendanceDocs.docs.map((attendanceDoc) =>
-    attendanceDoc.data()
-  );
-
-  // Get unique event ids
-  const eventIds = uniqBy(attendances, "eventParentId").map(
-    (item) => item.eventParentId
-  );
-
-  // Get events from google calendar
-  const datesParams = {};
-  if (minDate) {
-    datesParams.timeMin = dayjs(minDate).toISOString();
-  }
-  if (maxDate) {
-    datesParams.timeMax = dayjs(maxDate).toISOString();
-  }
-
-  const datesQueryParam = Object.entries(datesParams)
-    .map(([param, value]) => `${param}=${value}`)
-    .join("&");
+  const eventIds = Object.keys(eventsIdObj);
 
   const eventsPromises = eventIds.map(async (eventId) => {
     try {
-      if (eventId && !eventCache[eventId]) {
+      if (eventId) {
         const response = await fetch(
-          `${apiUrls.calendarApi}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}&${datesQueryParam}`
+          `${apiUrls.calendarApi}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}`
         );
         return await response.json();
       }
@@ -81,26 +65,44 @@ export const fetchEvents = async ({
   });
 
   const eventsData = compact(await Promise.all(eventsPromises));
+  const eventsByDate = {};
 
-  Object.assign(eventCache, keyBy(eventsData, "id"));
+  eventsData.forEach((event) => {
+    const parsedRule = RRule.parseString(event.recurrence[0]);
+    const rule = new RRule({
+      ...parsedRule,
+      dtstart: new Date(event.start.dateTime),
+      until: dayjs().add(1, "year"),
+    });
+    const dates = rule.all();
 
-  // Genrate past events as we have both attendance and events data
-  const pastEvents = attendances.map((attendanceData) => {
-    const { eventParentId } = attendanceData;
-    const eventData = eventCache[eventParentId];
+    const eventData = {
+      id: event.id,
+      summary: event.summary,
+      location: event.location,
+      startTime: dayjs(event.start.dateTime).format("HH:mm"),
+    };
 
-    if (eventData && isDefined(attendanceData.score)) {
-      return {
-        summary: eventData.summary,
-        location: eventData.location,
-        startTime: dayjs(eventData.start.dateTime).format("HH:mm"),
-        date: attendanceData.date,
-        score: +attendanceData.score,
-        attended: attendanceData.attended,
-      };
-    }
-    return null;
+    dates.forEach((date) => {
+      const formattedDate = dayjs(date).format("YYYY-MM-DD");
+      const dateEvent = { ...eventData, date: formattedDate };
+      if (eventsByDate[formattedDate]) {
+        eventsByDate[formattedDate].push(dateEvent);
+      } else {
+        eventsByDate[formattedDate] = [dateEvent];
+      }
+    });
   });
 
-  return compact(pastEvents);
+  eventsByDateCache = eventsByDate;
+  isPendingRequest = false;
+
+  if (resolves.length) {
+    for (const resolve of resolves) {
+      resolve(eventsByDate);
+    }
+    resolves = [];
+  }
+
+  return eventsByDate;
 };
