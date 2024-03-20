@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { fetchAttendedEvents } from "api/attendanceApi";
+import { fetchAttendedEvents } from "api/attendedEventsApi";
 
 const useAttendedEvents = () => {
   const { checkForNavigateToSignIn } = useFirebase();

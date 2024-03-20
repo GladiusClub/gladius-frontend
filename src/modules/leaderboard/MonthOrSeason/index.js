@@ -6,14 +6,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
-import useClub from "hooks/useClub";
+import useMembers from "hooks/useMembers";
 import Performers from "./Performers";
 import NonPerformers from "./NonPerformers";
 import PositionInfo from "./PositionInfo";
 
 const MonthOrSeason = memo(({ dates }) => {
   const { user } = useUserProfile();
-  const { members, getMembers } = useClub();
+  const { members, getMembers } = useMembers();
 
   useEffect(() => {
     if (user.clubId) {

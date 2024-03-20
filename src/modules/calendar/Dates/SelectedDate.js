@@ -72,7 +72,7 @@ const SelectedDate = ({ initialDatesOnSilder }) => {
             <Typography variant="span" className="text-xl" role="button">
               {activeIndex > -1
                 ? dayjs(datesToSlide[activeIndex]).format("MMMM D, YYYY")
-                : `${dayjs(datesOfWeek[0]).format("MMMM D, YYYY")} - ${dayjs(datesOfWeek[datesOfWeek.length - 1]).format("MMMM D, YYYY")}`}
+                : `${dayjs(datesOfWeek[0]).format("MMMM D")} - ${dayjs(datesOfWeek[datesOfWeek.length - 1]).format("MMMM D")}`}
             </Typography>
           </PopoverTarget>
           <PopoverContent

@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { fetchMembers } from "api/clubApi";
+import { fetchMembers } from "api/membersApi";
 
-const useClub = () => {
+const useMembers = () => {
   const { checkForNavigateToSignIn } = useFirebase();
   const { user } = useUserProfile();
 
@@ -41,4 +41,4 @@ const useClub = () => {
   };
 };
 
-export default useClub;
+export default useMembers;
