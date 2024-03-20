@@ -4,12 +4,16 @@ import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import Header from "components/Header";
 import Loader from "components/Loader";
+import { apiUrls } from "constants/urls";
+import Typography from "components/Typography";
+import Menu from "modules/common/Menu";
 import useUserProfile from "context/userProfile/useUserProfile";
 import useFirebase from "services/firebase/useFirebase";
 import { generateUserInfo } from "modules/utils";
 import { unProtectedRoutes } from "constants/routes";
 import { collections } from "constants/collections";
 import { localStorageKeys } from "constants/storage";
+import { pageTitles } from "constants/common";
 
 const Layout = () => {
   const { user, setUser } = useUserProfile();
@@ -73,9 +77,23 @@ const Layout = () => {
     <>
       <Header />
       <div className="p-3">
+        <div className="flex justify-between items-center">
+          <img
+            src={`${apiUrls.uiAvatarApi}?name=${user.name || user.email}`}
+            alt={user.name}
+            className="w-10 h-10 rounded-full"
+          />
+
+          <Typography className="text-center text-xl">
+            {pageTitles[location.pathname]}
+          </Typography>
+
+          <Menu />
+        </div>
+
         <Suspense
           fallback={
-            <Loader className="flex justify-center items-center h-full" />
+            <Loader className="flex justify-center items-center h-full mt-16" />
           }
         >
           <Outlet />

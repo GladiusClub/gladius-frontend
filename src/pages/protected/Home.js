@@ -1,31 +1,15 @@
 import React from "react";
 import Fade from "@mui/material/Fade";
 
-import Typography from "components/Typography";
 import ScoreOverview from "modules/home/ScoreOverview";
 import Tasks from "modules/home/Tasks";
-import useUserProfile from "context/userProfile/useUserProfile";
-import { apiUrls } from "constants/urls";
+import ClubInfo from "modules/home/ClubInfo";
 
 const Home = () => {
-  const { user } = useUserProfile();
-
   return (
     <Fade in={true}>
       <div>
-        <Typography className="text-center text-xl">Dashboard</Typography>
-        {user.club && (
-          <div className="flex justify-center items-center gap-3 mt-5">
-            <img
-              src={user.club.src || `${apiUrls.uiAvatarApi}?name=${user.club.name}`}
-              alt="sport-club"
-              className="w-10 h-10 rounded-full"
-            />
-            <Typography variant="span" className="text-lg">
-              {user.club.name}
-            </Typography>
-          </div>
-        )}
+        <ClubInfo />
         <ScoreOverview />
         <Tasks />
       </div>

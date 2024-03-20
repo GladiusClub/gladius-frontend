@@ -3,7 +3,7 @@ import MuiPopover from "@mui/material/Popover";
 
 import usePopover from "./usePopover";
 
-const PopoverContent = ({ children, origin }) => {
+const PopoverContent = ({ children, origin, ...rest }) => {
   const { anchorEl, setAnchorEl } = usePopover();
 
   return (
@@ -12,6 +12,7 @@ const PopoverContent = ({ children, origin }) => {
       anchorEl={anchorEl}
       onClose={() => setAnchorEl(null)}
       {...origin}
+      {...rest}
     >
       {children}
     </MuiPopover>

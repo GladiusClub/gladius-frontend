@@ -16,8 +16,10 @@ const useEventsWithRsvp = (events) => {
 
   useEffect(() => {
     setEventsWithRsvp((prev) => ({ ...prev, data: [...events] }));
-    getEventsWithRsvp(events);
-  }, [events]);
+    if (user.club) {
+      getEventsWithRsvp(events);
+    }
+  }, [user.club, events]);
 
   const handleFailure = (err) => {
     console.error(err);

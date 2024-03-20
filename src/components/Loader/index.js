@@ -1,9 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 
-const Loader = ({ className, children }) => {
+const Loader = ({ className, children, ...rest }) => {
   return (
-    <div className={classNames(className)}>{children || "Loading..."}</div>
+    <div className={classNames(className)} {...rest}>
+      {children || "Loading..."}
+    </div>
   );
 };
 
