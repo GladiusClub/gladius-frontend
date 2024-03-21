@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
 
@@ -78,12 +79,20 @@ const useFirebase = () => {
     }
   };
 
-  const getDocDataById = async (
-    collection,
-    id,
-    key = null,
-    cb = _.noop
-  ) => {
+  const resetPassword = async (email) => {
+    setLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setError(null);
+      return true;
+    } catch (err) {
+      setError(authMessages[err.code] || err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getDocDataById = async (collection, id, key = null, cb = _.noop) => {
     if (key) {
       const item = getItem(key);
       if (item) {
@@ -102,15 +111,12 @@ const useFirebase = () => {
     }
   };
 
-  const addDocData = async (
-    collectionPath,
-    data,
-  ) => {
+  const addDocData = async (collectionPath, data) => {
     setLoading(true);
     try {
       const collectionRef = collection(db, collectionPath);
       await addDoc(collectionRef, data);
-      setError(null)
+      setError(null);
     } catch (err) {
       handleFailure(err);
     } finally {
@@ -118,16 +124,12 @@ const useFirebase = () => {
     }
   };
 
-  const updateDocData = async (
-    collectionPath,
-    id,
-    data,
-  ) => {
+  const updateDocData = async (collectionPath, id, data) => {
     setLoading(true);
     try {
       const docRef = doc(db, collectionPath, id);
       await updateDoc(docRef, data);
-      setError(null)
+      setError(null);
     } catch (err) {
       handleFailure(err);
     } finally {
@@ -142,6 +144,7 @@ const useFirebase = () => {
     checkForNavigateToSignIn,
     signInUser,
     signUpUser,
+    resetPassword,
     getDocDataById,
     addDocData,
     updateDocData,

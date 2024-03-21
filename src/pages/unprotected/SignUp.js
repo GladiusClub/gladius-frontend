@@ -55,16 +55,19 @@ const SignUp = () => {
 
   return (
     <Fade in={true}>
-      <form onSubmit={handleSubmit}>
+      <div className="text-center">
         <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
-        <section className="text-center -mt-5">
-          <Typography variant="h2">Create account</Typography>
-          <Typography
-            className="text-secondary min-h-5 text-sm my-5"
-            aria-live="assertive"
-          >
-            {firebaseError}
-          </Typography>
+        <Typography variant="h2" className="-mt-5">
+          Create account
+        </Typography>
+        <Typography
+          className="text-secondary min-h-5 text-sm my-5"
+          aria-live="assertive"
+        >
+          {firebaseError}
+        </Typography>
+
+        <form onSubmit={handleSubmit}>
           <OutlinedInput
             onBlur={handleBlur}
             field={{
@@ -115,14 +118,15 @@ const SignUp = () => {
           >
             {loading ? "Loading..." : "Sign Up"}
           </Button>
-          <Typography className="mt-5 text-lg">
-            Already have an account?
-            <Link to={unProtectedRoutes.signIn} className="ml-2 text-primary">
-              Sign in
-            </Link>
-          </Typography>
-        </section>
-      </form>
+        </form>
+
+        <Typography className="mt-5 text-lg">
+          Already have an account?
+          <Link to={unProtectedRoutes.signIn} className="ml-2 text-primary">
+            Sign in
+          </Link>
+        </Typography>
+      </div>
     </Fade>
   );
 };

@@ -9,6 +9,7 @@ const ProtectedLayout = lazy(() => import("./protected/Layout"));
 const Welcome = lazy(() => import("./unprotected/Welcome"));
 const SignIn = lazy(() => import("./unprotected/SignIn"));
 const SignUp = lazy(() => import("./unprotected/SignUp"));
+const ResetPassword = lazy(()=> import('./unprotected/ResetPassword'));
 const Home = lazy(() => import("./protected/Home"));
 const Calendar = lazy(() => import("./protected/Calendar"));
 const Leaderboard = lazy(() => import("./protected/Leaderboard"));
@@ -26,6 +27,7 @@ const Main = () => {
           <Route path={unProtectedRoutes.welcome} element={<Welcome />} />
           <Route path={unProtectedRoutes.signIn} element={<SignIn />} />
           <Route path={unProtectedRoutes.signUp} element={<SignUp />} />
+          <Route path={unProtectedRoutes.resetPassword} element={<ResetPassword />} />
         </Route>
 
         <Route element={<ProtectedLayout />}>

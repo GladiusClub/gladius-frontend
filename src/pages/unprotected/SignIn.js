@@ -40,16 +40,17 @@ const SignIn = () => {
 
   return (
     <Fade in={true}>
-      <form onSubmit={handleSubmit}>
+      <div className="text-center">
         <img src={gladiusLogo} alt="Gladius" className="mx-auto -mt-10" />
-        <section className="text-center">
-          <Typography variant="h2">Sign in to your account</Typography>
-          <Typography
-            className="text-secondary min-h-5 text-sm my-6"
-            aria-live="assertive"
-          >
-            {firebaseError}
-          </Typography>
+        <Typography variant="h2">Sign in to your account</Typography>
+        <Typography
+          className="text-secondary min-h-5 text-sm my-6"
+          aria-live="assertive"
+        >
+          {firebaseError}
+        </Typography>
+
+        <form onSubmit={handleSubmit}>
           <OutlinedInput
             onBlur={handleBlur}
             field={{
@@ -76,6 +77,16 @@ const SignIn = () => {
               <PasswordAdornment onPasswordVisibilityClick={setShowPassword} />
             }
           />
+
+          <div className="text-right">
+            <Link
+              to={unProtectedRoutes.resetPassword}
+              className="text-primary text-right"
+            >
+              Forgot password?
+            </Link>
+          </div>
+
           <Button
             size="large"
             variant="contained"
@@ -84,14 +95,15 @@ const SignIn = () => {
           >
             {loading ? "Loading..." : "Sign In"}
           </Button>
-          <Typography className="mt-5 text-lg">
-            Don't have an account?
-            <Link to={unProtectedRoutes.signUp} className="ml-2 text-primary">
-              Sign up
-            </Link>
-          </Typography>
-        </section>
-      </form>
+        </form>
+
+        <Typography className="mt-5 text-lg">
+          Don't have an account?
+          <Link to={unProtectedRoutes.signUp} className="ml-2 text-primary">
+            Sign up
+          </Link>
+        </Typography>
+      </div>
     </Fade>
   );
 };
