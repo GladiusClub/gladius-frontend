@@ -1,0 +1,14 @@
+h1 {
+  @apply font-semibold !important;
+  @apply text-3xl !important;
+}
+
+h2 {
+  @apply font-semibold !important;
+  @apply text-2xl !important;
+}
+
+h3 {
+  @apply font-semibold !important;
+  @apply text-xl !important;
+}

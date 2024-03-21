@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import ErrorBoundary from "components/ErrorBoundary.js";
+import withScreenWidthValidation from "hoc/withScreenWidthValidation";
+import { UserProfileProvider } from "context/userProfile/UserProfileContext";
+import { muiTheme } from "theme/muiTheme";
+import Main from "./pages/Main";
+import "./App.css";
+
+const theme = createTheme(muiTheme);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>test 2</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <UserProfileProvider>
+            <Main />
+          </UserProfileProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
-export default App;
+export default withScreenWidthValidation(App);

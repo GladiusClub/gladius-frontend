@@ -1,0 +1,7 @@
+.MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-primary) !important;
+}
+
+.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: var(--color-secondary) !important;
+}
