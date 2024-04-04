@@ -49,6 +49,7 @@ export const fetchAttendedEvents = async ({
     attendanceDoc.data()
   );
 
+
   // Get unique event ids
   const eventIds = uniqBy(attendances, "eventParentId").map(
     (item) => item.eventParentId
