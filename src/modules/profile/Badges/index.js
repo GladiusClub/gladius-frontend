@@ -5,17 +5,24 @@ import Box from "@mui/material/Box";
 import BadgesList from "./BadgesList";
 import BadgesInfo from "./BadgesInfo";
 import getGlcNftBalance from "api/glcNftBalance";
+import useUserProfile from "context/userProfile/useUserProfile";
 
 const Badges = () => {
   const [badges, setBadges] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Loading state
 
+  const { user } = useUserProfile();
+
   useEffect(() => {
+    if (!user || !user.uid) {
+      console.log("User data is not available yet");
+      return; // Early return if user or user.uid is not available
+    }
+
     async function fetchNftBalance() {
       setIsLoading(true); // Start loading
-      const uid = "4KKWdVfzUcUcJf9mVSVdPRXSNLI2";
       try {
-        const nftBalance = await getGlcNftBalance(uid);
+        const nftBalance = await getGlcNftBalance(user.uid);
         console.log("NFT Balance:", nftBalance);
 
         if (nftBalance && nftBalance.data && nftBalance.data.nfts) {
@@ -36,7 +43,7 @@ const Badges = () => {
     }
 
     fetchNftBalance();
-  }, []);
+  }, [user]);
 
   if (isLoading) {
     return (

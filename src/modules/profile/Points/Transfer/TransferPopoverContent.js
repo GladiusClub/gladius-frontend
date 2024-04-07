@@ -2,29 +2,35 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"; // Import for input field
 import Button from "@mui/material/Button"; // Import for send button
+import CircularProgress from "@mui/material/CircularProgress"; // Import CircularProgress
 
 import Typography from "components/Typography";
-import { PopoverClose, PopoverContent } from "components/Popover";
+import { PopoverClose, PopoverContent, usePopover } from "components/Popover";
 import useUserProfile from "context/userProfile/useUserProfile";
 import { apiUrls } from "constants/urls";
 import GlcTransactionSend from "api/glcTransaction";
 
 const TransferPopoverContent = () => {
   const [amount, setAmount] = useState(""); // State to store the amount
+  const { setAnchorEl } = usePopover();
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
-    user: { club },
+    user: { club, uid },
   } = useUserProfile();
 
   const handleSend = () => {
-    const uid = "40WiH4RtOIgtJxGjwO6vadjAOem2"; // Replace with the actual UID
+    setIsLoading(true); // Start loading
     GlcTransactionSend(uid, amount)
       .then((response) => {
         console.log("Transaction successful:", response);
-        // Handle successful transaction
       })
       .catch((error) => {
         console.error("Transaction failed:", error);
-        // Handle transaction error
+      })
+      .finally(() => {
+        setIsLoading(false); // Stop loading
+        setAnchorEl(null); // Close the popover
       });
   };
 
@@ -51,37 +57,40 @@ const TransferPopoverContent = () => {
           <Typography className="text-xl">{club.name}</Typography>
         </div>
 
-        {/* Input for Amount and Send Button */}
-        <Box className="mt-4">
-          <TextField
-            label="Amount"
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            variant="outlined"
-            size="small"
-            className="mr-2"
-            sx={{
-              input: {
-                color: "white", // Set text color
-              },
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white", // Set border color
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <Box className="mt-4">
+            <TextField
+              label="Amount"
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              variant="outlined"
+              size="small"
+              className="mr-2"
+              sx={{
+                input: {
+                  color: "white", // Set text color
                 },
-                "&:hover fieldset": {
-                  borderColor: "white", // Set border color on hover
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white", // Set border color
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white", // Set border color on hover
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white", // Set border color on focus
+                  },
                 },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // Set border color on focus
-                },
-              },
-            }}
-          />
-          <Button variant="contained" color="primary" onClick={handleSend}>
-            Send
-          </Button>
-        </Box>
+              }}
+            />
+            <Button variant="contained" color="primary" onClick={handleSend}>
+              Send
+            </Button>
+          </Box>
+        )}
 
         {/* Close Button */}
         <div className="flex justify-end mt-4">

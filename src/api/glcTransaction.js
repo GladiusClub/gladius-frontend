@@ -3,8 +3,8 @@ import { apiUrls } from "constants/urls";
 const GlcTransactionSend = async (uid, amount) => {
   try {
     const postData = {
-      UID: "40WiH4RtOIgtJxGjwO6vadjAOem2", // Pass UID as a parameter
-      amount: "19", // Pass amount as a parameter
+      UID: uid, // Pass UID as a parameter
+      amount: amount, // Pass amount as a parameter
     };
 
     const response = await fetch(apiUrls.invokeGladiusTransactionApi, {

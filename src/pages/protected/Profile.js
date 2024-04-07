@@ -17,7 +17,7 @@ const Profile = () => {
             active: "bg-gradient-active",
           }}
         >
-          <Tab label="Points">
+          <Tab label="GLC">
             <Points />
           </Tab>
           <Tab label="Badges">

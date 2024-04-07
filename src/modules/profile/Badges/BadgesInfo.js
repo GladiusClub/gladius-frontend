@@ -13,7 +13,7 @@ const BadgesInfo = ({ NumBadges }) => {
       <Typography className="flex text-success items-center">
         <IoMdArrowDropup className="w-7 h-7" />
         <Typography variant="span" className="text-sm">
-          3 badges last week
+          {NumBadges} badges last week
         </Typography>
       </Typography>
     </div>
