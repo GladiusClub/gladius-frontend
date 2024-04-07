@@ -16,12 +16,11 @@ const TransferPopoverContent = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    user: { club },
+    user: { club, uid },
   } = useUserProfile();
 
   const handleSend = () => {
     setIsLoading(true); // Start loading
-    const uid = "40WiH4RtOIgtJxGjwO6vadjAOem2";
     GlcTransactionSend(uid, amount)
       .then((response) => {
         console.log("Transaction successful:", response);

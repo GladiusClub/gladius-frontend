@@ -1,24 +1,13 @@
-import { useEffect } from "react";
+// api/glcBalance.js
 import { apiUrls } from "constants/urls";
 
-const GlcBalanceFetcher = () => {
-  useEffect(() => {
-    fetch(apiUrls.glcBalanceApi)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("GLC Balance:", data); // Log the balance
-      })
-      .catch((error) => {
-        console.error("Error fetching GLC balance:", error);
-      });
-  }, []); // Empty dependency array to run only on mount
-
-  return null; // Component renders nothing
+const fetchGlcBalance = () => {
+  return fetch(apiUrls.glcBalanceApi).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  });
 };
 
-export default GlcBalanceFetcher;
+export default fetchGlcBalance;
