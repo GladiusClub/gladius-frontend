@@ -1,12 +1,10 @@
 // api/glcBalance.js
 import { apiUrls } from "constants/urls";
 
-const fetchGlcBalance = async () => {
-  const publicKey = "GDKT3YL6QCPPJZ53R7PUN6VX7F2SFZNSYCGALC7DIUVNHEV5IJSNKFRM";
-
+const fetchGlcBalance = async (uid) => {
   try {
     const url = new URL(apiUrls.glcBalanceApi);
-    url.searchParams.append("publicKey", publicKey); // Append the publicKey as a query parameter
+    url.searchParams.append("UID", uid);
 
     const response = await fetch(url.toString(), {
       method: "GET",

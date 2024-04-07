@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import GlcBalanceFetcher from "api/glcBalance";
+import useUserProfile from "context/userProfile/useUserProfile";
 
 import Typography from "components/Typography";
 //import { getPointsAndPercentInWeek } from "modules/utils";
 
 const PointsInfo = ({ eventsList }) => {
   const [pointsBalance, setPointsBalance] = useState(0);
+  const {
+    user: { club, uid },
+  } = useUserProfile();
 
   //const pointsBalance = useMemo(() => {
   //return eventsList.reduce((acc, curr) => acc + curr.score, 0);
@@ -17,7 +21,7 @@ const PointsInfo = ({ eventsList }) => {
   //}, [eventsList, pointsBalance]);
 
   useEffect(() => {
-    GlcBalanceFetcher()
+    GlcBalanceFetcher(uid)
       .then((response) => {
         // Assuming the response contains the points balance
         setPointsBalance(response.balance != null ? response.balance : 0);

@@ -14,7 +14,11 @@ export const UserProfileProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser({ isFetching: false, uid: user.uid, club: null });
+        setUser({
+          isFetching: false,
+          uid: user.uid,
+          club: null,
+        });
       } else {
         setUser({ isFetching: false });
         clear();
