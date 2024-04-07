@@ -24,7 +24,7 @@ const PointsInfo = ({ eventsList }) => {
     GlcBalanceFetcher(uid)
       .then((response) => {
         // Assuming the response contains the points balance
-        setPointsBalance(response.balance != null ? response.balance : 0);
+        setPointsBalance(response.data != null ? response.data : 0);
         console.log(pointsBalance);
       })
       .catch((error) => {

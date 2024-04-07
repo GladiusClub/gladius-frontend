@@ -15,6 +15,12 @@ const TransferPopoverContent = () => {
   const { setAnchorEl } = usePopover();
   const [isLoading, setIsLoading] = useState(false);
 
+  const { user } = useUserProfile(); // Directly get the user object from the hook
+
+  useEffect(() => {
+    console.log("User object:", user); // Log the entire user object
+  }, [user]);
+
   const {
     user: { club, uid },
   } = useUserProfile();

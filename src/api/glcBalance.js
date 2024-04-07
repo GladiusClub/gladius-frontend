@@ -1,16 +1,13 @@
-// api/glcBalance.js
 import { apiUrls } from "constants/urls";
 
 const fetchGlcBalance = async (uid) => {
   try {
-    const url = new URL(apiUrls.glcBalanceApi);
-    url.searchParams.append("UID", uid);
-
-    const response = await fetch(url.toString(), {
-      method: "GET",
+    const response = await fetch(apiUrls.glcBalanceApi, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ UID: uid }),
     });
 
     if (!response.ok) {
@@ -20,7 +17,7 @@ const fetchGlcBalance = async (uid) => {
     return await response.json();
   } catch (error) {
     console.error("Error fetching GLC balance:", error);
-    throw error; // Optional: rethrow the error if you want to handle it outside
+    throw error;
   }
 };
 
