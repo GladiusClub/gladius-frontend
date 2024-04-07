@@ -1,7 +1,6 @@
 import React from "react";
 
 import Typography from "components/Typography";
-import sendPointsIcon from "assets/send-points.svg";
 import receivePointsIcon from "assets/receive-points.svg";
 import TransferInfo from "./Transfer";
 
