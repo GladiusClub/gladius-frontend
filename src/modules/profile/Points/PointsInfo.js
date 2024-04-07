@@ -3,6 +3,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 
 import Typography from "components/Typography";
 import { getPointsAndPercentInWeek } from "modules/utils";
+import GlcBalanceFetcher from "api/glcBalance";
 
 const PointsInfo = ({ eventsList }) => {
   const pointsBalance = useMemo(() => {
@@ -16,6 +17,7 @@ const PointsInfo = ({ eventsList }) => {
   return (
     <div className="flex items-center flex-col">
       <Typography className="text-lg">Points balance</Typography>
+      <GlcBalanceFetcher />
       <Typography className="text-4xl text-secondary mt-1">
         {pointsBalance.toLocaleString()}
       </Typography>

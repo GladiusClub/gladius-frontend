@@ -64,6 +64,7 @@ export const fetchEventsByDate = async ({ uid, clubId, calendarId }) => {
     }
   });
 
+
   const eventsData = compact(await Promise.all(eventsPromises));
   const eventsByDate = {};
 
