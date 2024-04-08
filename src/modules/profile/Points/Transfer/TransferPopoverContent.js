@@ -11,17 +11,21 @@ import Typography from "components/Typography";
 import { PopoverClose, PopoverContent, usePopover } from "components/Popover";
 import useUserProfile from "context/userProfile/useUserProfile";
 import GlcTransactionSend from "api/glcTransaction";
+import GlcBalanceFetcher from "api/glcBalance";
 
-const TransferPopoverContent = () => {
+const TransferPopoverContent = ({ setPointsBalance }) => {
   const [amount, setAmount] = useState("");
   const { setAnchorEl } = usePopover();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedClub, setSelectedClub] = useState("Golden Lotus Club");
+  const [selectedClub, setSelectedClub] = useState();
 
   const { user } = useUserProfile();
 
   useEffect(() => {
     console.log("User object:", user);
+    if (user && user.club && user.club.name) {
+      setSelectedClub(user.club.name); // Update selectedClub when club is loaded
+    }
   }, [user]);
 
   const {
@@ -42,6 +46,14 @@ const TransferPopoverContent = () => {
         console.error("Transaction failed:", error);
       })
       .finally(() => {
+        GlcBalanceFetcher(uid)
+          .then((response) => {
+            // Assuming the response contains the points balance
+            setPointsBalance(response.data != null ? response.data : 0);
+          })
+          .catch((error) => {
+            console.error("Error fetching GLC balance:", error);
+          });
         setIsLoading(false); // Stop loading
         setAnchorEl(null); // Close the popover
       });
@@ -96,7 +108,7 @@ const TransferPopoverContent = () => {
                   },
                 }}
               >
-                <MenuItem value="Golden Lotus Club">Golden Lotus Club</MenuItem>
+                <MenuItem value={selectedClub}>{selectedClub}</MenuItem>
               </Select>
             </div>
 

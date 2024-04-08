@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
 import GlcBalanceFetcher from "api/glcBalance";
 import useUserProfile from "context/userProfile/useUserProfile";
@@ -6,10 +6,9 @@ import useUserProfile from "context/userProfile/useUserProfile";
 import Typography from "components/Typography";
 //import { getPointsAndPercentInWeek } from "modules/utils";
 
-const PointsInfo = ({ eventsList }) => {
-  const [pointsBalance, setPointsBalance] = useState(0);
+const PointsInfo = ({ eventsList, pointsBalance, setPointsBalance }) => {
   const {
-    user: { club, uid },
+    user: { uid },
   } = useUserProfile();
 
   //const pointsBalance = useMemo(() => {
@@ -30,7 +29,7 @@ const PointsInfo = ({ eventsList }) => {
       .catch((error) => {
         console.error("Error fetching GLC balance:", error);
       });
-  }, [pointsBalance]);
+  }, [pointsBalance, uid, setPointsBalance]);
 
   return (
     <div className="flex items-center flex-col">

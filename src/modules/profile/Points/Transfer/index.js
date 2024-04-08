@@ -5,7 +5,7 @@ import useUserProfile from "context/userProfile/useUserProfile";
 import TransferPopoverTarget from "./TransferPopoverTarget";
 import TransferPopoverContent from "./TransferPopoverContent";
 
-const TransferInfo = () => {
+const TransferInfo = ({ setPointsBalance }) => {
   const { user } = useUserProfile();
 
   if (!user.club) {
@@ -15,7 +15,7 @@ const TransferInfo = () => {
   return (
     <Popover>
       <TransferPopoverTarget />
-      <TransferPopoverContent />
+      <TransferPopoverContent setPointsBalance={setPointsBalance} />
     </Popover>
   );
 };
