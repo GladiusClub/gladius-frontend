@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField"; // Import for input field
-import Button from "@mui/material/Button"; // Import for send button
-import CircularProgress from "@mui/material/CircularProgress"; // Import CircularProgress
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 
 import Typography from "components/Typography";
 import { PopoverClose, PopoverContent, usePopover } from "components/Popover";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { apiUrls } from "constants/urls";
 import GlcTransactionSend from "api/glcTransaction";
 
 const TransferPopoverContent = () => {
-  const [amount, setAmount] = useState(""); // State to store the amount
+  const [amount, setAmount] = useState("");
   const { setAnchorEl } = usePopover();
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedClub, setSelectedClub] = useState("Golden Lotus Club");
 
-  const { user } = useUserProfile(); // Directly get the user object from the hook
+  const { user } = useUserProfile();
 
   useEffect(() => {
-    console.log("User object:", user); // Log the entire user object
+    console.log("User object:", user);
   }, [user]);
 
   const {
-    user: { club, uid },
+    user: { uid },
   } = useUserProfile();
+
+  const handleClubChange = (event) => {
+    setSelectedClub(event.target.value);
+  };
 
   const handleSend = () => {
     setIsLoading(true); // Start loading
@@ -54,48 +61,82 @@ const TransferPopoverContent = () => {
       }}
     >
       <Box className="p-8">
-        <div className="flex justify-center items-center gap-3">
-          <img
-            src={club.src || `${apiUrls.uiAvatarApi}?name=${club.name}`}
-            alt="sport-club"
-            className="w-10 h-10 rounded-full"
-          />
-          <Typography className="text-xl">{club.name}</Typography>
-        </div>
-
         {isLoading ? (
-          <CircularProgress />
+          <>
+            <CircularProgress />
+            <Typography sx={{ color: "white", mt: 2 }}>
+              Sending To {selectedClub}
+            </Typography>
+          </>
         ) : (
-          <Box className="mt-4">
-            <TextField
-              label="Amount"
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              variant="outlined"
-              size="small"
-              className="mr-2"
-              sx={{
-                input: {
-                  color: "white", // Set text color
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "white", // Set border color
+          <>
+            <div className="mb-4">
+              <InputLabel id="select-label" sx={{ color: "white" }}>
+                Send To
+              </InputLabel>
+              <Select
+                labelId="select-label"
+                value={selectedClub}
+                onChange={handleClubChange}
+                displayEmpty
+                fullWidth
+                sx={{
+                  color: "white",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
                   },
-                  "&:hover fieldset": {
-                    borderColor: "white", // Set border color on hover
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
                   },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "white", // Set border color on focus
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
                   },
-                },
-              }}
-            />
-            <Button variant="contained" color="primary" onClick={handleSend}>
-              Send
-            </Button>
-          </Box>
+                  ".MuiSelect-icon": {
+                    color: "white",
+                  },
+                }}
+              >
+                <MenuItem value="Golden Lotus Club">Golden Lotus Club</MenuItem>
+              </Select>
+            </div>
+
+            <Box className="mt-4">
+              <TextField
+                label="Amount"
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                variant="outlined"
+                size="small"
+                className="mr-2"
+                sx={{
+                  input: {
+                    color: "white",
+                  },
+                  "& label.Mui-focused": {
+                    color: "white",
+                  },
+                  "& label": {
+                    color: "white",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "white",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "white",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "white",
+                    },
+                  },
+                }}
+              />
+              <Button variant="contained" color="primary" onClick={handleSend}>
+                Send
+              </Button>
+            </Box>
+          </>
         )}
 
         {/* Close Button */}
