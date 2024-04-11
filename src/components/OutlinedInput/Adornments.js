@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { AiOutlineUser } from "react-icons/ai";
+import { BiEuro } from "react-icons/bi";
 import {
   MdOutlineVisibility,
   MdOutlineVisibilityOff,
@@ -47,6 +48,16 @@ export const PasswordAdornment = ({ onPasswordVisibilityClick }) => {
         className=" text-default"
       >
         {showPassword ? <MdOutlineVisibilityOff /> : <MdOutlineVisibility />}
+      </IconButton>
+    </InputAdornment>
+  );
+};
+
+export const AmountAdornment = () => {
+  return (
+    <InputAdornment position="end">
+      <IconButton edge="end" className=" text-default">
+        <BiEuro />
       </IconButton>
     </InputAdornment>
   );

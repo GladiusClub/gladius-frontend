@@ -1,61 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import CircularProgress from "@mui/material/CircularProgress";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
-import Typography from "components/Typography";
 import { PopoverClose, PopoverContent, usePopover } from "components/Popover";
+import { AmountAdornment } from "components/OutlinedInput/Adornments";
+import OutlinedInput from "components/OutlinedInput";
+import Typography from "components/Typography";
 import useUserProfile from "context/userProfile/useUserProfile";
-import GlcTransactionSend from "api/glcTransaction";
-import GlcBalanceFetcher from "api/glcBalance";
+import glcTransactionSend from "api/glcTransaction";
+import EventBus from "helpers/EventBus";
+import { busEvents } from "constants/busEvents";
 
-const TransferPopoverContent = ({ setPointsBalance }) => {
-  const [amount, setAmount] = useState("");
-  const { setAnchorEl } = usePopover();
+const TransferPopoverContent = () => {
+  const [values, setValues] = useState({ selectedUser: "", amount: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedClub, setSelectedClub] = useState();
-
-  const { user } = useUserProfile();
-
-  useEffect(() => {
-    console.log("User object:", user);
-    if (user && user.club && user.club.name) {
-      setSelectedClub(user.club.name); // Update selectedClub when club is loaded
-    }
-  }, [user]);
+  const [apiError, setApiError] = useState(null);
+  const { setAnchorEl } = usePopover();
 
   const {
     user: { uid },
   } = useUserProfile();
 
-  const handleClubChange = (event) => {
-    setSelectedClub(event.target.value);
+  const handleSelectedUserChange = (event) => {
+    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSend = () => {
+  const handleAmountChange = (name, value) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const values = Object.fromEntries(formData.entries());
+
     setIsLoading(true); // Start loading
-    GlcTransactionSend(uid, amount)
+    glcTransactionSend(uid, values.amount)
       .then((response) => {
-        console.log("Transaction successful:", response);
+        if (response.to_address) {
+          // Emit event to refetch the balance wherever subscribed
+          EventBus.emit(busEvents.sendBalanceSuccess);
+          setAnchorEl(null); // Close the popover
+          setApiError(null);
+        }
       })
       .catch((error) => {
         console.error("Transaction failed:", error);
+        setApiError(error.error);
       })
       .finally(() => {
-        GlcBalanceFetcher(uid)
-          .then((response) => {
-            // Assuming the response contains the points balance
-            setPointsBalance(response.data != null ? response.data : 0);
-          })
-          .catch((error) => {
-            console.error("Error fetching GLC balance:", error);
-          });
         setIsLoading(false); // Stop loading
-        setAnchorEl(null); // Close the popover
       });
   };
 
@@ -73,83 +72,75 @@ const TransferPopoverContent = ({ setPointsBalance }) => {
       }}
     >
       <Box className="p-8">
-        {isLoading ? (
-          <>
-            <CircularProgress />
-            <Typography sx={{ color: "white", mt: 2 }}>
-              Sending To {selectedClub}
-            </Typography>
-          </>
-        ) : (
-          <>
-            <div className="mb-4">
-              <InputLabel id="select-label" sx={{ color: "white" }}>
-                Send To
-              </InputLabel>
-              <Select
-                labelId="select-label"
-                value={selectedClub}
-                onChange={handleClubChange}
-                displayEmpty
-                fullWidth
-                sx={{
-                  color: "white",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "white",
+        <form onSubmit={handleSubmit}>
+          <FormControl variant="outlined" className="w-full text-default mb-4">
+            <InputLabel className="text-sm text-default font-manrope font-light">
+              Send to
+            </InputLabel>
+            <Select
+              value={values.selectedUser}
+              onChange={handleSelectedUserChange}
+              label="Send to"
+              inputProps={{
+                className: "text-default font-light font-manrope",
+                name: "selectedUser",
+                required: true,
+                autoComplete: "off"
+              }}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: "12rem",
+                    borderRadius: 0,
                   },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "white",
-                  },
-                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "white",
-                  },
-                  ".MuiSelect-icon": {
-                    color: "white",
-                  },
-                }}
-              >
-                <MenuItem value={selectedClub}>{selectedClub}</MenuItem>
-              </Select>
-            </div>
+                },
+              }}
+              sx={{
+                ".MuiSelect-icon": {
+                  color: "var(--color-default)",
+                },
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="User1">User1</MenuItem>
+              <MenuItem value="User2">User2</MenuItem>
+              <MenuItem value="User3">User3</MenuItem>
+              <MenuItem value="User4">User4</MenuItem>
+              <MenuItem value="User5">User5</MenuItem>
+              <MenuItem value="User6">User6</MenuItem>
+              <MenuItem value="User7">User7</MenuItem>
+              <MenuItem value="User8">User8</MenuItem>
+            </Select>
+          </FormControl>
 
-            <Box className="mt-4">
-              <TextField
-                label="Amount"
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                variant="outlined"
-                size="small"
-                className="mr-2"
-                sx={{
-                  input: {
-                    color: "white",
-                  },
-                  "& label.Mui-focused": {
-                    color: "white",
-                  },
-                  "& label": {
-                    color: "white",
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "white",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "white",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "white",
-                    },
-                  },
-                }}
-              />
-              <Button variant="contained" color="primary" onClick={handleSend}>
-                Send
-              </Button>
-            </Box>
-          </>
-        )}
+          <OutlinedInput
+            onBlur={handleAmountChange}
+            field={{
+              type: "number",
+              name: "amount",
+              label: "Amount",
+              required: true,
+            }}
+            endAdornment={<AmountAdornment />}
+          />
+
+          {apiError && (
+            <Typography className="text-info text-sm mb-2">
+              {apiError}
+            </Typography>
+          )}
+
+          <Button
+            size="large"
+            variant="contained"
+            className="font-manrope w-full normal-case bg-gradient-active border rounded-lg"
+            type="submit"
+          >
+            {isLoading ? "Sending..." : "Send"}
+          </Button>
+        </form>
 
         {/* Close Button */}
         <div className="flex justify-end mt-4">

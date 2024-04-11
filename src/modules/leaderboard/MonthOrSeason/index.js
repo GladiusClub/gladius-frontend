@@ -3,7 +3,6 @@ import React, { useMemo, useEffect, memo } from "react";
 import Fade from "@mui/material/Fade";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
 import useMembers from "hooks/useMembers";
@@ -33,10 +32,8 @@ const MonthOrSeason = memo(({ dates }) => {
 
   if (members.loading) {
     return (
-      <div className="mt-10 h-full flex justify-center item-center w-30 h-30">
-        <Loader className="w-20 h-20">
-          <CircularProgress className="w-20 h-20" />
-        </Loader>
+      <div className="mt-10 h-full flex justify-center item-center">
+        <CircularProgress />
       </div>
     );
   }

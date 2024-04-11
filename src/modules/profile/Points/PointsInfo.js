@@ -1,35 +1,42 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useEffect, useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
-import GlcBalanceFetcher from "api/glcBalance";
+import fetchGlcBalance from "api/glcBalance";
 import useUserProfile from "context/userProfile/useUserProfile";
 
 import Typography from "components/Typography";
-//import { getPointsAndPercentInWeek } from "modules/utils";
+import EventBus from "helpers/EventBus";
+import { busEvents } from "constants/busEvents";
 
-const PointsInfo = ({ eventsList, pointsBalance, setPointsBalance }) => {
+const PointsInfo = () => {
+  const [pointsBalance, setPointsBalance] = useState(0);
+
   const {
     user: { uid },
   } = useUserProfile();
 
-  //const pointsBalance = useMemo(() => {
-  //return eventsList.reduce((acc, curr) => acc + curr.score, 0);
-  //}, [eventsList]);
-
-  //const { pointsInWeek, percentInWeek } = useMemo(() => {
-  //return getPointsAndPercentInWeek(pointsBalance, eventsList);
-  //}, [eventsList, pointsBalance]);
-
-  useEffect(() => {
-    GlcBalanceFetcher(uid)
+  const getGlcBalance = useCallback(() => {
+    fetchGlcBalance(uid)
       .then((response) => {
         // Assuming the response contains the points balance
         setPointsBalance(response.data != null ? response.data : 0);
-        console.log(pointsBalance);
       })
       .catch((error) => {
         console.error("Error fetching GLC balance:", error);
       });
+  }, [uid]);
+
+  useEffect(() => {
+    getGlcBalance();
   }, [pointsBalance, uid, setPointsBalance]);
+
+  useEffect(() => {
+    EventBus.subscribe(busEvents.sendBalanceSuccess, getGlcBalance);
+
+    return () => {
+      EventBus.unsubscribe(busEvents.sendBalanceSuccess, getGlcBalance);
+    };
+  }, []);
 
   return (
     <div className="flex items-center flex-col">
@@ -40,7 +47,7 @@ const PointsInfo = ({ eventsList, pointsBalance, setPointsBalance }) => {
       <Typography className="flex text-success items-center">
         <IoMdArrowDropup className="w-7 h-7" />
         <Typography variant="span" className="text-sm ">
-          {pointsBalance} points last week (+{pointsBalance}%)
+          {pointsBalance} points last week
         </Typography>
       </Typography>
     </div>

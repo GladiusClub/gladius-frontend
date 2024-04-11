@@ -4,12 +4,10 @@ import Typography from "components/Typography";
 import receivePointsIcon from "assets/receive-points.svg";
 import TransferInfo from "./Transfer";
 
-const PointsSendReceive = ({ setPointsBalance }) => {
+const PointsSendReceive = () => {
   return (
     <div className="flex justify-between items-center mt-5 w-1/2 mx-auto">
-      <div>
-        <TransferInfo setPointsBalance={setPointsBalance}></TransferInfo>
-      </div>
+      <TransferInfo />
 
       <div>
         <img src={receivePointsIcon} alt="Receive" className="cursor-pointer" />

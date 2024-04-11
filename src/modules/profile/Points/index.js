@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
 import useAttendedEvents from "hooks/useAttendedEvents";
@@ -13,7 +12,6 @@ import PointsSendReceive from "./PointsSendReceive";
 const Points = () => {
   const { user } = useUserProfile();
   const { attendedEvents, getAttendedEvents } = useAttendedEvents();
-  const [pointsBalance, setPointsBalance] = useState(0);
 
   useEffect(() => {
     if (user.club) {
@@ -23,10 +21,8 @@ const Points = () => {
 
   if (attendedEvents.loading) {
     return (
-      <div className="mt-10 h-full flex justify-center item-center w-30 h-30">
-        <Loader className="w-20 h-20">
-          <CircularProgress className="w-20 h-20" />
-        </Loader>
+      <div className="mt-10 h-full flex justify-center item-center">
+        <CircularProgress />
       </div>
     );
   }
@@ -47,10 +43,8 @@ const Points = () => {
     <div className="mt-10">
       <PointsInfo
         eventsList={attendedEvents.data}
-        pointsBalance={pointsBalance}
-        setPointsBalance={setPointsBalance}
       />
-      <PointsSendReceive setPointsBalance={setPointsBalance} />
+      <PointsSendReceive />
       <PointsList title="Received" list={attendedEvents.data} />
     </div>
   );
