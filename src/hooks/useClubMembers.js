@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { fetchMembers } from "api/membersApi";
+import { fetchClubMembers } from "api/membersApi";
 
-const useMembers = () => {
+const useClubMembers = () => {
   const { checkForNavigateToSignIn } = useFirebase();
   const { user } = useUserProfile();
 
@@ -19,17 +19,13 @@ const useMembers = () => {
     checkForNavigateToSignIn(err.code);
   };
 
-  const getMembers = async (dates) => {
+  const getClubMembers = async () => {
     setMembers((prev) => ({ ...prev, loading: true }));
     try {
-      const data = await fetchMembers({
-        ...dates,
-        uid: user.uid,
-        clubId: user.club.id,
-      });
+      const data = await fetchClubMembers(user.club.id);
       setMembers({ data, error: null, loading: false });
     } catch (err) {
-      console.error("Error getting members list");
+      console.error("Error getting club members list");
       handleFailure(err);
       setMembers({ data: [], error: err.message, loading: false });
     }
@@ -37,8 +33,8 @@ const useMembers = () => {
 
   return {
     members,
-    getMembers,
+    getClubMembers,
   };
 };
 
-export default useMembers;
+export default useClubMembers;

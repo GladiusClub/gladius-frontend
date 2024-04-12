@@ -5,18 +5,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
-import useMembers from "hooks/useMembers";
+import useGroupMembers from "hooks/useGroupMembers";
 import Performers from "./Performers";
 import NonPerformers from "./NonPerformers";
 import PositionInfo from "./PositionInfo";
 
 const MonthOrSeason = memo(({ dates }) => {
   const { user } = useUserProfile();
-  const { members, getMembers } = useMembers();
+  const { members, getGroupMembers } = useGroupMembers();
 
   useEffect(() => {
     if (user.club) {
-      getMembers(dates);
+      getGroupMembers(dates);
     }
   }, [user.club, dates]);
 

@@ -7,8 +7,8 @@ import BadgeCard from "./BadgeCard";
 const BadgesList = ({ badges }) => {
   return (
     <List className="flex flex-wrap justify-between gap-4 mt-10">
-      {badges.map((badge) => (
-        <ListItem key={badge.name} hideDivider>
+      {badges.map((badge, index) => (
+        <ListItem key={`${badge.name}-${index}`} hideDivider>
           <BadgeCard item={badge} />
         </ListItem>
       ))}

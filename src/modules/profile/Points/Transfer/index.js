@@ -4,7 +4,7 @@ import { Popover } from "components/Popover";
 import TransferPopoverTarget from "./TransferPopoverTarget";
 import TransferPopoverContent from "./TransferPopoverContent";
 
-const TransferInfo = () => {
+const Transfer = () => {
   return (
     <Popover>
       <TransferPopoverTarget />
@@ -13,4 +13,4 @@ const TransferInfo = () => {
   );
 };
 
-export default TransferInfo;
+export default Transfer;

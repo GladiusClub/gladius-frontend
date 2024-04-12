@@ -1,10 +1,10 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import dayjs from "dayjs";
+import { capitalize } from "lodash";
 
 import { db } from "services/firebase/firebase-config";
 
-export const fetchMembers = async ({ minDate, maxDate, uid, clubId }) => {
-
+export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
   // Get reference to groups collection of a club
   const groupsRef = collection(db, `clubs/${clubId}/groups`);
 
@@ -103,4 +103,43 @@ export const fetchMembers = async ({ minDate, maxDate, uid, clubId }) => {
   const membersList = await Promise.all(membersScoresPromises);
   membersList.sort((m1, m2) => m2.score - m1.score);
   return membersList;
+};
+
+export const fetchClubMembers = async (clubId) => {
+  const usersRef = collection(db, `clubs/${clubId}/members`);
+  const userDocs = await getDocs(usersRef);
+
+  let clubMembers = [];
+  if (!userDocs.empty) {
+    clubMembers = userDocs.docs.map((userDoc) => {
+      const userData = userDoc.data();
+
+      let name = userData.name;
+      const email = userData.email;
+
+      if(name.includes('@')){
+        name = name.split("@")[0];
+      }
+      else if (!name) {
+        name = email.split("@")[0];
+      }
+
+      return {
+        name: capitalize(name),
+        email,
+        uid: userData.user,
+      };
+    });
+  }
+
+  clubMembers.sort((m1, m2) => {
+    if (m1.name < m2.name) {
+      return -1;
+    } else if (m1.name > m2.name) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return clubMembers;
 };
