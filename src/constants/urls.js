@@ -8,3 +8,7 @@ export const apiUrls = {
   invokeGladiusTransactionApi: `${WALLET_API_BASE}/invokeGladiusTransaction`,
   nftBalanceApi: `${WALLET_API_BASE}/fetchGladiusNFT`,
 };
+
+export const externalUrls = {
+  stellarAccount: "https://stellar.expert/explorer/testnet/account",
+};

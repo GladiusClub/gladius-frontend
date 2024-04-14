@@ -1,18 +1,13 @@
 import React from "react";
 
-import Typography from "components/Typography";
-import receivePointsIcon from "assets/receive-points.svg";
-import TransferInfo from "./Transfer";
+import Transfer from "./Transfer";
+import Receive from "./Receive";
 
 const PointsSendReceive = () => {
   return (
     <div className="flex justify-between items-center mt-5 w-1/2 mx-auto">
-      <TransferInfo />
-
-      <div>
-        <img src={receivePointsIcon} alt="Receive" className="cursor-pointer" />
-        <Typography className="text-sm text-center mt-3">Receive</Typography>
-      </div>
+      <Transfer />
+      <Receive />
     </div>
   );
 };

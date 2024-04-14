@@ -11,6 +11,7 @@ export const generateUserInfo = ({ user, club }) => {
       email: user.email,
       isActive: user.is_active,
       occupation: user.occupation,
+      stellarWallet: user.stellar_wallet
     };
   }
   if (club) {
