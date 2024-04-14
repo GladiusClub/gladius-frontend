@@ -74,7 +74,7 @@ export const fetchAttendedEvents = async ({
         const response = await fetch(
           `${apiUrls.calendarApi}/${calendarId}/events/${eventId}?key=${GOOGLE_CALENDAR_API_KEY}&${datesQueryParam}`
         );
-        return await response.json();
+        return response.json();
       }
     } catch (err) {
       console.error(err);

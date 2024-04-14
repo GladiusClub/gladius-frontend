@@ -1,21 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 
 import { PopoverClose, PopoverContent } from "components/Popover";
 import useUserProfile from "context/userProfile/useUserProfile";
-import useClubMembers from "hooks/useClubMembers";
-import TransferForm from "./TransferForm";
+import CopyToClipboard from "components/CopyToClipboard";
+import { externalUrls } from "constants/urls";
 
-const TransferPopoverContent = () => {
-  const { members, getClubMembers } = useClubMembers();
+const ReceivePopoverContent = () => {
   const { user } = useUserProfile();
 
-  useEffect(() => {
-    if (user.club) {
-      getClubMembers();
-    }
-  }, [user]);
+  const stellarWalletAddres = `${externalUrls.stellarAccount}/${user.stellarWallet}`;
 
   return (
     <PopoverContent
@@ -31,10 +25,20 @@ const TransferPopoverContent = () => {
       }}
     >
       <Box className="p-8">
-        <TransferForm members={members.data} />
-
+        <a
+          href={stellarWalletAddres}
+          target="_blank"
+          rel="noreferrer"
+          className="underline text-primary break-words"
+        >
+          {stellarWalletAddres}
+        </a>
         {/* Close Button */}
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-between mt-4">
+          <CopyToClipboard
+            text={stellarWalletAddres}
+            className="text-sm"
+          />
           <PopoverClose>
             <button className="text-secondary text-sm">Close</button>
           </PopoverClose>
@@ -44,4 +48,4 @@ const TransferPopoverContent = () => {
   );
 };
 
-export default TransferPopoverContent;
+export default ReceivePopoverContent;

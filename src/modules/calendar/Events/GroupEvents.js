@@ -2,7 +2,6 @@
 import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Loader from "components/Loader";
 import Typography from "components/Typography";
 import useEventsByDate from "hooks/useEventsByDate";
 import useEventsWithRsvp from "hooks/useEventsWithRsvp";
@@ -19,9 +18,7 @@ const GroupEvents = () => {
   if (eventsByDate.loading) {
     return (
       <div className="mt-10 h-full flex justify-center item-center">
-        <Loader>
-          <CircularProgress className="w-20 h-20" />
-        </Loader>
+        <CircularProgress className="w-20 h-20" />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import { apiUrls } from "constants/urls";
 
 const fetchGlcBalance = async (uid) => {
   try {
-    const response = await fetch(apiUrls.glcBalanceApi, {
+    const response = await fetch(apiUrls.glcBalanceByIdApi, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -2,7 +2,6 @@
 import React, { memo, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Loader from "components/Loader";
 import NoData from "components/NoData";
 import useUserProfile from "context/userProfile/useUserProfile";
 import useAttendedEvents from "hooks/useAttendedEvents";
@@ -25,9 +24,7 @@ const Events = memo(({ dates, onDataLoaded }) => {
   if (attendedEvents.loading) {
     return (
       <div className="mt-10 h-full flex justify-center item-center">
-        <Loader>
-          <CircularProgress className="w-20 h-20" />
-        </Loader>
+        <CircularProgress />
       </div>
     );
   }
