@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { capitalize } from "lodash";
 
 import { db } from "services/firebase/firebase-config";
+import { sortArrayInAscByKey } from "utils/commonUtils";
 
 export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
   // Get reference to groups collection of a club
@@ -117,10 +118,9 @@ export const fetchClubMembers = async (clubId) => {
       let name = userData.name;
       const email = userData.email;
 
-      if(name.includes('@')){
+      if (name.includes("@")) {
         name = name.split("@")[0];
-      }
-      else if (!name) {
+      } else if (!name) {
         name = email.split("@")[0];
       }
 
@@ -132,14 +132,7 @@ export const fetchClubMembers = async (clubId) => {
     });
   }
 
-  clubMembers.sort((m1, m2) => {
-    if (m1.name < m2.name) {
-      return -1;
-    } else if (m1.name > m2.name) {
-      return 1;
-    }
-    return 0;
-  });
+  sortArrayInAscByKey(clubMembers, "name");
 
   return clubMembers;
 };
