@@ -11,4 +11,5 @@ export const unProtectedRoutes = {
   signUp: "/signup",
   welcome: "/welcome",
   resetPassword: "/reset-password",
+  enroll: '/enroll',
 };

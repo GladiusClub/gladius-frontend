@@ -4,7 +4,13 @@ const passwordRegex = /^.{4,}$/;
 const requiredText = {
   email: "Email",
   password: "Password",
-  confirmPassword: "Confirm password",
+  guardianName: "Guardian name",
+  guardianEmail: "Guardian email",
+  guardianPassword: "Guardian password",
+  guardianConfirmPassword: "Guardian confirm password",
+  studentName: "Student name",
+  club: "Club",
+  course: "Course",
 };
 
 export const getError = (name, values) => {
@@ -13,20 +19,22 @@ export const getError = (name, values) => {
   }
 
   switch (name) {
-    case "email": {
+    case "email":
+    case "guardianEmail": {
       if (!emailRegex.test(values[name])) {
         return "Invalid email format";
       }
       break;
     }
-    case "password": {
+    case "password":
+    case "guardianPassword": {
       if (!passwordRegex.test(values[name])) {
         return "Password must be at least 4 characters";
       }
       break;
     }
-    case "confirmPassword": {
-      if (values[name] !== values.password) {
+    case "guardianConfirmPassword": {
+      if (values[name] !== values.guardianPassword) {
         return "Passwords do not match";
       }
       break;

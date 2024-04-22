@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { doc, getDoc, addDoc, collection, updateDoc } from "firebase/firestore";
+import { doc, getDoc, addDoc, collection, updateDoc, getDocs } from "firebase/firestore";
 
 import { auth, db } from "services/firebase/firebase-config";
 import { getItem } from "helpers/localStorageHelper";
@@ -22,7 +22,7 @@ const useFirebase = () => {
   const location = useLocation();
 
   const checkForNavigateToSignIn = (code) => {
-    if (code === "auth/token-expired" || code === "permission-denied") {
+    if (code === "auth/token-expired") {
       navigate(unProtectedRoutes.signIn, {
         state: { from: location },
         replace: true,
@@ -74,6 +74,7 @@ const useFirebase = () => {
       return response;
     } catch (err) {
       setError(authMessages[err.code] || err.message);
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -104,6 +105,20 @@ const useFirebase = () => {
       const docRef = doc(db, collection, id);
       const record = await getDoc(docRef);
       return getDataFromDoc(record);
+    } catch (err) {
+      handleFailure(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getDocsFromCollection = async (collectionPath) => {
+    setLoading(true);
+    try {
+      const collectionRef = collection(db, collectionPath);
+      const docs = await getDocs(collectionRef);
+      setError(null);
+      return docs;
     } catch (err) {
       handleFailure(err);
     } finally {
@@ -146,6 +161,7 @@ const useFirebase = () => {
     signUpUser,
     resetPassword,
     getDocDataById,
+    getDocsFromCollection,
     addDocData,
     updateDocData,
   };

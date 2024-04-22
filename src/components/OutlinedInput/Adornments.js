@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { AiOutlineUser } from "react-icons/ai";
+import { TbBrandGuardian } from "react-icons/tb";
 import { BiEuro } from "react-icons/bi";
+import { PiStudent } from "react-icons/pi";
 import {
   MdOutlineVisibility,
   MdOutlineVisibilityOff,
@@ -62,3 +64,23 @@ export const AmountAdornment = () => {
     </InputAdornment>
   );
 };
+
+export const GuardianAdornment = ()=>{
+  return (
+    <InputAdornment position="end">
+      <IconButton edge="end" className=" text-default">
+        <TbBrandGuardian />
+      </IconButton>
+    </InputAdornment>
+  );
+}
+
+export const StudentAdornment = ()=>{
+  return (
+    <InputAdornment position="end">
+      <IconButton edge="end" className=" text-default">
+        <PiStudent />
+      </IconButton>
+    </InputAdornment>
+  );
+}
