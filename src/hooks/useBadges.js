@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
 import useUserProfile from "context/userProfile/useUserProfile";
-import getGlcNftBalance from "api/glcNftBalance";
+import { getGlcNftBalance } from "api/stellarWallet";
 
 const useBadges = () => {
   const { checkForNavigateToSignIn } = useFirebase();
@@ -23,7 +23,7 @@ const useBadges = () => {
     setBadges((prev) => ({ ...prev, loading: true }));
     try {
       const nftBalance = await getGlcNftBalance(user.uid);
-      
+
       if (nftBalance?.data?.nfts) {
         const data = nftBalance.data.nfts.map((nft, index) => ({
           id: index,

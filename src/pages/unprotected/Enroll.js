@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import LinearProgress from "@mui/material/LinearProgress";
 
 import Select from "components/Select";
 import Typography from "components/Typography";
@@ -10,22 +13,21 @@ import useClubsAndGroups from "hooks/useClubsAndGroups";
 import useStellarWallet from "hooks/useStellarWallet";
 import { protectedRoutes, unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
-import { Fade, LinearProgress } from "@mui/material";
 
 const Enroll = () => {
   const [values, setValues] = useState({
     club: "",
-    course: "",
+    group: "",
   });
   const { errors, validateOnBlur, validateOnSubmit } = useValidate(values);
   const { clubs, groups } = useClubsAndGroups(values.club);
   const { stellarWallet, createStellarWallet } = useStellarWallet();
 
-  const navigate = useNavigate();
   const location = useLocation();
-  const locationState = location.state || {};
+  const navigate = useNavigate();
+  const locationState = location.state;
 
-  if (!locationState.from?.pathname) {
+  if (!locationState) {
     return <Navigate to={unProtectedRoutes.signUp} replace />;
   }
 
@@ -47,17 +49,18 @@ const Enroll = () => {
     const isValid = validateOnSubmit(values);
 
     if (isValid) {
-      const { guardianUid, studentUid } = locationState;
+      const { guardian, student } = locationState || {};
 
       const response = await createStellarWallet({
-        guardianId: guardianUid,
-        studentId: studentUid,
-        clubId: values.club,
-        courseId: values.course,
+        ParentUID: guardian.uid,
+        StudentUID: student.uid,
+        StudentPassword: student.password,
+        ClubUID: values.club,
+        GroupUID: values.group,
       });
 
       if (response) {
-        navigate(protectedRoutes.home, {
+        navigate(protectedRoutes.guardian.home, {
           replace: true,
         });
       }
@@ -68,8 +71,11 @@ const Enroll = () => {
     return (
       <Fade in={true}>
         <div>
-          <Typography className="text-xl mx-10 text-center">
+          <Typography className="text-xl text-primary mx-10 text-center">
             Creating stellar wallet and simulating EURC payment to club
+          </Typography>
+          <Typography className="mx-10 text-center text-sm mt-5">
+            Please wait this may take upto 1 minute.
           </Typography>
           <LinearProgress
             className="w-1/2 mx-auto mt-10 bg-dark"
@@ -91,7 +97,13 @@ const Enroll = () => {
         <Typography variant="h2" className="text-center">
           Enroll student
         </Typography>
-        <form onSubmit={handleSubmit} className="mt-10">
+        <Typography
+          className="text-secondary text-center min-h-5 text-sm my-3"
+          aria-live="assertive"
+        >
+          {stellarWallet.error && "Some error occurred!"}
+        </Typography>
+        <form onSubmit={handleSubmit} className="mt-5">
           <Select
             value={values.club}
             name="club"
@@ -108,10 +120,10 @@ const Enroll = () => {
           </Select>
 
           <Select
-            value={values.course}
-            name="course"
+            value={values.group}
+            name="group"
             label="Course"
-            error={errors.course}
+            error={errors.group}
             onBlur={handleBlur}
             onChange={handleChange}
           >

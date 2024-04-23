@@ -5,6 +5,7 @@ import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "services/firebase/firebase-config";
 import { isDefined } from "utils/commonUtils";
 import { apiUrls } from "constants/urls";
+import { collections } from "constants/collections";
 
 const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
@@ -20,7 +21,7 @@ export const fetchAttendedEvents = async ({
   // Get reference to attendance collection of the user
   const attendanceRef = collection(
     db,
-    `clubs/${clubId}/members/${uid}/attendance`
+    `${collections.clubs}/${clubId}/${collections.members}/${uid}/${collections.attendance}`
   );
 
   // Get attendance data using query
@@ -48,7 +49,6 @@ export const fetchAttendedEvents = async ({
   const attendances = attendanceDocs.docs.map((attendanceDoc) =>
     attendanceDoc.data()
   );
-
 
   // Get unique event ids
   const eventIds = uniqBy(attendances, "eventParentId").map(

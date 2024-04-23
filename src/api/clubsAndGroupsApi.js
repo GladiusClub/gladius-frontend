@@ -2,6 +2,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
 import { sortArrayInAscByKey } from "utils/commonUtils";
+import { collections } from "constants/collections";
 
 export const fetchClubs = async () => {
   const clubsRef = collection(db, `clubs`);
@@ -24,7 +25,7 @@ export const fetchClubs = async () => {
 };
 
 export const fetchGroups = async (clubId) => {
-  const groupsRef = collection(db, `clubs/${clubId}/groups`);
+  const groupsRef = collection(db, `${collections.clubs}/${clubId}/${collections.groups}`);
   const groupDocs = await getDocs(groupsRef);
 
   let groups = [];

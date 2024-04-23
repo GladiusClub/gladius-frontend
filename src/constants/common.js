@@ -1,7 +1,14 @@
+import { protectedRoutes } from "./routes";
+
 export const pageTitles = {
-  "/home": "Dashboard",
-  "/calendar": "Event",
-  "/tasks": "Tasks",
-  "/leaderboard": "Leaderboard",
-  "/profile": "Wallet",
+  [protectedRoutes.student.home]: "Dashboard",
+  [protectedRoutes.student.calendar]: "Event",
+  [protectedRoutes.student.tasks]: "Tasks",
+  [protectedRoutes.student.leaderboard]: "Leaderboard",
+  [protectedRoutes.student.profile]: "Wallet",
+  [protectedRoutes.guardian.home]: "Subscription Detail",
+};
+
+export const memberRoles = {
+  parent: "parent",
 };

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from "react";
 import { IoMdArrowDropup } from "react-icons/io";
-import fetchGlcBalance from "api/glcBalance";
+import { fetchGlcBalance } from "api/stellarWallet";
 import useUserProfile from "context/userProfile/useUserProfile";
 
 import Typography from "components/Typography";
