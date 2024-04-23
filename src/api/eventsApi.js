@@ -5,6 +5,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
 import { apiUrls } from "constants/urls";
+import { collections } from "constants/collections";
 
 const GOOGLE_CALENDAR_API_KEY = process.env.REACT_APP_CALENDAR_APIKEY;
 
@@ -27,7 +28,7 @@ export const fetchEventsByDate = async ({ uid, clubId, calendarId }) => {
   isPendingRequest = true;
 
   // Get reference to groups collection of a club
-  const groupsRef = collection(db, `clubs/${clubId}/groups`);
+  const groupsRef = collection(db, `${collections.clubs}/${clubId}/${collections.groups}`);
 
   // Get only those groups in which user is assigned
   const groupsQuery = query(

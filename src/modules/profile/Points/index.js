@@ -41,9 +41,7 @@ const Points = () => {
 
   return (
     <div className="mt-10">
-      <PointsInfo
-        eventsList={attendedEvents.data}
-      />
+      <PointsInfo />
       <PointsSendReceive />
       <PointsList title="Received" list={attendedEvents.data} />
     </div>

@@ -14,7 +14,7 @@ const EventPopoverTarget = ({ event }) => {
   const { user } = useUserProfile();
 
   const handleSwitchClick = (rsvp) => {
-    const collectionPath = `clubs/${user.club.id}/members/${user.uid}/${collections.eventRsvps}`;
+    const collectionPath = `${collections.clubs}/${user.club.id}/${collections.members}/${user.uid}/${collections.eventRsvps}`;
     if (isDefined(event.rsvpId)) {
       updateDocData(collectionPath, event.rsvpId, { rsvp });
     } else {

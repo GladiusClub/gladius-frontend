@@ -1,6 +1,10 @@
 export const collections = {
-  users: "users",
+  attendance: "attendance",
+  children: "children",
   clubs: "clubs",
   events: "events",
-  eventRsvps: 'eventRsvps'
+  eventRsvps: "eventRsvps",
+  groups: "groups",
+  members: "members",
+  users: "users",
 };

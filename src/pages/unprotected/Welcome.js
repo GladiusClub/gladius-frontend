@@ -29,7 +29,7 @@ const Welcome = () => {
               variant="contained"
               className="font-manrope w-full normal-case mt-10 bg-gradient-active"
             >
-              Sign Up
+              Sign up as guardian 
             </Button>
           </Link>
           <Link to={unProtectedRoutes.signIn} state={location.state}>

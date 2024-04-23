@@ -7,6 +7,7 @@ export const apiUrls = {
   glcBalanceByIdApi: `${WALLET_API_BASE}/getStudentBalanceByID`,
   invokeGladiusTransactionApi: `${WALLET_API_BASE}/invokeGladiusTransaction`,
   nftBalanceApi: `${WALLET_API_BASE}/fetchGladiusNFT`,
+  signupGladiusParent: `${WALLET_API_BASE}/SignupGladiusParent`,
 };
 
 export const externalUrls = {

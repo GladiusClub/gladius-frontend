@@ -1,7 +1,7 @@
 import _ from "lodash";
 import dayjs from "dayjs";
 
-export const generateUserInfo = ({ user, club }) => {
+export const generateUserInfo = ({ user, club, ...rest }) => {
   let userObj = {};
   let clubObj = null;
 
@@ -9,9 +9,8 @@ export const generateUserInfo = ({ user, club }) => {
     userObj = {
       name: user.name,
       email: user.email,
-      isActive: user.is_active,
-      occupation: user.occupation,
-      stellarWallet: user.stellar_wallet
+      stellarWallet: user.stellar_wallet,
+      role: user.clubs_roles.length ? user.clubs_roles[0].role : null,
     };
   }
   if (club) {
@@ -26,6 +25,7 @@ export const generateUserInfo = ({ user, club }) => {
   return {
     ...userObj,
     club: clubObj,
+    ...rest
   };
 };
 
