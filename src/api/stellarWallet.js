@@ -1,22 +1,21 @@
+import api from "./helper";
 import { apiUrls } from "constants/urls";
 
-export const makeClubPayment = async (apiData) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve("done"), 10000);
+export const makeClubPayment = async (data) => {
+  return api.post(apiUrls.signupGladiusParent, data);
+};
+
+export const fetchGlcBalance = async (UID) => {
+  return api.post(apiUrls.glcBalanceByIdApi, { UID });
+};
+
+export const getGlcNftBalance = async (UID) => {
+  return api.post(apiUrls.nftBalanceApi, { UID });
+};
+
+export const glcTransactionSend = async (UID, amount) => {
+  return api.post(apiUrls.invokeGladiusTransactionApi, {
+    UID,
+    amount,
   });
-
-  // const response = await fetch(apiUrls.createStellarWallet, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(apiData),
-  // });
-
-  // if (!response.ok) {
-  //   const error = await response.json();
-  //   throw error;
-  // }
-
-  // return response.json();
 };

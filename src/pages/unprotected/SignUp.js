@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Fade from "@mui/material/Fade";
 
 import Typography from "components/Typography";
-import SignupForm from "modules/signup/SignupForm";
+import SignupForm from "modules/signup";
 import { unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
 

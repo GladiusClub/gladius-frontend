@@ -7,11 +7,11 @@ import { protectedRoutes } from "constants/routes";
 
 const links = [
   {
-    to: protectedRoutes.home,
+    to: protectedRoutes.student.home,
     text: "Home",
   },
   {
-    to: protectedRoutes.calendar,
+    to: protectedRoutes.student.calendar,
     text: "Calendar",
   },
   // {
@@ -19,11 +19,11 @@ const links = [
   //   text: "Tasks",
   // },
   {
-    to: protectedRoutes.leaderboard,
+    to: protectedRoutes.student.leaderboard,
     text: "Leaderboard",
   },
   {
-    to: protectedRoutes.profile,
+    to: protectedRoutes.student.profile,
     text: "Profile",
   },
 ];

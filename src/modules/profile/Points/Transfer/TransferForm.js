@@ -8,7 +8,7 @@ import { usePopover } from "components/Popover";
 import { AmountAdornment } from "components/OutlinedInput/Adornments";
 import OutlinedInput from "components/OutlinedInput";
 import Typography from "components/Typography";
-import glcTransactionSend from "api/glcTransaction";
+import { glcTransactionSend } from "api/stellarWallet";
 import EventBus from "helpers/EventBus";
 import { busEvents } from "constants/busEvents";
 

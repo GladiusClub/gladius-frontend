@@ -1,5 +1,5 @@
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^.{4,}$/;
+const passwordRegex = /^.{6,}$/;
 
 const requiredText = {
   email: "Email",
@@ -10,7 +10,7 @@ const requiredText = {
   guardianConfirmPassword: "Guardian confirm password",
   studentName: "Student name",
   club: "Club",
-  course: "Course",
+  group: "Course",
 };
 
 export const getError = (name, values) => {
@@ -29,7 +29,7 @@ export const getError = (name, values) => {
     case "password":
     case "guardianPassword": {
       if (!passwordRegex.test(values[name])) {
-        return "Password must be at least 4 characters";
+        return "Password must be at least 6 characters";
       }
       break;
     }

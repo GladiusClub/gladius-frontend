@@ -5,17 +5,21 @@ import Loader from "components/Loader";
 import { protectedRoutes, unProtectedRoutes } from "constants/routes";
 
 const UnProtectedLayout = lazy(() => import("./unprotected/Layout"));
-const ProtectedLayout = lazy(() => import("./protected/Layout"));
+const StudentProtectedLayout = lazy(() => import("./protected/Student/Layout"));
+const GuardianProtectedLayout = lazy(
+  () => import("./protected/Guardian/Layout")
+);
 const Welcome = lazy(() => import("./unprotected/Welcome"));
 const SignIn = lazy(() => import("./unprotected/SignIn"));
 const SignUp = lazy(() => import("./unprotected/SignUp"));
 const ResetPassword = lazy(() => import("./unprotected/ResetPassword"));
 const Enroll = lazy(() => import("./unprotected/Enroll"));
-const Home = lazy(() => import("./protected/Home"));
-const Calendar = lazy(() => import("./protected/Calendar"));
-const Leaderboard = lazy(() => import("./protected/Leaderboard"));
-const Profile = lazy(() => import("./protected/Profile"));
-const Tasks = lazy(() => import("./protected/Tasks"));
+const StudentHome = lazy(() => import("./protected/Student/Home"));
+const Calendar = lazy(() => import("./protected/Student/Calendar"));
+const Leaderboard = lazy(() => import("./protected/Student/Leaderboard"));
+const Profile = lazy(() => import("./protected/Student/Profile"));
+const Tasks = lazy(() => import("./protected/Student/Tasks"));
+const GuardianHome = lazy(() => import("./protected/Guardian/Home"));
 const NotFound = lazy(() => import("./NotFound"));
 
 const Main = () => {
@@ -35,17 +39,29 @@ const Main = () => {
           />
         </Route>
 
-        <Route element={<ProtectedLayout />}>
-          <Route path={protectedRoutes.home} element={<Home />} />
-          <Route path={protectedRoutes.calendar} element={<Calendar />} />
-          <Route path={protectedRoutes.leaderboard} element={<Leaderboard />} />
-          <Route path={protectedRoutes.profile} element={<Profile />} />
-          <Route path={protectedRoutes.tasks} element={<Tasks />} />
+        {/* Student */}
+        <Route element={<StudentProtectedLayout />}>
+          <Route path={protectedRoutes.student.home} element={<StudentHome />} />
+          <Route
+            path={protectedRoutes.student.calendar}
+            element={<Calendar />}
+          />
+          <Route
+            path={protectedRoutes.student.leaderboard}
+            element={<Leaderboard />}
+          />
+          <Route path={protectedRoutes.student.profile} element={<Profile />} />
+          <Route path={protectedRoutes.student.tasks} element={<Tasks />} />
+        </Route>
+
+        {/* Guardian */}
+        <Route element={<GuardianProtectedLayout />}>
+          <Route path={protectedRoutes.guardian.home} element={<GuardianHome />} />
         </Route>
 
         <Route
           path="/"
-          element={<Navigate to={protectedRoutes.home} replace />}
+          element={<Navigate to={protectedRoutes.student.home} replace />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

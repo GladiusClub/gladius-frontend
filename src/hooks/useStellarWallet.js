@@ -4,7 +4,7 @@ import { makeClubPayment } from "api/stellarWallet";
 
 const useStellarWallet = () => {
   const [stellarWallet, setStellarWallet] = useState({
-    data: [],
+    data: null,
     loading: false,
     error: null,
   });
