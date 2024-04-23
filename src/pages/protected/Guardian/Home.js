@@ -3,7 +3,9 @@ import Fade from "@mui/material/Fade";
 import classNames from "classnames";
 
 import Typography from "components/Typography";
+import Divider from "components/Divider";
 import useUserProfile from "context/userProfile/useUserProfile";
+import { externalUrls } from "constants/urls";
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,35 +33,56 @@ const Home = () => {
                 "text-left text-sm bg-neutral rounded-xl overflow-scroll font-light flex items-center",
                 {
                   "h-0": !isExpanded,
-                  "h-44": isExpanded,
+                  "h-80": isExpanded,
                 }
               )}
               style={{ transition: "0.5s" }}
             >
-              <div className="mx-5">
+              <div className="px-5 w-full">
                 <Typography className="my-2">
                   <Typography variant="span" className="block">
                     Parent public key:
                   </Typography>
-                  <Typography variant="span">{user.stellarWallet}</Typography>
+                  <a
+                    href={`${externalUrls.stellarAccount}/${user.stellarWallet}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline break-words"
+                  >
+                    {`${externalUrls.stellarAccount}/${user.stellarWallet}`}
+                  </a>
                 </Typography>
 
-                <Typography className="my-2">
+                <Divider className="mt-3 mb-2"/>
+
+                <Typography>
                   <Typography variant="span" className="block">
                     Student public key:
                   </Typography>
-                  <Typography variant="span">
-                    {student.stellar_wallet}
-                  </Typography>
+                  <a
+                    href={`${externalUrls.stellarAccount}/${student.stellar_wallet}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline break-words"
+                  >
+                    {`${externalUrls.stellarAccount}/${student.stellar_wallet}`}
+                  </a>
                 </Typography>
 
-                <Typography className="my-2">
+                <Divider className="mt-3 mb-2"/>
+
+                <Typography>
                   <Typography variant="span" className="block">
                     Club public key:
                   </Typography>
-                  <Typography variant="span">
-                    {student.clubStellarWallet}
-                  </Typography>
+                  <a
+                    href={`${externalUrls.stellarAccount}/${student.clubStellarWallet}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline break-words"
+                  >
+                    {`${externalUrls.stellarAccount}/${student.clubStellarWallet}`}
+                  </a>
                 </Typography>
               </div>
             </div>
@@ -72,15 +95,15 @@ const Home = () => {
             <div className="bg-neutral p-5 rounded-xl my-8">
               <Typography className="mb-5">Student login details</Typography>
               <Typography className="flex text-left my-1">
-                <Typography variant="span" className="w-2/5">
-                  Student email:
+                <Typography variant="span" className="w-24">
+                  Email:
                 </Typography>
                 <Typography variant="span">{student.email}</Typography>
               </Typography>
 
               <Typography className="flex text-left my-1">
-                <Typography variant="span" className="w-2/5">
-                  Student password:
+                <Typography variant="span" className="w-24">
+                  Password:
                 </Typography>
                 <Typography variant="span">{student.password}</Typography>
               </Typography>
