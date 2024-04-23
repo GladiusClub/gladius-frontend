@@ -8,7 +8,10 @@ import { collections } from "constants/collections";
 
 export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
   // Get reference to groups collection of a club
-  const groupsRef = collection(db, `${collections.clubs}/${clubId}/${collections.groups}`);
+  const groupsRef = collection(
+    db,
+    `${collections.clubs}/${clubId}/${collections.groups}`
+  );
 
   // Get only those groups in which user is assigned
   const groupsQuery = query(
@@ -119,7 +122,7 @@ export const fetchClubMembers = async (clubId) => {
       let name = userData.name;
       const email = userData.email;
 
-      if (name.includes("@")) {
+      if (name?.includes("@")) {
         name = name.split("@")[0];
       } else if (!name) {
         name = email.split("@")[0];

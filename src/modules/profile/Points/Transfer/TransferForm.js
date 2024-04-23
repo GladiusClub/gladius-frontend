@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { usePopover } from "components/Popover";
 import { AmountAdornment } from "components/OutlinedInput/Adornments";
 import OutlinedInput from "components/OutlinedInput";
 import Typography from "components/Typography";
+import useUserProfile from "context/userProfile/useUserProfile";
 import { glcTransactionSend } from "api/stellarWallet";
 import EventBus from "helpers/EventBus";
 import { busEvents } from "constants/busEvents";
@@ -16,7 +17,12 @@ const TransferForm = ({ members }) => {
   const [values, setValues] = useState({ selectedUser: "", amount: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
+  const { user } = useUserProfile();
   const { setAnchorEl } = usePopover();
+
+  const clubMembers = useMemo(() => {
+    return members.filter((member) => member.uid !== user.uid);
+  }, [members, user.uid]);
 
   const handleSelectedUserChange = (name, value) => {
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -60,7 +66,7 @@ const TransferForm = ({ members }) => {
         label="Send to"
         onChange={handleSelectedUserChange}
       >
-        {members.map((member) => (
+        {clubMembers.map((member) => (
           <MenuItem
             value={member.uid}
             key={member.uid}
