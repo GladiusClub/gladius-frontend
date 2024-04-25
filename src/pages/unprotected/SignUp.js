@@ -5,6 +5,7 @@ import Fade from "@mui/material/Fade";
 import Typography from "components/Typography";
 import SignupForm from "modules/signup";
 import { unProtectedRoutes } from "constants/routes";
+import { externalUrls } from "constants/urls";
 import gladiusLogo from "assets/gladius-logo.svg";
 
 const SignUp = () => {
@@ -23,6 +24,16 @@ const SignUp = () => {
           <Link to={unProtectedRoutes.signIn} className="ml-2 text-primary">
             Sign in
           </Link>
+        </Typography>
+        
+        <Typography
+          variant="a"
+          href={externalUrls.gladiusDocs}
+          target="_blank"
+          rel="noreferrer"
+          className="underline break-words text-sm block mt-2"
+        >
+          Want to know how Gladius Club works?
         </Typography>
       </div>
     </Fade>

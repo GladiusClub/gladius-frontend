@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
-import { sortArrayInAscByKey } from "utils/commonUtils";
+import { isDefined, sortArrayInAscByKey } from "utils/commonUtils";
 import { collections } from "constants/collections";
 
 export const fetchClubs = async () => {
@@ -25,7 +25,10 @@ export const fetchClubs = async () => {
 };
 
 export const fetchGroups = async (clubId) => {
-  const groupsRef = collection(db, `${collections.clubs}/${clubId}/${collections.groups}`);
+  const groupsRef = collection(
+    db,
+    `${collections.clubs}/${clubId}/${collections.groups}`
+  );
   const groupDocs = await getDocs(groupsRef);
 
   let groups = [];
@@ -35,6 +38,10 @@ export const fetchGroups = async (clubId) => {
       return {
         uid: groupDoc.id,
         name: groupData.name,
+        subscriptionFee: isDefined(groupData.subscriptionFee)
+          ? groupData.subscriptionFee
+          : 75,
+        incentiveAmount: groupData.incentiveAmount,
       };
     });
   }

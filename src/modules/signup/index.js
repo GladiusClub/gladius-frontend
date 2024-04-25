@@ -31,8 +31,7 @@ const SignupForm = () => {
     validateOnBlur(name, newValues);
   };
 
-  const signupUsersAndUpdateProfile = async () => {
-    setLoading(true);
+  const signupUsersAndUpdateProfile = async (values) => {
     const studentEmail = generateEmailFromName(values.studentName);
     const studentPassword = generatePassword();
     setLogs(["Registering student"]);
@@ -88,10 +87,12 @@ const SignupForm = () => {
 
     if (isValid) {
       try {
-        await signupUsersAndUpdateProfile();
+        setLoading(true);
+        await signupUsersAndUpdateProfile(values);
       } catch (err) {
         console.error("Error occurred in Signup flow!");
         console.error(err);
+      } finally {
         setLoading(false);
       }
     }

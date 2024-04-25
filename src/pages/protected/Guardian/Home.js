@@ -30,7 +30,7 @@ const Home = () => {
 
             <div
               className={classNames(
-                "text-left text-sm bg-neutral rounded-xl overflow-scroll font-light flex items-center",
+                "text-left text-sm bg-neutral rounded-xl font-light flex items-center",
                 {
                   "h-0": !isExpanded,
                   "h-80": isExpanded,

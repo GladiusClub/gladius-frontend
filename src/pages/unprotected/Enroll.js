@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
@@ -13,6 +13,7 @@ import useClubsAndGroups from "hooks/useClubsAndGroups";
 import useStellarWallet from "hooks/useStellarWallet";
 import { protectedRoutes, unProtectedRoutes } from "constants/routes";
 import gladiusLogo from "assets/gladius-logo.svg";
+import { externalUrls } from "constants/urls";
 
 const Enroll = () => {
   const [values, setValues] = useState({
@@ -26,6 +27,10 @@ const Enroll = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const locationState = location.state;
+
+  const selectedGroup = useMemo(() => {
+    return groups.data.find((group) => group.uid === values.group);
+  }, [groups, values.group]);
 
   if (!locationState) {
     return <Navigate to={unProtectedRoutes.signUp} replace />;
@@ -134,12 +139,19 @@ const Enroll = () => {
             ))}
           </Select>
 
-          <Typography>
-            <Typography variant="span">Course fee:</Typography>
-            <Typography variant="span" className="ml-3 text-primary">
-              75 EUR
+          {selectedGroup && (
+            <Typography>
+              <Typography variant="span">Course fee:</Typography>
+              <Typography variant="span" className="ml-3 text-primary">
+                {selectedGroup.subscriptionFee} EUR
+              </Typography>
+              {selectedGroup.incentiveAmount && (
+                <Typography variant="span" className="ml-3 text-sm">
+                  (Incentive: {selectedGroup.incentiveAmount} EUR)
+                </Typography>
+              )}
             </Typography>
-          </Typography>
+          )}
 
           <Button
             type="submit"
@@ -149,6 +161,16 @@ const Enroll = () => {
           >
             Make payment
           </Button>
+
+          <Typography
+            variant="a"
+            href={externalUrls.gladiusDocs}
+            target="_blank"
+            rel="noreferrer"
+            className="underline break-words text-sm block mt-5 text-center"
+          >
+            Gladius contract terms
+          </Typography>
         </form>
       </div>
     </Fade>

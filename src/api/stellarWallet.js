@@ -13,9 +13,10 @@ export const getGlcNftBalance = async (UID) => {
   return api.post(apiUrls.nftBalanceApi, { UID });
 };
 
-export const glcTransactionSend = async (UID, amount) => {
-  return api.post(apiUrls.invokeGladiusTransactionApi, {
-    UID,
+export const glcTransactionSend = async (to_uid, from_uid, amount) => {
+  return api.post(apiUrls.transferGlcApi, {
+    to_uid,
+    from_uid,
     amount,
   });
 };

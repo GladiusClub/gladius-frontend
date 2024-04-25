@@ -39,7 +39,7 @@ const TransferForm = ({ members }) => {
     const values = Object.fromEntries(formData.entries());
 
     setIsLoading(true); // Start loading
-    glcTransactionSend(values.selectedUser, values.amount)
+    glcTransactionSend(values.selectedUser, user.uid, values.amount)
       .then((response) => {
         if (response.to_address) {
           // Emit event to refetch the balance wherever subscribed
