@@ -3,10 +3,15 @@ import dayjs from "dayjs";
 import { capitalize } from "lodash";
 
 import { db } from "services/firebase/firebase-config";
+import { sortArrayInAscByKey } from "utils/commonUtils";
+import { collections } from "constants/collections";
 
 export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
   // Get reference to groups collection of a club
-  const groupsRef = collection(db, `clubs/${clubId}/groups`);
+  const groupsRef = collection(
+    db,
+    `${collections.clubs}/${clubId}/${collections.groups}`
+  );
 
   // Get only those groups in which user is assigned
   const groupsQuery = query(
@@ -31,7 +36,7 @@ export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
   const groupsMembersIds = Object.keys(membersObj);
 
   // Get reference to members collection of a club
-  const membersRef = collection(db, `clubs/${clubId}/members`);
+  const membersRef = collection(db, `${collections.clubs}/${clubId}/members`);
   // Get only those members which are under user groups
   const membersQuery = query(membersRef, where("user", "in", groupsMembersIds));
   const membersDocs = await getDocs(membersQuery);
@@ -51,7 +56,7 @@ export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
       // Get reference to attendance collection of a member
       const attendanceRef = collection(
         db,
-        `clubs/${clubId}/members/${memberId}/attendance`
+        `${collections.clubs}/${clubId}/${collections.members}/${memberId}/${collections.attendance}`
       );
 
       // Get attendance data using
@@ -106,7 +111,7 @@ export const fetchGroupMembers = async ({ minDate, maxDate, uid, clubId }) => {
 };
 
 export const fetchClubMembers = async (clubId) => {
-  const usersRef = collection(db, `clubs/${clubId}/members`);
+  const usersRef = collection(db, `${collections.clubs}/${clubId}/members`);
   const userDocs = await getDocs(usersRef);
 
   let clubMembers = [];
@@ -117,10 +122,9 @@ export const fetchClubMembers = async (clubId) => {
       let name = userData.name;
       const email = userData.email;
 
-      if(name.includes('@')){
+      if (name?.includes("@")) {
         name = name.split("@")[0];
-      }
-      else if (!name) {
+      } else if (!name) {
         name = email.split("@")[0];
       }
 
@@ -132,14 +136,7 @@ export const fetchClubMembers = async (clubId) => {
     });
   }
 
-  clubMembers.sort((m1, m2) => {
-    if (m1.name < m2.name) {
-      return -1;
-    } else if (m1.name > m2.name) {
-      return 1;
-    }
-    return 0;
-  });
+  sortArrayInAscByKey(clubMembers, "name");
 
   return clubMembers;
 };

@@ -1,3 +1,4 @@
+import { collections } from "constants/collections";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
@@ -10,7 +11,7 @@ export const fetchEventsWithRsvp = async ({ events, uid, clubId }) => {
   // Get reference to eventRsvps collection
   const eventRsvpsRef = collection(
     db,
-    `clubs/${clubId}/members/${uid}/eventRsvps`
+    `${collections.clubs}/${clubId}/${collections.members}/${uid}/${collections.eventRsvps}`
   );
 
   const eventRsvpsQuery = query(

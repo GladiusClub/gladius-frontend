@@ -9,7 +9,7 @@ const BadgeCard = ({ item }) => {
       <Image
         src={item.image}
         alt={item.name}
-        className="rounded-lg w-44 h-64"
+        className="rounded-lg w-40 h-56"
         loaderClassName="h-[10rem]"
       />
       <div className="bg-dark opacity-70 absolute p-4 bottom-0 rounded-b-lg w-full">

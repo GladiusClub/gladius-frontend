@@ -3,18 +3,22 @@ import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 import Loader from "components/Loader";
 import useUserProfile from "context/userProfile/useUserProfile";
-import { protectedRoutes } from "constants/routes";
+import { protectedRoutes, unProtectedRoutes } from "constants/routes";
 
 const Unprotected = () => {
   const { user } = useUserProfile();
   const location = useLocation();
-  const from = location.state?.from?.pathname || protectedRoutes.home;
+  const from = location.state?.from?.pathname || protectedRoutes.student.home;
 
   if (user.isFetching) {
     return <Loader className="flex justify-center items-center h-full" />;
   }
 
-  if (user.uid) {
+  if (
+    user.uid &&
+    location.pathname !== unProtectedRoutes.signUp &&
+    location.pathname !== unProtectedRoutes.enroll
+  ) {
     return <Navigate to={from} replace />;
   }
 

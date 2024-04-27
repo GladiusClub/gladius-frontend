@@ -1,49 +1,31 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import { toast } from "react-toastify";
 
+import Select from "components/Select";
 import { usePopover } from "components/Popover";
 import { AmountAdornment } from "components/OutlinedInput/Adornments";
 import OutlinedInput from "components/OutlinedInput";
 import Typography from "components/Typography";
-import glcTransactionSend from "api/glcTransaction";
+import useUserProfile from "context/userProfile/useUserProfile";
+import { glcTransactionSend } from "api/stellarWallet";
 import EventBus from "helpers/EventBus";
 import { busEvents } from "constants/busEvents";
-
-const sendToSelectProps = {
-  inputProps: {
-    className: "text-default font-light font-manrope",
-    name: "selectedUser",
-    required: true,
-    autoComplete: "off",
-  },
-  MenuProps: {
-    PaperProps: {
-      style: {
-        maxHeight: "12rem",
-        borderRadius: 0,
-      },
-    },
-  },
-  sx: {
-    ".MuiSelect-icon": {
-      color: "var(--color-default)",
-    },
-  },
-};
 
 const TransferForm = ({ members }) => {
   const [values, setValues] = useState({ selectedUser: "", amount: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
+  const { user } = useUserProfile();
   const { setAnchorEl } = usePopover();
 
-  const handleSelectedUserChange = (event) => {
-    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  const clubMembers = useMemo(() => {
+    return members.filter((member) => member.uid !== user.uid);
+  }, [members, user.uid]);
+
+  const handleSelectedUserChange = (name, value) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleAmountChange = (name, value) => {
@@ -57,7 +39,7 @@ const TransferForm = ({ members }) => {
     const values = Object.fromEntries(formData.entries());
 
     setIsLoading(true); // Start loading
-    glcTransactionSend(values.selectedUser, values.amount)
+    glcTransactionSend(values.selectedUser, user.uid, values.amount)
       .then((response) => {
         if (response.to_address) {
           // Emit event to refetch the balance wherever subscribed
@@ -78,33 +60,25 @@ const TransferForm = ({ members }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl variant="outlined" className="w-full text-default mb-4">
-        <InputLabel className="text-sm text-default font-manrope font-light">
-          Send to
-        </InputLabel>
-        <Select
-          value={values.selectedUser}
-          onChange={handleSelectedUserChange}
-          label="Send to"
-          {...sendToSelectProps}
-        >
-          <MenuItem value="">
-            <em>None</em>
+      <Select
+        value={values.selectedUser}
+        name="selectedUser"
+        label="Send to"
+        onChange={handleSelectedUserChange}
+      >
+        {clubMembers.map((member) => (
+          <MenuItem
+            value={member.uid}
+            key={member.uid}
+            className="flex justify-between"
+          >
+            <Typography variant="span">{member.name} </Typography>
+            <Typography variant="span" className="text-sm text-neutral">
+              ({member.email})
+            </Typography>
           </MenuItem>
-          {members.map((member) => (
-            <MenuItem
-              value={member.uid}
-              key={member.uid}
-              className="flex justify-between"
-            >
-              <Typography variant="span">{member.name} </Typography>
-              <Typography variant="span" className="text-sm text-neutral">
-                ({member.email})
-              </Typography>
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        ))}
+      </Select>
 
       <OutlinedInput
         field={{

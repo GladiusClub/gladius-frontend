@@ -10,6 +10,7 @@ import {
   PopoverTarget,
 } from "components/Popover";
 import { auth } from "services/firebase/firebase-config";
+import { externalUrls } from "constants/urls";
 import "./menu.css";
 
 const Menu = () => {
@@ -37,6 +38,15 @@ const Menu = () => {
       >
         <PopoverClose>
           <ul>
+            <MenuItem>
+              <a
+                href={externalUrls.gladiusDocs}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Docs
+              </a>
+            </MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </ul>
         </PopoverClose>
