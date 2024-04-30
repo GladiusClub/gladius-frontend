@@ -5,13 +5,13 @@ import Typography from "components/Typography";
 import BinarySwitch from "components/BinarySwitch";
 import { PopoverTarget } from "components/Popover";
 import useFirebase from "services/firebase/useFirebase";
-import useUserProfile from "context/userProfile/useUserProfile";
+import useStudentAsUser from "hooks/useStudentAsUser";
 import { isDefined } from "utils/commonUtils";
 import { collections } from "constants/collections";
 
 const EventPopoverTarget = ({ event }) => {
   const { addDocData, updateDocData } = useFirebase();
-  const { user } = useUserProfile();
+  const { user } = useStudentAsUser();
 
   const handleSwitchClick = (rsvp) => {
     const collectionPath = `${collections.clubs}/${user.club.id}/${collections.members}/${user.uid}/${collections.eventRsvps}`;

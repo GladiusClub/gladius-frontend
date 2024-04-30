@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 
 import useFirebase from "services/firebase/useFirebase";
-import useUserProfile from "context/userProfile/useUserProfile";
 import { fetchEventsWithRsvp } from "api/rsvpApi";
+import useStudentAsUser from "./useStudentAsUser";
 
 const useEventsWithRsvp = (events) => {
   const { checkForNavigateToSignIn } = useFirebase();
-  const { user } = useUserProfile();
+  const { user } = useStudentAsUser();
   const [eventsWithRsvp, setEventsWithRsvp] = useState({
     data: [...events],
     loading: false,
