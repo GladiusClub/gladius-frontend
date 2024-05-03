@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Loader from "components/Loader";
-import { protectedRoutes, unProtectedRoutes } from "constants/routes";
+import { params, protectedRoutes, unProtectedRoutes } from "constants/routes";
 
 const UnProtectedLayout = lazy(() => import("./unprotected/Layout"));
 const StudentProtectedLayout = lazy(() => import("./protected/Student/Layout"));
@@ -20,6 +20,7 @@ const Leaderboard = lazy(() => import("./protected/Student/Leaderboard"));
 const Profile = lazy(() => import("./protected/Student/Profile"));
 const Tasks = lazy(() => import("./protected/Student/Tasks"));
 const GuardianHome = lazy(() => import("./protected/Guardian/Home"));
+const GuardianCalendar = lazy(() => import("./protected/Guardian/Calendar"));
 const NotFound = lazy(() => import("./NotFound"));
 
 const Main = () => {
@@ -41,7 +42,10 @@ const Main = () => {
 
         {/* Student */}
         <Route element={<StudentProtectedLayout />}>
-          <Route path={protectedRoutes.student.home} element={<StudentHome />} />
+          <Route
+            path={protectedRoutes.student.home}
+            element={<StudentHome />}
+          />
           <Route
             path={protectedRoutes.student.calendar}
             element={<Calendar />}
@@ -56,7 +60,18 @@ const Main = () => {
 
         {/* Guardian */}
         <Route element={<GuardianProtectedLayout />}>
-          <Route path={protectedRoutes.guardian.home} element={<GuardianHome />} />
+          <Route
+            path={protectedRoutes.guardian.home}
+            element={<GuardianHome />}
+          />
+          <Route
+            path={protectedRoutes.guardian.calendar}
+            element={<GuardianCalendar />}
+          />
+          <Route
+            path={`${protectedRoutes.guardian.calendar}/:${params.studentUid}`}
+            element={<GuardianCalendar />}
+          />
         </Route>
 
         <Route

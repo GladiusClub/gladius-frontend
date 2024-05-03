@@ -8,6 +8,7 @@ export const protectedRoutes = {
   },
   guardian: {
     home: "/guardian/home",
+    calendar: "/guardian/calendar",
   },
 };
 
@@ -18,3 +19,7 @@ export const unProtectedRoutes = {
   resetPassword: "/reset-password",
   enroll: "/enroll",
 };
+
+export const params = {
+  studentUid: 'studentUid'
+}

@@ -1,4 +1,4 @@
-import { compact } from "lodash";
+import { compact, get } from "lodash";
 import { getDocs, getDoc, collection, doc } from "firebase/firestore";
 
 import { db } from "services/firebase/firebase-config";
@@ -16,6 +16,7 @@ export const fetchStudentsDetailsFromGuardian = async (uid) => {
     studentsPromises = childrenDocs.docs.map(async (childrenDoc) => {
       try {
         const children = childrenDoc.data();
+        children.uid = childrenDoc.id;
 
         // Get data from clubs collection
         const clubRef = doc(db, collections.clubs, children.ClubUID);
@@ -23,7 +24,11 @@ export const fetchStudentsDetailsFromGuardian = async (uid) => {
 
         if (clubDoc.exists()) {
           const clubData = clubDoc.data();
-          children.clubStellarWallet = clubData.club_stellar_wallet;
+          children.club = {
+            id: clubDoc.id,
+            stellarWallet: clubData.club_stellar_wallet,
+            calendarId: get(clubData, "calendars[0]")
+          }
         }
 
         // Get data from groups collection

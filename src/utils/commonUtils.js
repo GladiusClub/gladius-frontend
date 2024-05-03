@@ -22,11 +22,17 @@ export const sortArrayInAscByKey = (arr, key) => {
   });
 };
 
+const generateRandomNumber = (numDigits = 2) => {
+  const min = Math.pow(10, numDigits - 1);
+  const max = Math.pow(10, numDigits) - 1;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 export const generateEmailFromName = (name, domain = "gladius.com") => {
   // Convert name to lowercase and replace spaces with dots
   const emailName = name.trim().toLowerCase().replace(/\s+/g, ".");
-  // Concatenate with domain
-  const email = emailName + "@" + domain;
+  // Concatenate with random number and domain
+  const email = emailName + generateRandomNumber() + "@" + domain;
   return email;
 };
 

@@ -3,14 +3,14 @@ import { useState, useEffect, useMemo } from "react";
 import dayjs from "dayjs";
 import { compact } from "lodash";
 
-import useUserProfile from "context/userProfile/useUserProfile";
 import { eventsByDateCache, fetchEventsByDate } from "api/eventsApi";
 import useFirebase from "services/firebase/useFirebase";
+import useStudentAsUser from "./useStudentAsUser";
 
 const emptyArray = [];
 
 const useEventsByDate = (dates) => {
-  const { user } = useUserProfile();
+  const { user } = useStudentAsUser();
   const { checkForNavigateToSignIn } = useFirebase();
   const [eventsByDate, setEventsByDate] = useState({
     data: eventsByDateCache,

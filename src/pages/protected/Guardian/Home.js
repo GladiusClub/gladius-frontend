@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import Fade from "@mui/material/Fade";
 import classNames from "classnames";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 import Typography from "components/Typography";
 import Divider from "components/Divider";
 import useUserProfile from "context/userProfile/useUserProfile";
 import { externalUrls } from "constants/urls";
+import { protectedRoutes } from "constants/routes";
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,7 +56,7 @@ const Home = () => {
                   </a>
                 </Typography>
 
-                <Divider className="mt-3 mb-2"/>
+                <Divider className="mt-3 mb-2" />
 
                 <Typography>
                   <Typography variant="span" className="block">
@@ -69,19 +72,19 @@ const Home = () => {
                   </a>
                 </Typography>
 
-                <Divider className="mt-3 mb-2"/>
+                <Divider className="mt-3 mb-2" />
 
                 <Typography>
                   <Typography variant="span" className="block">
                     Club public key:
                   </Typography>
                   <a
-                    href={`${externalUrls.stellarAccount}/${student.clubStellarWallet}`}
+                    href={`${externalUrls.stellarAccount}/${student.club.stellarWallet}`}
                     target="_blank"
                     rel="noreferrer"
                     className="underline break-words"
                   >
-                    {`${externalUrls.stellarAccount}/${student.clubStellarWallet}`}
+                    {`${externalUrls.stellarAccount}/${student.club.stellarWallet}`}
                   </a>
                 </Typography>
               </div>
@@ -113,6 +116,16 @@ const Home = () => {
               <Typography variant="span">Subscribed to course:</Typography>
               <Typography variant="span">{student.groupName}</Typography>
             </Typography>
+
+            <Link to={`${protectedRoutes.guardian.calendar}/${student.uid}`}>
+              <Button
+                size="large"
+                variant="contained"
+                className="font-manrope w-full normal-case mt-5 bg-gradient-active"
+              >
+                View events
+              </Button>
+            </Link>
           </div>
         ))}
       </div>
