@@ -36,7 +36,13 @@ const Points = () => {
   }
 
   if (attendedEvents.data.length === 0) {
-    return <NoData className="mt-10 text-lg text-center" />;
+    return (
+      <div className="mt-10">
+        <PointsInfo />
+        <PointsSendReceive />
+        <NoData className="mt-10 text-lg text-center" />
+      </div>
+    );
   }
 
   return (
