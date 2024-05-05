@@ -59,7 +59,7 @@ const PointsInfo = () => {
       <Typography className="flex text-success items-center">
         <IoMdArrowDropup className="w-7 h-7" />
         <Typography variant="span" className="text-sm ">
-          {pointsBalance} points last week
+          {pointsBalance} GLC last week
         </Typography>
       </Typography>
     </div>
