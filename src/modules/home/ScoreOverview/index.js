@@ -1,12 +1,12 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { TbJewishStarFilled } from "react-icons/tb";
 
 import Typography from "components/Typography";
 import colors from "theme/colors";
 import league from "assets/league.svg";
 import diamond from "assets/diamond.svg";
 import GlcPoints from "./GlcPoints";
+import Badges from "./Badges";
 
 const style = {
   boxShadow: `0px 0px 20px 0px ${colors.shadow}`,
@@ -20,14 +20,7 @@ const ScoreOverview = () => {
         className="bg-gradient-dark p-3 rounded-2xl text-center w-1/2"
       >
         <GlcPoints />
-
-        <div className="flex items-center gap-2 mt-5 justify-center">
-          <TbJewishStarFilled className="text-primary w-7 h-7" />
-          <Typography variant="h2" className="text-secondary">
-            0
-          </Typography>
-        </div>
-        <Typography className="text-neutral text-sm">+ 0 last week</Typography>
+        <Badges />
       </Box>
       <Box
         style={style}
